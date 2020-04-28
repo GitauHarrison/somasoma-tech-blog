@@ -1,0 +1,12 @@
+<html>
+    {% if block %}
+    <title>{{ Rebel }}- Blog</title>
+    {% else %}
+    <title>Bolder Learner</title>
+    {% endif %}
+    <body>
+        {% block content %}
+        
+        {% endblock %}
+    </body>
+</html>
