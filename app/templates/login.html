@@ -1,8 +1,8 @@
-extends 'base.html'
+{% extends 'base.html' %}
 
 {% block content %}
     Somasoma:
-    <a href="{{ url_for('discover') }}">Discover</a><hr>
+    <a href="{{ url_for('index') }}">Discover</a><hr>
 
     <div>
         <img src="{{url_for('static', filename='icons8-rebel-48.png')}}">
@@ -12,11 +12,11 @@ extends 'base.html'
         <form action="" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <p>
-                {{ form.username.label }}
+                {{ form.username.label }}<br>
                 {{ form.username(size=32) }}
             </p>
             <p>
-                {{ form.password.label }}
+                {{ form.password.label }}<br>
                 {{ form.password(size=32) }}
             </p>
             <p>
@@ -26,6 +26,6 @@ extends 'base.html'
                 {{ form.submit() }}
             </p>
         </form>
-        <p>Already joined? <a href="{{ url_for('register') }}">Login</a></p>
+        <p>Already joined? <a href="{{ url_for('index') }}">Login</a></p>
     </div>
 {% endblock %}
