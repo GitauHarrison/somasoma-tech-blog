@@ -1,9 +1,10 @@
 <html>
     {% if block %}
-    <title>{{ Rebel }}- Blog</title>
+    <title>{{ Rebel }} - Blog</title>
     {% else %}
     <title>Bolder Learner</title>
     {% endif %}
+    <link rel="stylesheets" href="/app/static/style.css">
     <body>
         {% block content %}
         
@@ -13,7 +14,7 @@
             <h5>
                 <a href="/login">Login</a>
                 <a href="/blog">Blog</a>
-                <a href="/blog">Contact</a>
+                <a href="/contact">Contact</a>
             </h5>
             
         </div>

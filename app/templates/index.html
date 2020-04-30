@@ -4,8 +4,19 @@
 <div>
     Somasoma:
     <a href="/Discover">Discover</a>
-</div>
-<hr>
 
+    <div class="home-image">
+        <img src="{{ url_for('static', filename='Home Page image.jpg')}}">
+    </div>
+    <div>
+        <h1>Dare to be different!</h1>
+        <h3>Reject conformity, learn something new, break rules ... then raise an alien generation of innovators</h3>
+    </div>
+    <form action="" method="POST" invalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.submit() }}</p>
+    </form>
+    
+</div>
 
 {% endblock %}
