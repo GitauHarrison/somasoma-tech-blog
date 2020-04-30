@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     Somasoma:
-    <a href="/Discover">Discover</a>
+    <a href="{{ url_for('index') }}">Discover</a>
 
     <div class="home-image">
         <img src="{{ url_for('static', filename='Home Page image.jpg')}}">
@@ -12,11 +12,12 @@
         <h1>Dare to be different!</h1>
         <h3>Reject conformity, learn something new, break rules ... then raise an alien generation of innovators</h3>
     </div>
-    <form action="" method="POST" invalidate>
-        {{ form.hidden_tag() }}
-        <p>{{ form.submit() }}</p>
-    </form>
-    
+    <div>
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
