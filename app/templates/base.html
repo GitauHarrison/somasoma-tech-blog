@@ -23,6 +23,7 @@
         <hr>
         <div>
             <h5>
+                {% if current_user.is_anonymous %}
                 <a href="/login">Blog</a>
                 <a href="/contact">Become a Patreon</a>
             </h5>
