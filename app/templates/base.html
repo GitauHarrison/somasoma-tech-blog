@@ -16,19 +16,21 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        <div >
+            {% if current_user.is_anonymous %}
+                Somasoma:
+                <a href="{{ url_for('index') }}">Discover</a>
+            {% endif %}
+        </div>
 
         {% block content %}
         
         {% endblock %}
+        
         <hr>
         <div>
             <h5>
                 <a href="/login">Blog</a>
-                {% if current_user.is_anonymous %}
-                    <a href="url_for('login')">Login</a>
-                {% else %}
-                    <a href="url_for('logout')">Logout</a>
-                {% endif %}
                 <a href="/contact">Become a Patreon</a>
             </h5>
             
