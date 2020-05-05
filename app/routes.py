@@ -23,3 +23,9 @@ def login():
         login_user(user, remember = form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('login.html', title='Join Now', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
