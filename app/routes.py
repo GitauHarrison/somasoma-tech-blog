@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, url_for, redirect, flash
 from app.forms import LoginForm, RegistrationForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 
 @app.route('/')
@@ -29,3 +29,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/blog')
+@login_required
+def blog():
+   # login_form = LoginForm()
+   # register_form = RegistrationForm()
+   # return render_template('login.html', title='Home', form = login_form, form = register_form)
+   pass
