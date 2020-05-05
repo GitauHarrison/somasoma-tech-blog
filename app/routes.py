@@ -1,6 +1,8 @@
 from app import app
 from flask import render_template, url_for, redirect, flash
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
+from flask_login import current_user, login_user, logout_user
+from app.models import User
 
 @app.route('/')
 @app.route('/index')
@@ -10,8 +12,14 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        flash('You have requested for user {}, remember_me{} to join Somasoma'.format(form.username.data, form.remember_me.data))
-        redirect(url_for('index'))
+        user = User.query.filter_by(form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')            
+            return redirect(url_for('index'))
+        login_user(user, remember = form.remember_me.data)
+        return redirect(url_for('index'))
     return render_template('login.html', title='Join Now', form=form)
