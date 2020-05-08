@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<img src="{{ url_for('static', filename = 'register.png') }}">
+<img src="{{ url_for('static', filename = 'register.jpg') }}" width = "200px" height="200">
 <h1>We do not conform to the rules!</h1>
 
 <form action="" method="POST" novalidate>
@@ -35,6 +35,6 @@
         {% endfor %}
     </p>
     <P>{{ form.submit() }}</P>
-    <p>Already registered? <a href="{{url_for(login)}}">Login</a> </p>
+    <p>Already registered? <a href="{{url_for('login')}}">Login</a> </p>
 </form>
 {% endblock %}
