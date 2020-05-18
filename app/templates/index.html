@@ -3,11 +3,13 @@
 {% block content %}
 <div>
     <div>
+        Somasoma:       
         {% if current_user.is_anonymous %}                
                 <a href="{{url_for('login')}}">Login</a>
             {% else %}
                     <a href="{{url_for('logout')}}">Logout</a>
-            {% endif %}
+        {% endif %}
+        <a href="{{url_for('login')}}">Discover</a>
     </div>
     <div class="home-image">
         <img src="{{ url_for('static', filename='Home Page image.jpg')}}" width="=200" height="200">

@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, url_for, redirect, flash
+from flask import render_template, url_for, redirect, flash, request
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
@@ -19,7 +19,7 @@ def login():
         user = User.query.filter_by(username =form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')            
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
         login_user(user, remember = form.remember_me.data)
         return redirect(url_for('index'))
     return render_template('login.html', title='Login', form=form)
@@ -45,10 +45,10 @@ def register():
     return render_template('register.html', title = 'Join Now', form = form)
 
 
-@app.route('/blog')
-@login_required
-def blog():
+#@app.route('/blog')
+#@login_required
+#def blog():
    # login_form = LoginForm()
    # register_form = RegistrationForm()
    # return render_template('login.html', title='Home', form = login_form, form = register_form)
-   pass
+   #pass
