@@ -44,6 +44,9 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Join Now', form = form)
 
+@app.route('/discover')
+def discover():
+    return render_template('discover.html', title = 'Discover')
 
 #@app.route('/blog')
 #@login_required
