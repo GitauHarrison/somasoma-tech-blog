@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <a href="{{ url_for('index')}}">Somasoma:</a>
-    <a href="{{ url_for('index') }}">Discover</a><hr>
-
+{% block app_content %}
     <div>
         <img src="{{url_for('static', filename='icons8-rebel-48.png')}}">
         <h1>We are the <span style="color: red;"> rebels!</span></h1>
@@ -32,6 +29,6 @@
                 {{ form.submit() }}
             </p>
         </form>
-        <p>Already joined? <a href="{{ url_for('login') }}">Login</a></p>
+        <p>Want to join? <a href="{{ url_for('register') }}">Register</a></p>
     </div>
 {% endblock %}
