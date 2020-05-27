@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-<div class="row">
     <div class="col-md-4">
         <img src="{{ url_for('static', filename='Home Page image.jpg')}}" width="=200" height="200">
     </div>
     <div class="col-md-8">
         <div class="row">
-            <h1>Dare to be different!</h1>
+            <div class="col-md-8">
+                <h1>Dare to be different!</h1>
+            </div>            
         </div>
         <div class="row">
-            <h3>Reject conformity, learn something new, break rules ... then raise an alien generation of innovators</h3>
+            <div class="col-md-8">
+                <h3>Reject conformity, learn something new, break rules ... then raise an alien generation of innovators</h3>
+            </div>            
         </div>        
         <div class="row">
-            <button type="button" class="btn btn-warning"><a href="{{url_for('register')}}">Join Now</a></button>        
+            <div class="col-md-8">
+                <button type="button" class="btn btn-warning"><a href="{{url_for('register')}}">Join Now</a></button>        
+            </div>            
         </div>
     </div>
-</div>
-
 {% endblock %}
