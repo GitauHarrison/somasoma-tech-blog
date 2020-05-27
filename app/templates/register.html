@@ -2,14 +2,27 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<div>
-    <img src="{{ url_for('static', filename = 'register.jpg') }}" width = "200px" height="200">
-    <h1><span style="color: red;">Bloody</span> be the first!</h1>
+<div class="row align-items-center">
+    <div class="col-md-4">
+        <div class="row">
+            <h1><span style="color: red;">Bloody</span> be the first!</h1>
+        </div>           
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-4">
+                {{ wtf.quick_form(form) }}
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    Already joined?
+                    <a href="{{ url_for('login') }}">Login</a>
+                </p>
+            </div>            
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        {{ wtf.quick_form(form) }}
-    </div>    
-</div>
 {% endblock %}
