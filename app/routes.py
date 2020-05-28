@@ -48,6 +48,10 @@ def register():
 def discover():
     return render_template('discover.html', title = 'Discover')
 
+@app.route('/blog')
+def blog():
+    return render_template('blog.html', title = 'Blog')
+
 #@app.route('/blog')
 #@login_required
 #def blog():
