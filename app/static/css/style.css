@@ -2,8 +2,14 @@
     background-color: #6C6C6C;
     color: white;
 } */
+
+/* Cards */
 .card{
     border: 1px solid #b8b2a6;
     border-radius: 7px;
     padding: 15px;
+
+    /* Buttons */
+}.lead_btn{
+    background-color: #f8f8f8;
 }

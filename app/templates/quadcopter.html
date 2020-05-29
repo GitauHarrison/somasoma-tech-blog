@@ -1,47 +1,53 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-<div class="col-md-3">
+<div class="col-md-12">
     <div class="row">
-        <nav id="navbar-example3" class="navbar navbar-light bg-light">            
-            <nav class="nav nav-pills flex-column">
-                <a class="nav-link" href="#overview">Overview</a>                
+        <div class="text-center col-sm-4">                
+            <nav id="navbar-example3" class="navbar navbar-light bg-light">            
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#overview">Overview</a>                
+                </nav>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#resources">Resources</a>              
+                </nav>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#create">Create</a>              
+                </nav>
             </nav>
-            <nav class="nav nav-pills flex-column">
-                <a class="nav-link" href="#resources">Resources</a>              
-            </nav>
-            <nav class="nav nav-pills flex-column">
-                <a class="nav-link" href="#create">Create</a>              
-            </nav>
-          </nav>
+            <div class="row">
+                <div>
+                    <p class="card lead_btn text-white">Want to master<br>Arduino?<br><button type="button" class="btn btn-warning"><b>LEAD THE<br>FIELD</b></button></p>                 
+                </div>        
+            </div>
+        </div>        
+        <div class="col-sm-8">
+            <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+                <h2 class="text-center" id="overview">Quadcopter</h2>
+                <h4>Overview</h4>
+                <p>
+                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+                </p>
+    
+                <h4 id="resources">What You Will Need</h4>
+                <p>
+                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+                </p>
+                <p>1. Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim <br>mollit nostrud aute reprehenderit do.</p>
+                <p>2. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.</p>
+    
+                <h4 id="create">How To</h4>
+                <p>
+                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
+                </p>            
+              </div>
+        </div>
     </div>
 </div>
-<div class="col-md-9">
-    <div class="row">
-        <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
-            <h2 class="text-center" id="overview">Quadcopter</h2>
-            <h4>Overview</h4>
-            <p>
-                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
-                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
-                Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
-            </p>
 
-            <h4 id="resources">What You Will Need</h4>
-            <p>
-                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
-                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
-                Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
-            </p>
-            <p>1. Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim <br>mollit nostrud aute reprehenderit do.</p>
-            <p>2. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.</p>
-
-            <h4 id="create">How To</h4>
-            <p>
-                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
-                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
-            </p>            
-          </div>
-    </div>
-</div>
 {% endblock %}
