@@ -1,0 +1,9 @@
+/* body{
+    background-color: #6C6C6C;
+    color: white;
+} */
+.card{
+    border: 1px solid #b8b2a6;
+    border-radius: 7px;
+    padding: 15px;
+}
