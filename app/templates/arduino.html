@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="col-md-3">
+    <div class="row">
+        <nav id="navbar-example3" class="navbar navbar-light bg-light">            
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#overview">Overview</a>                
+            </nav>
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#objectives">Objectives</a>              
+            </nav>
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#DIY-Projects">DIY Projects</a>              
+            </nav>
+          </nav>
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="row">
+        <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+            <h2 class="text-center" id="overview">Arduino</h2>
+            <h4>Overview</h4>
+            <p>
+                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+            </p>
+
+            <h4 id="objectives">Objectives</h4>
+            <p>
+                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+            </p>
+            <p>1. Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim <br>mollit nostrud aute reprehenderit do.</p>
+            <p>2. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.</p>
+
+            <h4 id="DIY-Projects">DIYProjects</h4>
+            <p>
+                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
+            </p>
+            <p>1. <a href="{{ url_for('quadcopter') }}">Quadcopter</a></p>
+            <p>2. <a href="#">RC Car</a></p>
+            <p>3. <a href="#">Robot Arm</a></p>
+          </div>
+    </div>
+</div>
+{% endblock %}

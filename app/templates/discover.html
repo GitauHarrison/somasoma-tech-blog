@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="col-md-7">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Dare to <span style="color: orange;">learn</span></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card text-center" style="width: 18rem;">
+                <a href="{{ url_for('arduino') }}">
+                    <img class="card-img-top" src="static/img/arduino.svg" alt="Arduino">
+                    <div class="card-body">
+                        <h5 class="card-title"><span style="color: orange;">Arduino</h5></span>                                 
+                    </div>
+                </a>
+            </div>
+          </div>
+        <div class="col-sm-4">
+            <div class="card text-center" style="width: 18rem;">
+                <a href="#">
+                    <img class="card-img-top" src="static/img/raspberry_pi.svg" alt="Raspberry Pi">
+                    <div class="card-body">
+                        <h5 class="card-title"><span style="color: orange;">Raspberry Pi</h5></span>                   
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-center" style="width: 18rem;">
+                <ul class="list-group list-group-flush"> 
+                    <a href="#">
+                        <li class="list-group-item"><img class="card-img-top" src="static/img/more.png" alt="More"> More</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+      </div>        
+</div>
+<div class="col-md-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="static/img/discover Image 1.jpg" width="=200" height="200" class="rounded mx-auto d-block" alt="Robot Arms">
+        </div><!--
+        --><div class="col-md-6">
+            <img src="static/img/discover Image 2.jpg" width="=200" height="200" class="rounded mx-auto d-block" alt="Arduino Connections">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="static/img/discover Image 5.jpg" width="=200" height="200" class="rounded mx-auto d-block" alt="Traffic Light">
+        </div><!--
+    --><div class="col-md-6">
+            <img src="static/img/discover Image 4.jpg" width="=200" height="200" class="rounded mx-auto d-block" alt="RC Car">
+        </div>
+    </div>
+</div>
+{% endblock %}
