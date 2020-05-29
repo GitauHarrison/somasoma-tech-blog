@@ -52,6 +52,9 @@ def discover():
 def blog():
     return render_template('blog.html', title = 'Blog')
 
+@app.route('/arduino')
+def arduino():
+    return render_template('arduino.html', title = 'Arduino')
 #@app.route('/blog')
 #@login_required
 #def blog():
