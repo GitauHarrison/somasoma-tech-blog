@@ -55,6 +55,10 @@ def blog():
 @app.route('/arduino')
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
+
+@app.route('/quadcopter')
+def quadcopter():
+    return render_template('quadcopter.html', title = 'Quadcopter')
 #@app.route('/blog')
 #@login_required
 #def blog():
