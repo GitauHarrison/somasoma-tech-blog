@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField
+from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 #from email_validator import validate_email, EmailNotValidError
 from app.models import User
@@ -31,3 +31,8 @@ class CommentsForm(FlaskForm):
     username = StringField('Username', validators = [DataRequired()])
     comment = TextAreaField('Comment', validators = [Length(min = 0, max = 140)])
     submit = SubmitField('Post Your comment')
+
+#class PurchaseForm(FlaskForm):
+    #payment_method = StringField('Payment Method', validators = [DataRequired()])
+    #card_number = IntegerField('Card Number', validators = [DataRequired()])
+    #expiry_date = 
