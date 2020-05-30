@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf%}
 
 {% block app_content %}
 <div class="col-md-12">
@@ -46,8 +47,14 @@
                     Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
                 </p>            
               </div>
-        </div>
+                <h4>Comments</h4>
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-4"> -->
+                    {{ wtf.quick_form(form) }}
+                </div>
+        </div>        
     </div>
+    </div>    
 </div>
 
 {% endblock %}
