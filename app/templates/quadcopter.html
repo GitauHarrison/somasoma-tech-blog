@@ -4,7 +4,7 @@
 {% block app_content %}
 <div class="col-md-12">
     <div class="row">
-        <div class="text-center col-sm-4">                
+        <div class=" text-center col-sm-3">                
             <nav id="navbar-example3" class="navbar navbar-light bg-light">            
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#overview">Overview</a>                
@@ -15,14 +15,17 @@
                 <nav class="nav nav-pills flex-column">
                     <a class="nav-link" href="#create">Create</a>              
                 </nav>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#comment">Comments</a>              
+                </nav>
             </nav>
-            <div class="row">
+            <div class="col-md-8">
                 <div>
-                    <p class="card lead_btn text-white">Want to master<br>Arduino?<br><button type="button" class="btn btn-warning"><b>LEAD THE<br>FIELD</b></button></p>                 
+                    <p class="card lead_btn text-center justify-content-center">Want to master<br>Arduino?<br><button type="button" class="btn btn-warning"><b>LEAD THE<br>FIELD</b></button></p>                 
                 </div>        
             </div>
         </div>        
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
                 <h2 class="text-center" id="overview">Quadcopter</h2>
                 <h4>Overview</h4>
@@ -47,7 +50,7 @@
                     Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
                 </p>            
               </div>
-                <h4>Comments</h4>
+                <h4 id="comment">Comments</h4>
                 <!-- <div class="row"> -->
                     <!-- <div class="col-md-4"> -->
                     {{ wtf.quick_form(form) }}
