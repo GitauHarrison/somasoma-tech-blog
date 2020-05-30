@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+
+{%  block app_content%}
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="text-center">LEAD THE FIELD</h2>
+            <p>
+                Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+            </p>
+            <div class="row instructor">
+                <div class="col-md-2 text-center">
+                    <img src="{{ url_for('static', filename = 'img/instructor.svg') }}" width="70" height="70">
+                    <p>John Doe</p>
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                        Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
+                        Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+                    </p>
+                </div>                            
+            </div>
+            <div>
+                <h5 class="text-center">Select Your Courses</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card text-center" style="width: 18rem;">
+                                <img class="card-img-top" src="static/img/arduino.svg" alt="Arduino">
+                                <div class="card-body">
+                                    <h5 class="card-title"><span style="color: orange;">Arduino</h5></span><hr>
+                                    <P>$ 15</P>                              
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center" style="width: 18rem;">
+                                <img class="card-img-top" src="static/img/raspberry_pi.svg" alt="Arduino">
+                                <div class="card-body">
+                                    <h5 class="card-title"><span style="color: orange;">Raspberry Pi</h5></span><hr>
+                                    <P>$ 15</P>                              
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center" style="width: 18rem;">
+                                <img class="card-img-top" src="static/img/video_editing.svg" alt="Arduino">
+                                <div class="card-body">
+                                    <h5 class="card-title"><span style="color: orange;">Raspberry Pi</h5></span><hr>
+                                    <P>$ 15</P>                              
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <a href="#">
+                            <button type="button" class="btn btn-warning"><b>Enrol Now</b></button>
+                        </a>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%  endblock %}

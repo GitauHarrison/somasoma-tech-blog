@@ -60,6 +60,10 @@ def arduino():
 def quadcopter():
     form = CommentsForm()
     return render_template('quadcopter.html', title = 'Quadcopter', form = form)
+
+@app.route('/lead_the_field')
+def lead_the_field():
+    return render_template('lead_the_field.html', title = 'Lead the Field')
 #@app.route('/blog')
 #@login_required
 #def blog():
