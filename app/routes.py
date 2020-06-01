@@ -25,6 +25,7 @@ def login():
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':            
             next_page = url_for('quadcopter')
+        return redirect(next_page)
     return render_template('login.html', title='Login', form=form)
 
 
@@ -66,6 +67,7 @@ def quadcopter():
     return render_template('quadcopter.html', title = 'Quadcopter', form = form)
 
 @app.route('/lead_the_field')
+@login_required
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
 #@app.route('/blog')
