@@ -1,9 +1,10 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import LoginForm, RegistrationForm, CommentsForm
+from app.forms import LoginForm, RegistrationForm, CommentsForm, ResetPasswordRequestForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
+from app.email import send_password_reset_email
 
 @app.route('/')
 @app.route('/index')
@@ -70,6 +71,20 @@ def quadcopter():
 @login_required
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
+
+@app.route('/reset_password_request', methods = ['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('blog'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions on how to reset your password')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html', form=form, title = 'Reset Password Request')
+    
 #@app.route('/blog')
 #@login_required
 #def blog():
