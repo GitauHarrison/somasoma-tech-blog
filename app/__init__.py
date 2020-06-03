@@ -6,7 +6,7 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 import logging
-from logging.handlers import SMTPHandler
+from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 
 app = Flask(__name__)
@@ -37,3 +37,15 @@ if not app.debug:
     )
     mail_handler.setLevel(logging.error)
     app.logger.addHandler(mail_handler)
+
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/somasoma.log', maxBytes=10240, backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s: %(lineno)d]'
+    ))
+    file_handler.setLevel(logging.INFO)
+    app.loggger.addHandler(file_handler)
+
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('Somasoma Blog')
