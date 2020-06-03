@@ -46,7 +46,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulation! You are now a registered user')
-        return redirect(url_for('blog'))
+        return redirect(url_for('login'))
     return render_template('register.html', title = 'Join Now', form = form)
 
 @app.route('/discover')
@@ -99,7 +99,7 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', title = 'Reset Password', form = form)
-    
+
 #@app.route('/blog')
 #@login_required
 #def blog():
