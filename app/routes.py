@@ -64,8 +64,9 @@ def arduino():
 @app.route('/quadcopter')
 @login_required
 def quadcopter():
+    user = current_user
     form = CommentsForm()
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
 
 @app.route('/lead_the_field')
 @login_required

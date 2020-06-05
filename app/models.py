@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import login
 from hashlib import md5
+from datetime import datetime
 
 # 1. Username
 # 2. Email
@@ -18,6 +19,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index = True, unique = True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Posts', backref = 'author', lazy = 'dynamic')
+    blog_post = db.Column(db.DateTime, index = True, default=datetime.utcnow)
 
     def __repr__(self):
         return 'User {}'.format(self.username)
