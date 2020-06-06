@@ -29,6 +29,7 @@ class RegistrationForm(FlaskForm):
 
 class CommentsForm(FlaskForm):
     username = StringField('Username', validators = [DataRequired()])
+    email = StringField('Email', validators = [DataRequired(), Email()])
     comment = TextAreaField('Comment', validators = [Length(min = 0, max = 140)])
     submit = SubmitField('Post Your comment')
 
