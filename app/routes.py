@@ -69,8 +69,8 @@ def quadcopter():
         comment = Comments(body = form.comment.data, author = current_user)
         db.session.add(comment)
         db.session.commit()
-        flash('Your comment is now live!')
         comments = user.comments.order_by(Comments.timestamp.desc())
+        flash('Your comment is now live!')        
     return render_template('quadcopter.html', title = 'Quadcopter', form = form)
 
 @app.route('/lead_the_field')

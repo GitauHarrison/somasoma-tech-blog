@@ -56,11 +56,14 @@
                 </p><hr>         
             </div>               
                 <div>
-                    <h4 id="comment">Comments</h4>
-                    {% for comment in Comments %}
+                    <h4 id="comment">Comments</h4><br>
+                    {% if form %}
+                        {{ wtf.quick_form(form) }}
+                        <br>
+                    {% endif %}
+                    {% for user_comment in comments %}
                         {% include '_comments.html' %}                        
-                    {% endfor %}
-                    {{ wtf.quick_form(form) }}
+                    {% endfor %}            
                 </div>
         </div>        
     </div>
