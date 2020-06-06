@@ -64,13 +64,12 @@ def arduino():
 @login_required
 def quadcopter():
     form = CommentsForm()
-    comment_form = CommentsForm()
-    if comment_form.validate_on_submit():
-        comment = Comments(body = comment_form.body.data, author = current_user)
+    if form.validate_on_submit():
+        comment = Comments(body = form.body.data, author = current_user)
         db.session.add(comment)
         db.session.commit()
         flash('Your comment is now live!')
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form, comment_form = comment_form)
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
 
 @app.route('/lead_the_field')
 @login_required
