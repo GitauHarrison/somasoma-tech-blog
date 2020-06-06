@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, url_for, redirect, flash, request
 from app.forms import LoginForm, RegistrationForm, CommentsForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Comments
 from werkzeug.urls import url_parse
 
 @app.route('/')
@@ -64,7 +64,13 @@ def arduino():
 @login_required
 def quadcopter():
     form = CommentsForm()
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
+    comment_form = CommentsForm()
+    if comment_form.validate_on_submit():
+        comment = Comments(body = comment_form.body.data, author = current_user)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment is now live!')
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form, comment_form = comment_form)
 
 @app.route('/lead_the_field')
 @login_required
