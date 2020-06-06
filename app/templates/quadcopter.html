@@ -53,11 +53,13 @@
                 <p>
                     Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
                     Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
-                </p>            
-              </div>
-                <h4 id="comment">Comments</h4>
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-md-4"> -->
+                </p><hr>         
+            </div>               
+                <div>
+                    <h4 id="comment">Comments</h4>
+                    {% for comment in Comments %}
+                        {% include '_comments.html' %}                        
+                    {% endfor %}
                     {{ wtf.quick_form(form) }}
                 </div>
         </div>        
