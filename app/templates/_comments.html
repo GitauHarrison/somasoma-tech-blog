@@ -1,7 +1,7 @@
 <table class="table table-hover">
     <tr valign="top">
         <td width="70px">
-            <a href="{{ url_for('quadcopter', username=current_user.username) }}">
+            <a href="{{ url_for('quadcopter', username=user.username) }}">
                 <img src="{{ user.avatar(128) }}" />
                 {{ user.username }}
             </a>
