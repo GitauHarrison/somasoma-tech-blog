@@ -60,23 +60,40 @@ def blog():
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
-@app.route('/quadcopter', methods =['GET', 'POST'])
+@app.route('/quadcopter/<username>', methods = ['GET', 'POST'])
 @login_required
-def quadcopter():    
-    form = CommentsForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username = form.username.data, email = form.email.data).first()
-        comment = Comments(body = form.comment.data, author = current_user)
-        db.session.add(comment)
-        db.session.commit()
-        comments = user.comments.order_by(Comments.timestamp.desc())
-        flash('Your comment is now live!')        
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
+def quadcopter(username):
+    user = User.query.filter_by(username = username)
+    form = CommentsForm()    
+    comments = [
+        {'author': username, 'body': form.comment.data}
+    ]
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
 
 @app.route('/lead_the_field')
 @login_required
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #@app.route('/blog')
 #@login_required
 #def blog():
