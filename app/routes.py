@@ -61,7 +61,7 @@ def blog():
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
-@app.route('/quadcopter/<username>', methods = ['GET', 'POST'])
+@app.route('/quadcopter/user/<username>', methods = ['GET', 'POST'])
 @login_required
 def quadcopter(username):
     user = User.query.filter_by(username = username)
@@ -75,7 +75,7 @@ def quadcopter(username):
         current_user.body = form.comment.data
         db.session.commit()
         flash('Your comment is now live!')
-        return redirect(url_for('quadcopter'))
+        return redirect(url_for('quadcopter', username = current_user.username))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
@@ -90,6 +90,7 @@ def lead_the_field():
 def before_request():
     if current_user.is_authenticated:
         current_user.timestamp = datetime.utcnow()
+        db.session.commit()
 
 
 #@app.route('/blog')
