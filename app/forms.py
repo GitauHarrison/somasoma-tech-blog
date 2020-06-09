@@ -33,6 +33,15 @@ class CommentsForm(FlaskForm):
     comment = TextAreaField('Comment', validators = [Length(min = 0, max = 140)])
     submit = SubmitField('Post Your comment')
 
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Reqest Password Reset')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators = [DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password')])
+    submit = SubmitField('Request Password Reset')
+
 #class PurchaseForm(FlaskForm):
     #payment_method = StringField('Payment Method', validators = [DataRequired()])
     #card_number = IntegerField('Card Number', validators = [DataRequired()])
