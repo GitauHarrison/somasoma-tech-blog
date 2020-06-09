@@ -1,0 +1,13 @@
+<table class="table table-hover">
+    <tr valign="top">
+        <td width="70px">
+            <a href="{{ url_for('quadcopter', username=user.username) }}">
+                <img src="{{ current_user.avatar(128) }}" />
+                {{ user.username }}
+            </a>
+        </td>
+        <td>
+            {{ user.username }}said {{ moment(user.timestamp).fromNow() }}
+        </td>
+    </tr>
+</table>
