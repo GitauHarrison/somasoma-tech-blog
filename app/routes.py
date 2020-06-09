@@ -86,6 +86,11 @@ def quadcopter(username):
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
 
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.timestamp = datetime.utcnow()
+
 
 #@app.route('/blog')
 #@login_required
