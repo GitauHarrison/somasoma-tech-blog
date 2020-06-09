@@ -67,6 +67,7 @@ def arduino():
 
 @app.route('/quadcopter/user/<username>', methods = ['GET', 'POST'])
 @login_required
+<<<<<<< HEAD
 def quadcopter(username):
     user = User.query.filter_by(username = username)
     form = CommentsForm()    
@@ -83,6 +84,11 @@ def quadcopter(username):
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+=======
+def quadcopter():
+    user = current_user
+    form = CommentsForm()
+>>>>>>> date_and_time_feature
     return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
 
 @app.route('/lead_the_field')
