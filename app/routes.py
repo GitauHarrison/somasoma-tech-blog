@@ -4,11 +4,8 @@ from app.forms import LoginForm, RegistrationForm, CommentsForm, ResetPasswordRe
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Comments
 from werkzeug.urls import url_parse
-<<<<<<< HEAD
 from datetime import datetime
-=======
 from app.email import send_password_reset_email
->>>>>>> email_support_feature
 
 @app.route('/')
 @app.route('/index')
@@ -29,7 +26,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':            
-            next_page = url_for('quadcopter')
+            next_page = url_for('quadcopter', username = current_user.username)
         return redirect(next_page)
     return render_template('login.html', title='Login', form=form)
 
@@ -67,11 +64,10 @@ def arduino():
 
 @app.route('/quadcopter/user/<username>', methods = ['GET', 'POST'])
 @login_required
-<<<<<<< HEAD
 def quadcopter(username):
     user = User.query.filter_by(username = username)
     form = CommentsForm()    
-    comments = [
+    all_comments = [
         {'author': username, 'body': form.comment.data}
     ]
     if form.validate_on_submit():
@@ -84,26 +80,19 @@ def quadcopter(username):
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-=======
-def quadcopter():
-    user = current_user
-    form = CommentsForm()
->>>>>>> date_and_time_feature
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
+    return render_template('quadcopter.html', title = 'Quadcopter', user = user, comments = all_comments, form = form)
 
 @app.route('/lead_the_field')
 @login_required
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
 
-<<<<<<< HEAD
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.timestamp = datetime.utcnow()
         db.session.commit()
 
-=======
 @app.route('/reset_password_request', methods = ['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -131,7 +120,6 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('login'))
     return render_template('reset_password.html', title = 'Reset Password', form = form)
->>>>>>> email_support_feature
 
 #@app.route('/blog')
 #@login_required

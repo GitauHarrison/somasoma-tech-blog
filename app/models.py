@@ -18,12 +18,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index = True, unique = True)
     email = db.Column(db.String(120), index = True, unique = True)
     password_hash = db.Column(db.String(128))
-<<<<<<< HEAD
     comments = db.relationship('Comments', backref = 'author', lazy = 'dynamic')
-=======
-    posts = db.relationship('Posts', backref = 'author', lazy = 'dynamic')
-    blog_post = db.Column(db.DateTime, index = True, default=datetime.utcnow)
->>>>>>> date_and_time_feature
 
     def __repr__(self):
         return 'User {}'.format(self.username)

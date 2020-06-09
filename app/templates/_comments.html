@@ -1,13 +1,15 @@
 <table class="table table-hover">
     <tr valign="top">
         <td width="70px">
-            <a href="{{ url_for('quadcopter', username=user.username) }}">
-                <img src="{{ current_user.avatar(128) }}" />
+            <a href="{{ url_for('quadcopter', username=current_user.username) }}">
+                <img src="{{ current_user.avatar(50) }}" />
                 {{ user.username }}
             </a>
         </td>
         <td>
-            {{ user.username }}said {{ moment(user.timestamp).fromNow() }}
+            <span style="background-color: orange; border-radius: 4px;padding: 3px;">{{ current_user.username }}</span> said {{ moment(current_user.timestamp).fromNow() }}:<br><br>
+            {{ current_user.comments }}
         </td>
+
     </tr>
 </table>
