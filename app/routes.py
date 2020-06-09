@@ -4,6 +4,7 @@ from app.forms import LoginForm, RegistrationForm, CommentsForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Comments
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 @app.route('/')
 @app.route('/index')
@@ -68,30 +69,22 @@ def quadcopter(username):
     comments = [
         {'author': username, 'body': form.comment.data}
     ]
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.body = form.comment.data
+        db.session.commit()
+        flash('Your comment is now live!')
+        return redirect(url_for('quadcopter'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
     return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
 
 @app.route('/lead_the_field')
 @login_required
 def lead_the_field():
     return render_template('lead_the_field.html', title = 'Lead the Field')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #@app.route('/blog')
