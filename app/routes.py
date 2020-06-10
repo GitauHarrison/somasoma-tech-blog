@@ -68,7 +68,7 @@ def arduino():
 def quadcopter(username):
     user = User.query.filter_by(username = username).first_or_404()       
     form = CommentsForm()    
-    all_comments = [
+    comments = [
         {'author': user, 'body': form.comment.data}
     ]    
     if form.validate_on_submit():        
@@ -81,7 +81,7 @@ def quadcopter(username):
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-    return render_template('quadcopter.html', title = 'Quadcopter', user = user, comments = all_comments, form = form)
+    return render_template('quadcopter.html', title = 'Quadcopter', user = user, comments = comments, form = form)
 
 @app.route('/lead_the_field')
 @login_required
