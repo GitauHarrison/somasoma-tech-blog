@@ -59,24 +59,25 @@ def blog():
     return render_template('blog.html', title = 'Blog')
 
 @app.route('/arduino')
+@login_required
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
 @app.route('/quadcopter/user/<username>', methods = ['GET', 'POST'])
 @login_required
 def quadcopter(username):
-    user = User.query.filter_by(username = username)
+    user = User.query.filter_by(username = username).first_or_404()       
     form = CommentsForm()    
     all_comments = [
-        {'author': username, 'body': form.comment.data}
-    ]
-    if form.validate_on_submit():
+        {'author': user, 'body': form.comment.data}
+    ]    
+    if form.validate_on_submit():        
         current_user.username = form.username.data
         current_user.email = form.email.data
         current_user.body = form.comment.data
         db.session.commit()
         flash('Your comment is now live!')
-        return redirect(url_for('quadcopter', username = current_user.username))
+        return redirect(url_for('quadcopter', username = user.username))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
