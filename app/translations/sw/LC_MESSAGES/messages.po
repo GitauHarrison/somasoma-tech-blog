@@ -1,0 +1,132 @@
+# Swahili translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-06-11 14:20+0300\n"
+"PO-Revision-Date: 2020-06-11 14:29+0300\n"
+"Language: sw\n"
+"Language-Team: sw <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: app/__init__.py:21
+msgid "You need to login to accesss this page"
+msgstr "Unahitaji kujiandikisha kuingia"
+
+#: app/forms.py:32
+msgid "Username"
+msgstr "Jina lako"
+
+#: app/forms.py:33
+msgid "Email"
+msgstr "Barua lako pepe"
+
+#: app/forms.py:34
+msgid "Comment"
+msgstr "Maoni"
+
+#: app/forms.py:35
+msgid "Post Your comment"
+msgstr "Uza maoni yako"
+
+#: app/routes.py:25
+msgid "Invalid username or password"
+msgstr "Jina au pasi yako ya siri mbaya"
+
+#: app/routes.py:80
+msgid "Your comment is now live!"
+msgstr "Maoni yako yameuzwa"
+
+#: app/templates/_comments.html:9
+msgid "said"
+msgstr "alisema"
+
+#: app/templates/quadcopter.html:12 app/templates/quadcopter.html:46
+msgid "Overview"
+msgstr "Ujumla"
+
+#: app/templates/quadcopter.html:15
+msgid "Resources"
+msgstr "Utakayohitaji"
+
+#: app/templates/quadcopter.html:18
+msgid "Create"
+msgstr "Tengeneza"
+
+#: app/templates/quadcopter.html:21
+msgid "Comments"
+msgstr "Maoni"
+
+#: app/templates/quadcopter.html:29
+msgid "Want to master<br>Arduino?<br>"
+msgstr "Unataka kuwa stadi wa<br>Arduino?<br>"
+
+#: app/templates/quadcopter.html:31
+msgid "LEAD THE<br>FIELD"
+msgstr "KUWA WA<br>KWANZA"
+
+#: app/templates/quadcopter.html:38
+msgid "Blog posted on"
+msgstr "Maoni iliandikwa"
+
+#: app/templates/quadcopter.html:38
+msgid "July 6, 2020"
+msgstr "Julai 6, 2020"
+
+#: app/templates/quadcopter.html:48
+msgid ""
+"Labore sit culpa commodo elit adipisicing sit aliquip elit proident "
+"voluptate minim mollit nostrud aute reprehenderit do. \n"
+"                    Mollit excepteur eu Lorem ipsum anim commodo sint "
+"labore Lorem in exercitation velit incididunt. \n"
+"                    Occaecat consectetur nisi in occaecat proident minim "
+"enim sunt reprehenderit exercitation cupidatat et do officia. "
+msgstr ""
+
+#: app/templates/quadcopter.html:53
+msgid "What You Will Need"
+msgstr "Chenye utahitaji"
+
+#: app/templates/quadcopter.html:55
+msgid ""
+"Labore sit culpa commodo elit adipisicing sit aliquip elit proident "
+"voluptate minim mollit nostrud aute reprehenderit do. \n"
+"                    Mollit excepteur eu Lorem ipsum anim commodo sint "
+"labore Lorem in exercitation velit incididunt. \n"
+"                    Occaecat consectetur nisi in occaecat proident minim "
+"enim sunt reprehenderit exercitation cupidatat et do officia."
+msgstr ""
+
+#: app/templates/quadcopter.html:59
+msgid ""
+"Labore sit culpa commodo elit adipisicing sit aliquip elit proident "
+"voluptate minim <br>mollit nostrud aute reprehenderit do."
+msgstr ""
+
+#: app/templates/quadcopter.html:60
+msgid ""
+"Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in "
+"exercitation velit incididunt."
+msgstr ""
+
+#: app/templates/quadcopter.html:62
+msgid "How To"
+msgstr "Jinsi ya kuifanya"
+
+#: app/templates/quadcopter.html:64
+msgid ""
+"Labore sit culpa commodo elit adipisicing sit aliquip elit proident "
+"voluptate minim mollit nostrud aute reprehenderit do. \n"
+"                    Mollit excepteur eu Lorem ipsum anim commodo sint "
+"labore Lorem in exercitation velit incididunt."
+msgstr ""
