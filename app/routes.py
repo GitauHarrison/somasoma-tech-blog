@@ -1,12 +1,12 @@
 from app import app, db
-from flask import render_template, url_for, redirect, flash, request
+from flask import render_template, url_for, redirect, flash, request, g
 from app.forms import LoginForm, RegistrationForm, CommentsForm, ResetPasswordRequestForm,ResetPasswordForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Comments
 from werkzeug.urls import url_parse
 from datetime import datetime
 from app.email import send_password_reset_email
-from flask_babel import _
+from flask_babel import _, get_locale
 
 @app.route('/')
 @app.route('/index')
@@ -94,6 +94,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.timestamp = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 @app.route('/reset_password_request', methods = ['GET', 'POST'])
 def reset_password_request():
