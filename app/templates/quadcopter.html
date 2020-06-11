@@ -9,16 +9,16 @@
                 <div class="col-md-8">
                     <nav id="navbar-example3" class="navbar navbar-light bg-light">                            
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link" href="#overview">Overview</a>                
+                            <a class="nav-link" href="#overview">{{ _(Overview) }}</a>                
                         </nav>
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link" href="#resources">Resources</a>              
+                            <a class="nav-link" href="#resources">{{ _(Resources) }}</a>              
                         </nav>
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link" href="#create">Create</a>              
+                            <a class="nav-link" href="#create">{{ _(Create) }}</a>      
                         </nav>
                         <nav class="nav nav-pills flex-column">
-                            <a class="nav-link" href="#comment">Comments</a>              
+                            <a class="nav-link" href="#comment">{{ _(Comments) }}</a>              
                         </nav>
                     </nav>
                 </div>
@@ -26,16 +26,16 @@
             <div class="row">
                 <div class="col-md-8">
                     <p class="card lead_btn text-center justify-content-center">
-                        Want to master<br>Arduino?<br>
+                        {{ _(Want to master<br>Arduino?<br>) }}
                         <a href="{{ url_for('lead_the_field') }}">
-                            <button type="button" class="btn btn-warning"><b>LEAD THE<br>FIELD</b></button>
+                            <button type="button" class="btn btn-warning"><b>{{ _(LEAD THE<br>FIELD) }}</b></button>
                         </a>
                     </p>                       
                 </div>
             </div>  
             <div class="row">
                 <div class="col-md-8">
-                    <p>Blog posted on: <span style="color: orange;"><br><b>July 6, 2020</b></span></p>                
+                    <p>{{ _(Blog posted on) }}: <span style="color: orange;"><br><b>{{ _(July 6, 2020) }}</b></span></p>                
                 </div>
             </div>            
         </div>        
@@ -43,26 +43,26 @@
             <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
                 <h2 class="text-center" id="overview">Quadcopter</h2>
                 <img src="{{ url_for('static', filename = 'img/quadcopter.jpg') }}">
-                <h4>Overview</h4>                
+                <h4>{{ _(Overview) }}</h4>                
                 <p>
-                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    {{ _(Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
                     Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
-                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia. ) }}
                 </p>                
     
-                <h4 id="resources">What You Will Need</h4>
+                <h4 id="resources">{{ _(What You Will Need) }}</h4>
                 <p>
-                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    {{ _(Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
                     Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. 
-                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.
+                    Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia.) }}
                 </p>
-                <p>1. Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim <br>mollit nostrud aute reprehenderit do.</p>
-                <p>2. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.</p>
+                <p>{{ _(1. Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim <br>mollit nostrud aute reprehenderit do.) }}</p>
+                <p>{{ _(2. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.) }}</p>
     
-                <h4 id="create">How To</h4>
+                <h4 id="create">{{ _(How To) }}</h4>
                 <p>
-                    Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
-                    Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.                 
+                    {{ _(Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. 
+                    Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt.) }}
                 </p><hr>         
             </div>               
             <div>

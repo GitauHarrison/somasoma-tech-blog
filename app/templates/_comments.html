@@ -6,7 +6,7 @@
             </a>
         </td>
         <td>
-            <a href="{{ url_for('quadcopter', username = comment.author.username) }}"><span style="background-color: orange; border-radius: 4px;padding: 3px;">{{ comment.author.username }}</span></a> said {{ moment(user.timestamp).fromNow() }}:<br><br>
+            <a href="{{ url_for('quadcopter', username = comment.author.username) }}"><span style="background-color: orange; border-radius: 4px;padding: 3px;">{{ comment.author.username }}</span></a> {{ _(said) }} {{ moment(user.timestamp).fromNow() }}:<br><br>
             {{ user.comments }}
         </td>
 

@@ -3,6 +3,7 @@ from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextA
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 #from email_validator import validate_email, EmailNotValidError
 from app.models import User
+from flask_babel import lazy_gettext as _l
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -28,10 +29,10 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class CommentsForm(FlaskForm):
-    username = StringField('Username', validators = [DataRequired()])
-    email = StringField('Email', validators = [DataRequired(), Email()])
-    comment = TextAreaField('Comment', validators = [Length(min = 0, max = 140)])
-    submit = SubmitField('Post Your comment')
+    username = StringField('_l(Username)', validators = [DataRequired()])
+    email = StringField('_l(Email)', validators = [DataRequired(), Email()])
+    comment = TextAreaField('_l(Comment)', validators = [Length(min = 0, max = 140)])
+    submit = SubmitField('_l(Post Your comment)')
 
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
