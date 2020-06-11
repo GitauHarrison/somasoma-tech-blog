@@ -29,10 +29,10 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class CommentsForm(FlaskForm):
-    username = StringField('_l(Username)', validators = [DataRequired()])
-    email = StringField('_l(Email)', validators = [DataRequired(), Email()])
-    comment = TextAreaField('_l(Comment)', validators = [Length(min = 0, max = 140)])
-    submit = SubmitField('_l(Post Your comment)')
+    username = StringField(_l('Username'), validators = [DataRequired()])
+    email = StringField(_l('Email'), validators = [DataRequired(), Email()])
+    comment = TextAreaField(_l('Comment'), validators = [Length(min = 0, max = 140)])
+    submit = SubmitField(_l('Post Your comment'))
 
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
