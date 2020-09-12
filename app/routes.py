@@ -1,9 +1,10 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
 from app.forms import LoginForm, RegistrationForm
-from app.models import User, Post
+from app.models import User
 from flask_login import login_user, logout_user, current_user
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 @app.route('/')
 @app.route('/home')
@@ -51,3 +52,9 @@ def register():
 def user(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('user.html', title = 'Chat')
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
