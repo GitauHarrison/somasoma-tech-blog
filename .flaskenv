@@ -1,3 +1,0 @@
-FLASK_APP=somasoma.py
-FLASK_ENV=development
-FLASK_DEBUG=True
