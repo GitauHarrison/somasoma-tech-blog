@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as  wtf %}
+
+{% block app_content %}
+    <table>
+        <tr valign = 'top'>
+            <td> <img src=" {{ url_for('static', filename = 'Home Page image.jpg') }} "> </td>
+            <td>
+                <h1>Dare to be different</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                </p>
+                <a href=" {{ url_for('home') }} ">Join Now</a>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
