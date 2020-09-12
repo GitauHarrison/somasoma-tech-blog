@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}   
+    <table>
+        <tr valign='top'>
+            <td>
+                <img src=" {{ current_user.avatar(128) }} ">
+            </td>
+            <td>
+                <h1>Hello, {{ current_user.username }}!</h1>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

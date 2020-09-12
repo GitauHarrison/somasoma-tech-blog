@@ -46,3 +46,8 @@ def register():
         flash('You have successfully been registered. Please log in to access your account')
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
+
+@app.route('/user/<username>')
+def user(username):
+    user = User.query.filter_by(username = username).first_or_404()
+    return render_template('user.html', title = 'Chat')
