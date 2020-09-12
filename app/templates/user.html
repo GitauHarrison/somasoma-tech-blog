@@ -2,16 +2,16 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}   
-    <table>
+    <table class="table">
         <tr valign='top'>
-            <td>
-                <img src=" {{ current_user.avatar(128) }} ">
+            <td width = '70px'>
+                <img src=" {{ user.avatar(128) }} ">
             </td>
             <td>
-                <h1>Hello, {{ current_user.username }}!</h1>
-                {% if current_user.about_me %}<p> {{ about_me() }} </p>{% endif %}
-                {% if current_user.last_seen %}<p> {{ last_seen }} </p>{% endif %}
-                {% if current_user %} <p><a href="#">Edit Profile</a></p> {% endif %}
+                <h1>Hello, {{ user.username }}!</h1>
+                {% if user.about_me %}<p> {{ user.about_me() }} </p>{% endif %}
+                {% if user.last_seen %}<p>Last seen: {{ user.last_seen }} </p>{% endif %}
+                {% if user %} <p><a href="#">Edit Profile</a></p> {% endif %}
             </td>
         </tr>
     </table>
