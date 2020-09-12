@@ -72,10 +72,9 @@ def quadcopter(username):
     comments = [
         {'author': user, 'body': form.comment.data}
     ]    
-    if form.validate_on_submit():        
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.body = form.comment.data
+    if form.validate_on_submit():    
+        comment = Comments(body = form.comment.data, author = current_user)    
+        db.session.add(comment)
         db.session.commit()
         flash(_('Your comment is now live!'))
         return redirect(url_for('quadcopter', username = user.username))

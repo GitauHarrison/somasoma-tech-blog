@@ -18,7 +18,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
-login.login_message = _l('You need to login to accesss this page')
+login.login_message = _l('You need to login to access this page')
 bootstrap = Bootstrap(app)
 mail = Mail(app)
 moment = Moment(app)
@@ -58,5 +58,5 @@ if not app.debug:
 
 @babel.localeselector
 def get_locale():
-    #return request.accept_languages.best_match(app.config['LANGUAGES'])
-    return 'sw'
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    #return 'sw'
