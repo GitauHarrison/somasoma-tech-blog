@@ -102,3 +102,11 @@ def reset_password(token):
         flash('Your password has been updated')
         return redirect(url_for('login'))
     return render_template('reset_password.html', form = form, title = 'Reset Password')
+
+@app.route('/discover')
+def discover():
+    return render_template('discover.html', title = 'Discover Courses')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html', title = 'Blog')

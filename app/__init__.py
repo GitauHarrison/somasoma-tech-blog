@@ -20,15 +20,15 @@ mail = Mail(app)
 if not app.debug:
     if app.config['MAIL_SERVER']:
         auth = None
-        if app.config['MAIL_SERVER'] and app.config['MAIL_PORT']:
+        if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
             auth = (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
         secure = None
         if app.config['MAIL_USE_TLS']:
             secure = ()
         mailhandler = SMTPHandler(            
-            mailhost=app.config['MAIL_SERVER'],
+            mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
             fromaddr='noreply@' + app.config['MAIL_SERVER'],
-            toaddrs=app.config['ADMINS'][0],
+            toaddrs=app.config['ADMINS'],
             subject='Somasoma: Error',
             credentials=auth, secure=secure
         )
