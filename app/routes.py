@@ -110,3 +110,7 @@ def discover():
 @app.route('/blog')
 def blog():
     return render_template('blog.html', title = 'Blog')
+
+@app.route('/arduino')
+def arduino():
+    return render_template('arduino.html', title = 'Arduino')
