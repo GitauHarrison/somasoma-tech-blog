@@ -6,3 +6,6 @@ def send_mail(subject, sender, recipients, text_body, html_body):
     msg.body = text_body
     msg.html = html_body
     mail.send(msg)
+
+def send_password_reset_email():
+    

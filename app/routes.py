@@ -1,10 +1,11 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import LoginForm, RegistrationForm,EditProfileForm
+from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest
 from app.models import User
 from flask_login import login_user, logout_user, current_user
 from werkzeug.urls import url_parse
 from datetime import datetime
+from app.emails import send_password_reset_email
 
 @app.route('/')
 @app.route('/home')
@@ -74,3 +75,15 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', user = user, title = 'Edit Profile', form = form)
 
+@app.route('/reset_password_request', methods = ['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = ResetPasswordRequest()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email = form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email form the instructions on how to reset your password')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html', title = 'Request New Password', form = form)
