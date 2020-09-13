@@ -61,7 +61,7 @@ def before_request():
 
 @app.route('/edit_profile', methods = ['GET', 'POST'])
 def edit_profile():
-    form = EditProfileForm()
+    form = EditProfileForm(current_user.username)
     user = User.query.filter_by(username = form.username.data)
     if form.validate_on_submit():
         current_user.username = form.username.data
