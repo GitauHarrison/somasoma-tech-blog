@@ -12,4 +12,4 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 bootstrap = Bootstrap(app)
 
-from app import routes, models
+from app import routes, models, errors
