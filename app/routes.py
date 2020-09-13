@@ -84,9 +84,9 @@ def reset_password_request():
         user = User.query.filter_by(email = form.email.data).first()
         if user:
             send_password_reset_email(user)
-        flash('Check your email form the instructions on how to reset your password')
+        flash('Check your email for the instructions on how to reset your password')
         return redirect(url_for('login'))
-    return render_template('reset_password_request.html', title = 'Request New Password', form = form)
+    return render_template('request_password_reset.html', title = 'Request New Password', form = form)
 
 @app.route('/reset_password/<token>', methods = ['GET', 'POST'])
 def reset_password(token):
