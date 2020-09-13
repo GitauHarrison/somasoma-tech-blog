@@ -1,0 +1,71 @@
+2020-09-13 06:27:14,131 ERROR: Exception on /edit_profile [POST] [in /home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py:1892] 
+Traceback (most recent call last):
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/gitau/software_development/python/current_projects/somasoma_web_app/blog_somasoma/app/routes.py", line 69, in edit_profile
+    db.session.commit()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
+    self.transaction.commit()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 504, in commit
+    self._prepare_impl()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
+    self.session.flush()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
+    self._flush(objects)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2624, in _flush
+    flush_context.execute()
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
+    uow,
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 236, in save_obj
+    update,
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 995, in _emit_update_statements
+    statement, multiparams
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/gitau/.virtualenvs/blog_somasoma/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
+[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
+[parameters: ('gitau', 'Checking errors', 2)]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
