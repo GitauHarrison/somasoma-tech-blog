@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <br><a href="#overview">Overview</a><br>
+            <a href="#objectives">Objectives</a><br>
+            <a href="#resources">Resources</a><br>
+            <a href="#build">Build</a><br>
+            <a href="#code">Code</a><br><br><br>
+            <span>
+                <p>Want to master arduino?</p>
+                <button type="button" class="btn btn-warning"><a href=" # ">LEAD THE<br> FIELD</a></button>
+            </span>
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <h3 id='overview' >Overview</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <p>
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+            <p>
+                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <h3 id="objectives" >Objectives</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                <ol>
+                    <li>Coffee</li>
+                    <li>Tea</li>
+                    <li>Milk</li>
+                  </ol> 
+            </p>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <p>
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+            <h3 id="resources" >Resources</h3>
+            <ol>
+                <li>
+                    <a class="btn disabled" href="#">Arduino board</a><br>
+                    <img src="{{ url_for('static', filename = 'img/arduino_board.jpg') }}"  width="200" height="121" alt="arduino_board">
+                </li>
+                <li>
+                    <a class="btn disabled" href="#">Motor Shield</a><br>
+                    <img src="{{ url_for('static', filename = 'img/arduino_board.jpg') }}"  width="200" height="121" alt="arduino_board">
+                </li>               
+            </ol><br>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <h3 id='build' >Build</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <p>
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+            <h3 id='code' >Code</h3>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+            <p>
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>            
+        </div>                
+    </div>
+</div>
+{% endblock %}
