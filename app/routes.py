@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm
+from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, CommentsForm
 from app.models import User
 from flask_login import login_user, logout_user, current_user
 from werkzeug.urls import url_parse
@@ -114,3 +114,8 @@ def blog():
 @app.route('/arduino')
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
+
+@app.route('/quadcopter', methods = ['GET', 'POST'])
+def quadcopter():
+    form = CommentsForm()
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
