@@ -1,3 +1,3 @@
 FLASK_APP=blog_app.py
 FLASK_ENV=development
-FLASK_DEBUG=True
+FLASK_DEBUG=False
