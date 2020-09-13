@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, url_for, redirect, flash, request
 from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, CommentsForm
 from app.models import User
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
 from app.emails import send_password_reset_email
@@ -116,6 +116,8 @@ def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
 @app.route('/quadcopter', methods = ['GET', 'POST'])
-def quadcopter():
-    form = CommentsForm()
+@login_required
+def quadcopter():    
+    form = CommentsForm() 
+    flash('Your comment is now live')   
     return render_template('quadcopter.html', title = 'Quadcopter', form = form)
