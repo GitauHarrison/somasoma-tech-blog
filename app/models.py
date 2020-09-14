@@ -24,7 +24,7 @@ class User(UserMixin, db.Model):
 
     posts = db.relationship('Post', backref = 'author', lazy = 'dynamic')
 
-    db.relationship(
+    followed = db.relationship(
         'User',
         secondary = followers,
         primaryjoin = (followers.c.follower_id == id),
@@ -52,6 +52,27 @@ class User(UserMixin, db.Model):
             app.config['SECRET_KEY'], 
             algorithm = 'HS256'
         ).decode('utf-8')
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+        
+    def followed_posts(self):
+        followed =  Post.query.join(
+            followers,
+            (followers.c.followed_id == Post.user_id)
+        ).filter(
+            followers.c.follower_id == self.id
+        )
+        own = Post.query.filter_by(user_id = self.id)
+        return followed.union(own).order_by(Post.timestamp.desc())
 
     @staticmethod
     def verify_reset_password_token(token):
