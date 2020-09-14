@@ -54,3 +54,6 @@ class CommentsForm(FlaskForm):
     email = StringField('Email')
     post = TextAreaField('Say Something')
     submit = SubmitField('Post')
+
+class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
