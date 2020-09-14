@@ -126,7 +126,7 @@ def quadcopter(username):
         db.session.add(post)
         db.session.commit()
         flash('Your comment is now live')  
-        return redirect(url_for('arduino')) 
+        return redirect(url_for('quadcopter', username = user.username)) 
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user, posts = posts)
 
