@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
 from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, EmptyForm, CommentsForm
-from app.models import User
+from app.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
@@ -121,8 +121,14 @@ def arduino():
 def quadcopter(username): 
     user =  User.query.filter_by(username = username).first_or_404()
     form = CommentsForm() 
-    flash('Your comment is now live')   
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
+    if form.validate_on_submit():
+        post = Post(body = form.post.data, author = current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your comment is now live')  
+        return redirect(url_for('arduino')) 
+    posts = current_user.followed_posts().all()
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user, posts = posts)
 
 @app.route('/follow/<username>', methods = ['POST'])
 @login_required
