@@ -8,9 +8,9 @@
             <br><a href="#overview">Overview</a><br>
             <a href="#objectives">Objectives</a><br>
             <a href="#resources">Resources</a><br>
-            <a href="#build">Build</a><br>
-            <a href="#comments">Comments</a><br>
-            <a href="#code">Code</a><br><br><br>
+            <a href="#build">Build</a><br>            
+            <a href="#code">Code</a><br>
+            <a href="#comments">Comments</a><br><br><br>
             <span>
                 <p>Want to master arduino?</p>
                 <button type="button" class="btn btn-warning"><a href=" # ">LEAD THE<br> FIELD</a></button>
@@ -71,6 +71,9 @@
                 It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
             </p>   <hr> 
             <h3 id='comments' >Comments</h3>
+            {% for post in posts %}
+                {% include '_posts.html' %}
+            {% endfor %}
             {{ wtf.quick_form(form) }}      
         </div>                
     </div>
