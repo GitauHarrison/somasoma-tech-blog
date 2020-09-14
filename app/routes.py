@@ -115,9 +115,10 @@ def blog():
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
-@app.route('/quadcopter', methods = ['GET', 'POST'])
+@app.route('/quadcopter/<username>', methods = ['GET', 'POST'])
 @login_required
-def quadcopter():    
+def quadcopter(username): 
+    user =  User.query.filter_by(username = username).first_or_404()
     form = CommentsForm() 
     flash('Your comment is now live')   
-    return render_template('quadcopter.html', title = 'Quadcopter', form = form)
+    return render_template('quadcopter.html', title = 'Quadcopter', form = form, user = user)
