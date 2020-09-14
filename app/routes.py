@@ -141,13 +141,14 @@ def follow(username):
         flash('You are now following {}'.format(username))
         return redirect(url_for('user', username = username))
     else:
-        return redirect(url_for('user'))
+        return redirect(url_for('blog'))
 
-@app.route('/unfollow/<username>')
+@app.route('/unfollow/<username>', methods = ['POST'])
+@login_required
 def unfollow(username):
     form = EmptyForm()
-    if form.validate_on_submti():
-        user = User.query.filter_by(username = username)
+    if form.validate_on_submit():
+        user = User.query.filter_by(username = username).first()
         if user is None:
             flash('User {} not found'.format(username))
             return redirect(url_for('user', username = username))
@@ -159,5 +160,5 @@ def unfollow(username):
         flash('You are not following {}'.format(username))
         return redirect(url_for('user', username = username))
     else:
-        return redirect(url_for('user', username = username))
+        return redirect(url_for('blog', username = username))
         
