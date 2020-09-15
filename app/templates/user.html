@@ -8,7 +8,7 @@
                 <img src=" {{ user.avatar(128) }} ">
             </td>
             <td>
-                <h1>Hello, {{ user.username }}!</h1>
+                <h1>Username: {{ user.username }}</h1>
                 {% if user.about_me %}<p> {{ user.about_me }} </p>{% endif %}
                 {% if user.last_seen %}<p>Last seen: {{ user.last_seen }} </p>{% endif %}
                 <p>
@@ -33,7 +33,13 @@
                 {% endif %}
             </td>
         </tr>
-    </table>
+    </table><hr>
+
+    {% if form %}
+    <form action="" method="post">
+        {{ wtf.quick_form(post_form) }}
+    </form><br>
+    {% endif %}
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -47,8 +53,14 @@
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+           ...
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            {% for post in posts %}
+                {% include '_posts.html' %}
+            {% endfor %}
+        </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
     </div>
 {% endblock %}

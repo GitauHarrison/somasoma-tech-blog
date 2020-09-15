@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import  StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, EqualTo, Email, ValidationError
+from wtforms.validators import DataRequired, EqualTo, Email, ValidationError, Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -57,3 +57,7 @@ class CommentsForm(FlaskForm):
 
 class EmptyForm(FlaskForm):
     submit = SubmitField('Submit')
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Say Something', validators = [DataRequired(), Length(min = 1, max = 140)])
+    submit = SubmitField('Post')

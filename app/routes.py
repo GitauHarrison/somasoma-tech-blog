@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, EmptyForm, CommentsForm
+from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, EmptyForm, CommentsForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
@@ -49,11 +49,19 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
 
-@app.route('/user/<username>')
+@app.route('/user/<username>', methods = ['GET', 'POST'])
 def user(username):
     user = User.query.filter_by(username = username).first_or_404()
     form = EmptyForm()
-    return render_template('user.html', title = 'Chat', user = user, form = form)
+    post_form = PostForm()
+    if post_form.validate_on_submit():
+        post = Post(body = post_form.post.data, author = current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is live')
+        return redirect(url_for('user', username = user.username))
+    posts = current_user.followed_posts().all()
+    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, posts = posts)
 
 @app.before_request
 def before_request():
