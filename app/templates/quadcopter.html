@@ -74,7 +74,13 @@
             {% for post in posts %}
                 {% include '_posts.html' %}
             {% endfor %}
-            {{ wtf.quick_form(form) }}  <br>    
+            {% if prev_url %} 
+                <a href=" {{ prev_url }} ">Newer posts</a>
+            {% endif %}
+            {% if next_url %}
+                <a href="  {{ next_url }} ">Older posts</a>
+            {% endif %}
+            {{ wtf.quick_form(form) }}  <br>               
         </div>                
     </div>
 </div>

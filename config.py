@@ -14,3 +14,5 @@ class Config(object):
     MAIL_USERNAME = 'Norules Anymore'
     MAIL_PASSWORD = 'Gu#DQrZb2Y_4K!6j'
     ADMINS = ['norulesanymore@gmail.com']
+
+    POSTS_PER_PAGE = 3
