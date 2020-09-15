@@ -60,8 +60,16 @@ def user(username):
         db.session.commit()
         flash('Your post is live')
         return redirect(url_for('user', username = user.username))
-    posts = current_user.followed_posts().all()
-    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, posts = posts)
+    page = request.args.get('page', 1, type = int)
+    all_posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url = url_for('user', username = user.username, page = all_posts.next_num) \
+        if all_posts.has_next else None
+    prev_url = url_for('user', username = user.username, page = all_posts.prev_num) \
+        if all_posts.has_prev else None
+    my_followed_posts = current_user.followed_posts().all()        
+    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, my_followed_posts = my_followed_posts, all_posts = all_posts.items)
 
 @app.before_request
 def before_request():
