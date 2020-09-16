@@ -86,7 +86,7 @@ def user(username):
     prev_url_own_posts = url_for('user', username = user.username, page = own_posts.prev_num) \
         if own_posts.has_prev else None
 
-    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, own_posts = own_posts.items    , my_followed_posts = my_followed_posts.items, all_posts = all_posts.items)
+    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, own_posts = own_posts.items, my_followed_posts = my_followed_posts.items, all_posts = all_posts.items)
 
 @app.before_request
 def before_request():
