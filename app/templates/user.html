@@ -76,7 +76,39 @@
             {% for post in my_followed_posts %}
                 {% include '_posts.html' %}
             {% endfor %}
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url_my_followed_posts %} disabled{% endif %}">
+                        <a href="{{ prev_url_my_followed_posts or '#' }}">
+                            <span aria-hidden="true">&laquo;</span> Newer posts
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url_my_followed_posts %} disabled{% endif %}">
+                        <a href="{{ next_url_my_followed_posts or '#' }}">
+                            Older posts <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            {% for post in own_posts %}
+                {% include '_posts.html' %}
+            {% endfor %}
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url_own_posts %} disabled{% endif %}">
+                        <a href="{{ prev_url_own_posts or '#' }}">
+                            <span aria-hidden="true">&laquo;</span> Newer posts
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url_own_posts %} disabled{% endif %}">
+                        <a href="{{ next_url_own_posts or '#' }}">
+                            Older posts <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 {% endblock %}

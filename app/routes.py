@@ -61,6 +61,7 @@ def user(username):
         flash('Your post is live')
         return redirect(url_for('user', username = user.username))
     page = request.args.get('page', 1, type = int)
+
     all_posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
@@ -68,8 +69,24 @@ def user(username):
         if all_posts.has_next else None
     prev_url = url_for('user', username = user.username, page = all_posts.prev_num) \
         if all_posts.has_prev else None
-    my_followed_posts = current_user.followed_posts().all()        
-    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, my_followed_posts = my_followed_posts, all_posts = all_posts.items)
+
+    my_followed_posts = current_user.followed_posts().paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url_my_followed_posts = url_for('user', username = user.username, page = my_followed_posts.next_num) \
+        if my_followed_posts.has_next else None
+    prev_url_my_followed_posts = url_for('user', username = user.username, page = my_followed_posts.prev_num) \
+        if my_followed_posts.has_prev else None
+
+    own_posts = user.posts.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False
+    )
+    next_url_own_posts = url_for('user', username = user.username, page = own_posts.next_num) \
+        if own_posts.has_next else None
+    prev_url_own_posts = url_for('user', username = user.username, page = own_posts.prev_num) \
+        if own_posts.has_prev else None
+
+    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, own_posts = own_posts.items    , my_followed_posts = my_followed_posts.items, all_posts = all_posts.items)
 
 @app.before_request
 def before_request():
