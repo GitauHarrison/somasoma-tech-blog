@@ -212,4 +212,4 @@ def unfollow(username):
 @login_required
 def lead_the_field(username):
     user = User.query.filter_by(username = username).first_or_404()
-    return render_template(url_for('lead_the_field.html', title = 'Lead the Field', user = user))
+    return render_template('lead_the_field.html', title = 'Lead the Field', user = user)
