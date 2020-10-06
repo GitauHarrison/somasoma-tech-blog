@@ -3,10 +3,16 @@
 
 {% block app_content %}
     <div class="row">
-        <div class="col-md-4">
-            {{ wtf.quick_form(form) }}
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div></div>
         </div>
-    </div>
-    <p>Forgot your password? <a href=" {{ url_for('reset_password_request') }} ">Reset Here.</a> </p>
-    <p>New Here? <a href=" {{ url_for('register') }} ">Register Here.</a></p>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 login-form">
+            {{ wtf.quick_form(form) }}<br>
+            <p>Forgot your password? <a href=" {{ url_for('reset_password_request') }} ">Reset Here.</a> </p>
+            <p>New Here? <a href=" {{ url_for('register') }} ">Register Here.</a></p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div></div>
+        </div>
+    </div>    
 {% endblock %}

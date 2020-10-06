@@ -45,7 +45,7 @@ a:active{
 P{
     padding: 5px;
 }
-h1 h2 h3 h4 h5 h6{
+h1, h2, h3, h4, h5, h6{
     text-align: justify;
 }
 .content-list{
@@ -66,10 +66,18 @@ h1 h2 h3 h4 h5 h6{
 .card:hover{
     box-shadow: 5px 10px 18px #cfb479;
 }
-/* IMAGES */
 
+/* IMAGES */
 .discover-image img{
     width: 175px;
     height: 120px;
     padding: 1px;
+}
+
+/* FORMS */
+.login-form{
+    padding: 10px;
+}
+.login-form p{
+    padding-bottom: 5px;
 }
