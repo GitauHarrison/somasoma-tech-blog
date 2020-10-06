@@ -45,8 +45,8 @@ a:active{
 P{
     padding: 5px;
 }
-h1, h2, h3, h4, h5, h6{
-    text-align: justify;
+h5{
+    text-align: center;
 }
 .content-list{
     padding: 3px;
