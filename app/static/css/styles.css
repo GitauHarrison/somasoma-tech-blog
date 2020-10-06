@@ -29,6 +29,9 @@ ul .no-bullets li a{
 .lead button a{
     color: orange;
 }
+.home-btn{
+    font-size: 25px;
+}
 
 /* LINKS */
 a:link{
