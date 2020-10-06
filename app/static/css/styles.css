@@ -55,3 +55,12 @@ h1 h2 h3 h4 h5 h6{
 .actual-content{
     padding: 3;
 }
+
+/* CARDS */
+.card{
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding:5px;
+    text-align: center;
+    margin: 15px;
+}

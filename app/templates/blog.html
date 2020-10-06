@@ -4,18 +4,38 @@
 {% block app_content %}
     <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
         <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="card" style="width: 18rem;">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                <div class="card" style="width: 25rem;">
                     <img src="{{url_for('static', filename = 'img/arduino_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
                     <div class="card-body">
-                      <h5 class="card-title">Raspberry</h5>
+                      <h5 class="card-title">Arduino</h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       <a href="{{ url_for('arduino') }}" class="btn btn-primary">Arduino</a>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="card" style="width: 18rem;">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                <div class="card" style="width: 25rem;">
+                    <img src="{{url_for('static', filename = 'img/raspberry_pi_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
+                    <div class="card-body">
+                      <h5 class="card-title">Raspberry</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary disabled">Raspberry</a>
+                    </div>
+                </div>
+            </div>           
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                <div class="card" style="width: 25rem;">
+                    <img src="{{url_for('static', filename = 'img/raspberry_pi_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
+                    <div class="card-body">
+                      <h5 class="card-title">Raspberry</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary disabled">Raspberry</a>
+                    </div>
+                </div>
+            </div>           
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                <div class="card" style="width: 25rem;">
                     <img src="{{url_for('static', filename = 'img/raspberry_pi_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
                     <div class="card-body">
                       <h5 class="card-title">Raspberry</h5>
@@ -25,30 +45,5 @@
                 </div>
             </div>           
         </div>
-    </div><br><br>
-
-    <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{url_for('static', filename = 'img/arduino_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
-                    <div class="card-body">
-                      <h5 class="card-title">Raspberry</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary disabled">Arduino</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{url_for('static', filename = 'img/raspberry_pi_logo.png')}}" class="card-img-top" alt="Raspberry Pi">
-                    <div class="card-body">
-                      <h5 class="card-title">Raspberry</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary disabled">Raspberry</a>
-                    </div>
-                </div>
-            </div>           
-        </div>
-    </div>
+    </div><br><br>    
 {% endblock %}
