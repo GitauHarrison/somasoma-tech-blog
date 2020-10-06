@@ -64,3 +64,10 @@ h1 h2 h3 h4 h5 h6{
     text-align: center;
     margin: 15px;
 }
+
+/* IMAGES */
+.discover-image img{
+    width: 200px;
+    height: 150px;
+    padding: 1px;
+}
