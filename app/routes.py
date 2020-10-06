@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import LoginForm, RegistrationForm,EditProfileForm, ResetPasswordRequest, ResetPasswordForm, EmptyForm, CommentsForm, PostForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordRequest, ResetPasswordForm, CommentsForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
@@ -52,7 +52,6 @@ def register():
 @app.route('/user/<username>', methods = ['GET', 'POST'])
 def user(username):
     user = User.query.filter_by(username = username).first_or_404()
-    form = EmptyForm()
     post_form = PostForm()
     if post_form.validate_on_submit():
         post = Post(body = post_form.post.data, author = current_user)
@@ -65,49 +64,13 @@ def user(username):
     all_posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
-    next_url = url_for('user', username = user.username, page = all_posts.next_num) \
-        if all_posts.has_next else None
-    prev_url = url_for('user', username = user.username, page = all_posts.prev_num) \
-        if all_posts.has_prev else None
-
-    my_followed_posts = current_user.followed_posts().paginate(
-        page, app.config['POSTS_PER_PAGE'], False
-    )
-    next_url_my_followed_posts = url_for('user', username = user.username, page = my_followed_posts.next_num) \
-        if my_followed_posts.has_next else None
-    prev_url_my_followed_posts = url_for('user', username = user.username, page = my_followed_posts.prev_num) \
-        if my_followed_posts.has_prev else None
-
-    own_posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
-    )
-    next_url_own_posts = url_for('user', username = user.username, page = own_posts.next_num) \
-        if own_posts.has_next else None
-    prev_url_own_posts = url_for('user', username = user.username, page = own_posts.prev_num) \
-        if own_posts.has_prev else None
-
-    return render_template('user.html', title = 'Chat', user = user, form = form, post_form = post_form, own_posts = own_posts.items, my_followed_posts = my_followed_posts.items, all_posts = all_posts.items)
+    return render_template('user.html', title = 'Chat', user = user, post_form = post_form, all_posts = all_posts.items)
 
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
-
-@app.route('/edit_profile', methods = ['GET', 'POST'])
-def edit_profile():
-    form = EditProfileForm(current_user.username)
-    user = User.query.filter_by(username = form.username.data)
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data     
-        db.session.commit()
-        flash('You changes have been saved')
-        return redirect(url_for('user', username = current_user.username))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', user = user, title = 'Edit Profile', form = form)
 
 @app.route('/reset_password_request', methods = ['GET', 'POST'])
 def reset_password_request():
@@ -169,44 +132,6 @@ def quadcopter(username):
     prev_url = url_for('quadcopter', username = user.username, page = posts.prev_num) \
         if posts.has_prev else None
     return render_template('quadcopter.html', title = 'Quadcopter',user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
-
-@app.route('/follow/<username>', methods = ['POST'])
-@login_required
-def follow(username):
-    form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username = username).first()
-        if user is None:
-            flash('User {} not found'.format(username))
-            return redirect(url_for('user', username = current_user.username))
-        if user == current_user:
-            flash('You cannot follow yourself!')
-            return redirect(url_for('user', username = current_user.username))
-        current_user.follow(user)
-        db.session.commit()
-        flash('You are now following {}'.format(username))
-        return redirect(url_for('user', username = current_user.username))
-    else:
-        return redirect(url_for('blog'))
-
-@app.route('/unfollow/<username>', methods = ['POST'])
-@login_required
-def unfollow(username):
-    form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username = username).first()
-        if user is None:
-            flash('User {} not found'.format(username))
-            return redirect(url_for('user', username = current_user.username))
-        if user == current_user:
-            flash('You cannot unfollow yourself')
-            return redirect(url_for('user', username = current_user.username))
-        current_user.unfollow(user)
-        db.session.commit()
-        flash('You are not following {}'.format(username))
-        return redirect(url_for('user', username = current_user.username))
-    else:
-        return redirect(url_for('blog', username = username))
         
 @app.route('/lead_the_field/<username>')
 @login_required
