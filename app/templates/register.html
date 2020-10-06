@@ -3,8 +3,14 @@
 
 {% block app_content %}
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 register-form">
+            <div></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 register-form">
             {{ wtf.quick_form(form) }}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 register-form">
+            <div></div>
         </div>
     </div>
 {% endblock %}
