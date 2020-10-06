@@ -1,0 +1,57 @@
+/* NAVBAR */
+.my-nav{
+    text-align: left;
+    position: relative;
+    color: white;
+}
+
+/*LISTS*/
+.no-bullets{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+ul .no-bullets li a{
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.lead{
+    padding: 7px;
+    text-align: center;
+    background-color: #c7c2c0;
+    border-radius: 7px;
+    font-size: 15px;
+    color: black;
+}
+
+/* BUTTONS*/
+.lead button a{
+    color: orange;
+}
+
+/* LINKS */
+a:link{
+    text-decoration: none;
+}
+a:visited{
+    color: #c9712f;
+    text-decoration: none;
+}
+a:active{
+    color: orangered;
+}
+
+/* GENERAL LAYOUT */
+P{
+    padding: 5px;
+}
+h1 h2 h3 h4 h5 h6{
+    text-align: justify;
+}
+.content-list{
+    padding: 3px;
+}
+.actual-content{
+    padding: 3;
+}
