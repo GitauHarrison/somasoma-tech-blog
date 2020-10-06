@@ -78,9 +78,9 @@ h1, h2, h3, h4, h5, h6{
 .login-form{
     padding: 10px;
 }
-.login-form p{
-    padding-bottom: 5px;
-}
 .register-form{
+    padding: 5px;
+}
+.request-password-form{
     padding: 5px;
 }
