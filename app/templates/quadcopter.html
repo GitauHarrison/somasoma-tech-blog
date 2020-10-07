@@ -2,13 +2,15 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+<!-- https://www.mydronelab.com/blog/arduino-quadcopter.html -->
+
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
     <div class="row">
         <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 content-list">
             <div style="position: fixed;">
                 <ul class="no-bullets">
                     <li><a href="#overview">Overview</a></li><br>
-                    <li><a href="#objectives">Objectives</a></li><br>
+                    <li><a href="#general">General Info</a></li><br>
                     <li><a href="#resources">Resources</a></li><br>
                     <li><a href="#build">Build</a></li><br>
                     <li><a href="#code">Code</a></li><br>
@@ -21,59 +23,159 @@
             </div>
         </div>
         <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 actual-content">
+            <!-- Lesson Overview -->
             <h3 id='overview' >Overview</h3>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                If you love the idea of building your own quadcopter but haven’t got a clue how and where to start, you are definitely on the right page. 
+                We know how difficult and frustrating the research can be, so we decided to make a tutorial for building your own quadcopter using an Arduino board. 
+                We hope that you will find it useful.
             </p>
             <p>
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                And, to get you even more excited about your upcoming project, here is an Arduino quadcopter in action:
+            </p>
+            <div class="embed-responsive embed-responsive-16by9">                
+                <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/YwSMbRkMw9c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div><br><br>
+
+            <!-- Getting Started -->
+            <h3 id="general" >Before We Get Started</h3>
+            <p>
+                Building your own quadcopter from the ground up includes plenty of hours and hard work. So, you will require a lot of patience. 
+                We will build our quadcopter from ground up, avoiding the need to buy any quadcopter kits.                
             </p>
             <p>
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <h3 id="objectives" >Objectives</h3>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                <ol>
-                    <li>Coffee</li>
-                    <li>Tea</li>
-                    <li>Milk</li>
-                  </ol> 
+                Quadcopter kits will deny us the long hours and sweat invested in building, 
+                and getting to understand the essence of your bird and how it ticks. 
+                Also, you will miss out on the overwhelming feeling of satisfaction when you take off with your handmade quad for the first time. 
             </p>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                Now, unlike the traditional helicopter, the quad relies on its four rotors to generate uplifting thrust by working together. 
+                Every single rotor lifts around a quarter of the overall weight, which allows us to use smaller and less expensive motors. 
+                You basically control the movement of the quad by changing the amount of power each motor delivers to its propellers.
             </p>
             <p>
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                The motors are positioned in every corner of an imaginary square. On one diagonal, you have two motors that rotate in a clockwise direction,
+                while the remaining two, on the opposite diagonal, rotate counterclockwise. If this wasn’t the case, 
+                the quad would only spin around like a traditional helicopter when the tail rotor dies.
             </p>
-            <h3 id="resources" >Resources</h3>
-            <ol>
+            <div>
+                <img src="{{url_for('static', filename = 'img/quad_rotors.png')}}">
+            </div>
+            <p>
+                In order for the balance to be maintained, the quad relies on the data it gathers from internal sensors, 
+                and adjusts the power it sends to each motor so that the entire drone is leveled. 
+                To keep balanced all of the time, the quad uses an advanced control system, which usually makes the adjustments autonomously, 
+                and this is where your Arduino board and your programming come into play. This type of self-stabilization will make your drone quite 
+                accessible to fly, as you won’t have to constantly worry about losing control and damaging your quad.
+            </p>
+            <p>
+                Usually, each quad comes capable of performing four types of movement: Altitude, Roll, Yaw, and Pitch. 
+                Each of these movements is controlled by the amount of thrust each rotor produces. This is why you will need to program your 
+                remote control so that it knows how much power to give and to which rotor to give it.
+            </p>
+            <p>
+                Every quadcopter comes with a microcontroller board with sensors on it, in your case – the Arduino board. 
+                This board, together with the components you choose, controls the motors. It is up to you to choose how self-controlling you want your quad to be. 
+                You can use only the basic ones such as the gyro, or a bunch of other, more advanced sensors such as a 
+                barometer, or a GPS, or even a sonar so that your quad can be able to detect and avoid obstacles that are in its way.
+            </p>
+            <p>
+                Quads, as with all drones, are highly customizable, and you can truly build one that represents your interests. 
+                This is a major appeal of the DIY process to many enthusiasts. Whether you are interested in photography, video, drone racing, 
+                or just flying for fun, you’ll find that a quadcopter can offer something for you. Unmanned aerial vehicles are very adaptable 
+                and customizable, and we think you’ll enjoy customizing one that suits your preferences.
+            </p><br>
+
+            <h3 id="resources" >Components You Will Need</h3>            
+            <p>
+                Every quad will have to include the elements listed below in order to fly. 
+                Here is a short summation of each of the various parts of a quad, and we will cover these in more detail as the article goes on:
+            </p>
+            <ul>
                 <li>
-                    <a class="btn disabled" href="#">Arduino board</a><br>
-                    <img src="{{ url_for('static', filename = 'img/arduino_board.jpg') }}"  width="200" height="121" alt="arduino_board">
+                    <b><a href="#frame" >Frame</a></b> – The “backbone” of the quadcopter. The frame is what keeps all the parts of the helicopter together. 
+                    It has to be sturdy, but on the other hand, it also has to be light so that the motors and the batteries don’t struggle 
+                    to keep it in the air.
+                </li><br>
+                <li>
+                    <b><a href="#motors">Motors</a></b> – The thrust that allows the quadcopter to get airborne is provided by Brushless DC motors and 
+                    each of them is separately controlled by an electronic speed controller or ESC.
+                </li><br>
+                <li>
+                    <b><a href="#escs">ESCs</a></b> – Electronic Speed Controller is like a nerve that delivers the movement information from the brain 
+                    (flight controller) to the arm or leg muscles (motors). It regulates how much power the motors get, which determines the speed and 
+                    direction changes of the quad.
+                </li><br>
+                <li>
+                    <b><a href="#propellers">Propellers</a></b> – Depending on the type of a quad you build, you can use 9 to 10 or 11-inch props 
+                    (for stable, aerial photography flights), or 5-inch racing props for less thrust but more speed.
+                </li><br>
+                <li>
+                    <b><a href="#battery">Battery</a></b> – Depending on your setup maximum voltage level, you can choose from 2S, 3S, 4S, or even 5S batteries. 
+                    But, for a standard for a quad that is planned to be used for aerial filming or photography (just an example), 
+                    you will need a 11.4 V 3S battery. You could go with the 22.8 V 4S if you are building a racing quad and you want 
+                    the motors to spin a lot faster.
+                </li><br>
+                <li>
+                    <b><a href="#arduino-board">Arduino board</a></b> –The choice of the specific model depends on the type of the quadcopter you want to build. 
+                    Whether you are building for aerial photography, racing, freestyle, or more. We will talk about the right choice of board 
+                    further down the article.
+                </li><br>
+                <li>
+                    <b><a href="#imu">IMU</a></b> – A board that is basically (depending on your choice) a sum of various sensors that help your quad know where 
+                    it is and how to level itself.
+                </li><br>
+                <li>
+                    <b><a href="#rc-motors">RC Controller</a></b> – The choice of the transmitter depends on the choice of the protocol you are going to use and the signal 
+                    receiver that is onboard the drone.
                 </li>
-                <li>
-                    <a class="btn disabled" href="#">Motor Shield</a><br>
-                    <img src="{{ url_for('static', filename = 'img/arduino_board.jpg') }}"  width="200" height="121" alt="arduino_board">
-                </li>               
-            </ol><br>
+            </ul><br><br>
+
+            <!-- How To Build -->
+            <h3 id='build' >Let's Build</h3>
+            <h4 id="frame">Frame</h4>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                Although it might be tempting to buy a preassembled frame kit, building the frame on your own can help you kick start your true DIY process. 
+                The Frame of your quadcopter has to possess strength, but it also has to be flexible enough to compensate for the vibrations the motors produce. 
+                It needs to have the following parts:
+                <ul>
+                    <li>
+                        <b>Center Holding Plate</b> – for mounting the electronics.
+                    </li>
+                    <li>
+                        <b>Arms</b> – there are four arms on a quad.
+                    </li>
+                    <li>
+                        <b>Motor Brackets</b> – you need four of them so that you can connect the motors on each arms end.
+                    </li>
+                </ul>
             </p>
-            <h3 id='build' >Build</h3>
+            <p>
+                The frame can be made of aluminum, carbon fiber or wood but the material that is mostly used for the arms is aluminum. 
+                More precisely, the square hollow rails of the arms are made of aluminum. They are relatively lightweight, rigid and cheap. 
+                But, since they are not known as great compensators for the motor vibrations like carbon fiber ones are, they can confuse the sensors.
+            </p><br>
+            <img src="{{ url_for('static', filename = 'img/Frame-for-your-quad.png') }}"><br>
+            <p>
+                Carbon fiber offers much better absorption of the motor vibrations and is the most rigid one. But, it is also the most expensive one. 
+                Carbon fiber is the superior choice, but this very much depends on your personal budget. <br><br>
+                Wood boards are also better for motor vibration absorbtion, but are quite fragile and can break easily in the event of a crash.
+            </p>
+
+
+            <br>
+
+            <!-- Program Your Quadcopter -->
+            <h3 id='code' >Design Your Program</h3>
+            <img src="{{ url_for('static', filename = 'img/code.png') }}"><br>
             <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
             </p>
             <p>
                 It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-            </p>
-            <h3 id='code' >Code</h3>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-            <p>
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-            </p>   <hr> 
+            </p>   <hr>
+            
+            <!-- Comments Section -->
             <h3 id='comments'  class="translate-hover">Comments</h3>
             <div class="translate-info">Feel free to post your comment in your language</div>
             {% for post in posts %}
