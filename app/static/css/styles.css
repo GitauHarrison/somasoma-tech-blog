@@ -58,6 +58,19 @@ h5{
     padding: 3;
 }
 
+/* HOVER EFFECTS */
+.translate-hover:hover + .translate-info{
+    display: block;
+    border-radius: 7px;
+    margin-bottom: 3px;
+}
+.translate-info{
+    color: #ad7a37;
+    background-color: #ffd484;
+    padding: 10px;
+    display: none;
+}
+
 /* CARDS */
 .card{
     border: 1px solid gray;
