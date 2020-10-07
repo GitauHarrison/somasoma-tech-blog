@@ -1,8 +1,6 @@
-/* NAVBAR */
-.my-nav{
-    text-align: left;
+/* FOOTER */
+.my-footer{
     position: relative;
-    color: white;
 }
 
 /*LISTS*/
@@ -91,16 +89,14 @@ h3{
 .discover-image img{
     width: 175px;
     height: 120px;
-    padding: 1px;
-    border-radius: 7px;
-    padding: 5px;
+    padding: 0.5px;
+    border-radius: 7px;    
 }
 .quad-image{
     width: 175px;
     height: 120px;
     padding: 1px;
     border-radius: 7px;
-    padding: 5px;
 }
 
 /* FORMS */
