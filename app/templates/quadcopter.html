@@ -126,13 +126,13 @@
                     it is and how to level itself.
                 </li><br>
                 <li>
-                    <b><a href="#rc-motors">RC Controller</a></b> – The choice of the transmitter depends on the choice of the protocol you are going to use and the signal 
+                    <b><a href="#rc-controller">RC Controller</a></b> – The choice of the transmitter depends on the choice of the protocol you are going to use and the signal 
                     receiver that is onboard the drone.
                 </li>
             </ul><br><br>
 
-            <!-- How To Build -->
-            <h3 id='build' >Let's Build</h3>
+            <!-- Understanding Components -->
+            <h3>Understanding Components</h3>
             <h4 id="frame">Frame</h4>
             <p>
                 Although it might be tempting to buy a preassembled frame kit, building the frame on your own can help you kick start your true DIY process. 
@@ -161,10 +161,215 @@
                 Carbon fiber is the superior choice, but this very much depends on your personal budget. <br><br>
                 Wood boards are also better for motor vibration absorbtion, but are quite fragile and can break easily in the event of a crash.
             </p>
+            <p>
+                You can more find frames for yourself here:
+                <ul>
+                    <li><a href="https://www.amazon.com/Readytosky-Martian-Quadcopter-Distribution-propellers/dp/B01N0W2NOS?tag=dronelab-20">Readytosky 220mm FPV Racing Drone Frame Carbon Fibre</a></li>
+                    <li><a href="https://www.amazon.com/LHI-220-RX-Quadcopter-distribution-Support/dp/B01ID4LNE6?tag=dronelab-20">LHI 220-RX H210 H220 FPV Racing Quadcopter Frame Carbon Fiber </a></li>
+                    <li><a href="https://www.amazon.com/Usmile-thickness-Quadcopter-quadcopter-brushless/dp/B071WVNFMM?tag=dronelab-20">Usmile Carbon Fiber Quadcopter Frame</a></li>
+                    <li><a href="https://www.amazon.com/Readytosky-Quadcopter-Stretch-Version-Landing/dp/B01N0AX1MZ?tag=dronelab-20">Readytosky S500 Quadcopter Frame Stretch Carbon Fibre</a></li>
+                </ul>
+            </p>
+
+            <h4 id="motors" >Brushless Motors</h4>
+            <p>
+                These motors are almost the same thing as traditional DC motors, but the shaft on them doesn’t come with a brush, which is 
+                there to change the direction of the power that goes through the coils. When buying these motors, you need to check their technical data.
+            </p><br>
+            <img class="quad-image" src=" {{ url_for('static', filename = 'img/brushless_motors.png') }} "><br>
+            <p>
+                The most important ones are the “Kv-rating“, which tells you the number of RPMs the motor is capable of generating 
+                with a certain amount of electric power. Also, you will need motors that rotate counter-clockwise, so that they counteract the props torque effect.
+            </p>
+            <p>
+                For more motors, I suggest these models:
+                <ul>
+                    <li><a href="https://www.amazon.com/RS2205-2600KV-Brushless-QAV250-Quadcopter/dp/B01CL6W7JC?tag=dronelab-20">razepony 4pcs EMAX RS2205 2600KV Brushless Motor</a></li>                    
+                </ul>
+            </p>
+
+            <h4 id="propellers">Propellers</h4>
+            <p>
+                Propellers generate thrust, and each motor needs one in order for the quad to fly. Make sure that you buy the proper rotating pairs 
+                of propellers for clockwise and counterclockwise rotation. They can be bought in various pitches and diameters.
+            </p>
+            <p>
+                You have to choose the propellers according to the size of your frame, and once you have decided which propellers you will use, 
+                only then you can choose your motors. Propellers are standardized, and here are the most used ones for quads:
+            </p>
+            <ul>
+                <li>5 pitch, 8 diameter – Small quads</li>
+                <li>8 pitch, 9 diameter – Small quads</li>
+                <li>5 pitch, 10 diameter – Medium-sized quads</li>
+                <li>7 pitch, 10 diameter – Medium-sized quads</li>
+                <li>5 pitch, 12 diameter– Provide plenty of thrusts and are great for quads that are larger</li>
+            </ul>
+            <p>
+                Since aerodynamics is just more than confusing and difficult to understand if you are not an Engineer in Aerodynamics, 
+                we will explain a few important terms in a few words.
+            </p>
+            <img class="quad-image" src="{{ url_for('static', filename='img/propellers.png') }}"><br>
+            <p>
+                First, the larger the diameter and pitch are, the more thrust will the propeller produce. It will need more power, but the quadcopter 
+                will be capable of lifting more weight. For high RPM motors, you need smaller or mid-sized propellers. For low RPM motors, 
+                you need the larger propellers so that they can keep the quad in the air at lower speed.
+            </p>
+            <p>
+                Second, to achieve the perfect balance between the motors and propellers, you first need to decide what you will use the quad for. 
+                For example, if you want to build a stable and powerful enough quad to lift filming and photography equipment, you should use a 
+                motor with less RPM’s and more torque, and longer or higher pitched propellers.
+            </p>
+            <p>
+                If you want good performance propellers we recommend you to get any of these:
+                <ul>
+                    <li><a href="https://www.amazon.com/BTG-Reinforced-Propellers-Quadcopter-1SETYellow/dp/B06WLLBVQB?tag=dronelab-20">BTG 9450S Quick Release Carbon Fiber Reinforced Propellers</a></li>
+                    <li><a href="https://www.amazon.com/9450-Self-tightening-Propeller-DJI-Quadcopter/dp/B01B620IJI?tag=dronelab-20">2 Pairs 9450 Self-tightening Blades</a></li>
+                    <li><a href="https://www.amazon.com/Performance-Black-Multi-Rotor-Drone-Propellers/dp/B07546Q9V5?tag=dronelab-20">Master Airscrew Performance 1245 Black Multi-Rotor Drone Propellers</a></li>
+                </ul>
+            </p><br>
+
+            <h4 id="escs">ESC (Electronic Speed Controller)</h4>
+            <p>
+                The device that is in charge of controlling the speed of the motors is a cheap controller board, used only for motors. 
+                It comes with an input for a battery, and has a motor output with three phases, so you will need four of them for each motor.
+            </p>
+            <img class="quad-image" src="{{ url_for('static', filename = 'img/esc.jpg') }}"><br>
+            <p>
+                When buying the proper ESC, you need to pay attention to the max level of the current that comes from the source. Choose a controller
+                with 10A or higher. Also, you need to check how programmable it is, meaning that you need to buy an ESC that will allow you to change 
+                the signal frequency range to the value you want.
+            </p>
+            <p>
+                Check out models on <a href="https://www.mydronelab.com/">this site</a>.
+            </p><br>
+            
+            <h4 id="battery">Battery</h4>
+            <p>
+                The most recommended power source for your quadcopter is the LiPo. It’s not heavy, and the current levels are ideal for what you need. 
+                NiMH is a cheaper, but also heavier, option.
+            </p>
+            <img class="quad-image" src="{{ url_for('static', filename = 'img/batteries.png') }}"><br>
+            <p>
+                LiPo batteries come as a single 3.7V cell or packed together as one (up to 10 cells which provide 37V).
+                The most popular version among the drone hobbyists is known as the 3SP1 battery, which comes with three cells and provides 11.1V.
+                Here is a good one: <a href="https://hobbyking.com/en_us/zippy-flightmax-5000mah-3s1p-20c.html?___store=en_us">Zippy Flightmax 5000mAh 3S1P 20C</a>
+            </p><br>
+
+            <h4 id="imu">IMU (Inertial Measurement Unit)</h4>
+            <p>
+                This unit is in charge of measuring the quad’s orientation, velocity, and the force of gravity. This allows the electronics to 
+                control the amount of power sent to motors, in order to adjust the motors’ speeds. The unit comes equipped with a 3-axis gyroscope, 
+                and a 3-axis accelerometer. This combination is known as the 6DOF IMU. Check this one out: <a href="https://pickstuff.com/products/knacro-6508-imu-mpu6050-mpu-6050-6dof-attitude-module-serial-gyroscope-acceleration-sensor">KNACRO 6508 IMU MPU6050 MPU-6050 6DOF </a>
+            </p>
+            <p>
+                The gyroscope is there to read the values of angular velocity, while the accelerometer is in charge of measuring acceleration and force, 
+                meaning that it can feel the downwards gravity. Since it comes with three-axis sensors, it can sense the orientation of the quad.
+            </p><br>
+
+            <h4 id="rc-controller">Flight Controller</h4>
+            <p>
+                You can either choose to use a controller board that’s only purpose is to control a quadcopter, or you can choose an 
+                <a href="https://www.amazon.com/Arduino-Uno-R3-Microcontroller-A000066/dp/B008GRTSV6?tag=dronelab-20">Arduino UNO</a>. 
+                This is a general purpose microcontroller that allows you to build your own flight controller by buying the parts you want to install, 
+                and assembling the controller on your own.
+            </p>
+            <img class="quad-image" src="{{ url_for('static', filename = 'img/arduino-uno.jpg') }}"><br>
+            <p>
+                If you are interested in getting started with electronics and coding, the Arduino UNO is the best possible board you can use. 
+                It is the most reliable and robust platform, and it allows you to literally play with it any way you want.
+            </p>
+            <p>
+                The best thing about this board is that it allows you to mess with it and not worry about destroying it. The worst thing you can do to it 
+                is fry the chip, which luckily can be replaced with only a couple of dollars.
+            </p>
+
+            <h4 id="transmitter">Transmitter</h4>
+            <p>
+                The most common way of programming and controlling a quadcopter is by an RC transmitter. You can usually choose between two modes,
+                Acrobatic or Stable.<br><br>
+                For controlling the quad in Acrobatic mode, the Gyroscope is the only one which sends the values to processing. 
+                In this case, the controlling sticks are there only for controlling and setting the speed of rotation for the three axes, 
+                and if you let go of them, the values are not re-balanced automatically.
+            </p>
+            <img class="quad-image" src="{{ url_for('static', filename = 'img/rc-transmitter.png') }}"><br>
+            <p>
+                This comes in handy for those who want to perform aerial stunts, because tilting the drone a bit is possible, 
+                and after the release of the sticks, the quad keeps the position. It’s not a good mode for beginners because it is quite 
+                difficult to control your quad in this mode. Basically, the more skill you have at controlling the drone, 
+                the less help you will likely want with stability. 
+            </p>
+            <p>
+                So when you’re a beginner drone user, use the second mode of control, because for determining the drone’s orientation, 
+                every single sensor works in this mode. The motor speeds will be controlled automatically, and the drone will be balanced on its own.
+            </p>
+            <p>
+                There are various available RC control systems nowadays, like Futaba, Spektrum, Turnigy, FlySky, and so on. Here are a few favorites:
+                <ul>
+                    <li><a href="https://www.amazon.com/Futaba-10-Channel-T-FHSS-Computer-System/dp/B00JEH573U?tag=dronelab-20">utaba 10JH 10-Channel Heli T-FHSS Computer Radio System</a></li>
+                    <li><a href="https://www.amazon.com/Spektrum-SPMR8000-DX8-Transmitter/dp/B01B9DZ4RA?tag=dronelab-20">Spektrum DX8 Transmitter</a></li>
+                    <li><a href="https://www.amazon.com/Turnigy-Transmitter-Module-Receiver-System/dp/B07BS9XQZB">Turnigy 9X 9Ch Transmitter w/ Module & iA8 Receiver </a></li>
+                    <li><a href="https://www.amazon.com/Flysky-FS-i6X-Transmitter-FS-iA6B-Receiver/dp/B0744DPPL8">Flysky FS-i6X 10CH 2.4GHz AFHDS RC Transmitter with/ FS-iA6B Receiver</a></li>                    
+                </ul>
+            </p><br>
+            
+            <!-- Build Section -->
+            <h3 id="build">Building Your Quadcopter</h3>
+            <p>
+                This is the most complicated part of the entire building process. Soldering is a very specific technique, so be sure to do this process carefully. 
+                Make sure you know exactly what you need to do before you start each step. For this, you will need the following:
+                <ul>
+                    <li><a href="https://www.amazon.com/Arduino-Uno-R3-Microcontroller-A000066/dp/B008GRTSV6?tag=dronelab-20">Arduino UNO</a></li>
+                    <li><a href="https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B01DK83ZYQ?tag=dronelab-20">MPU-6050 MPU6050 3 Axis Accelerometer Gyroscope</a></li>
+                    <li><a href="https://www.amazon.com/Double-Sided-Board-Prototype-Paxcoo/dp/B01N3161JP?tag=dronelab-20">Prototype Board</a></li>
+                    <li><a href="https://www.amazon.com/2-54mm-Breakaway-Female-Connector-Arduino/dp/B01MQ48T2V?tag=dronelab-20">Male and Female Header Connectors for Arduino Shield</a></li>
+                    <li><a href="https://www.amazon.com/microtivity-IL188-Assorted-Resistors-Colors/dp/B0060FGA8A?tag=dronelab-20">350 Ohm Resistors</a></li>
+                    <li><a href="https://www.amazon.com/BNTECHGO-Gauge-Silicone-Rubber-Black/dp/B075H8YKZV?tag=dronelab-20">Thin Gauge Wires</a></li>
+                    <li><a href="https://www.amazon.com/HiLetgo-Wireless-Bluetooth-Transceiver-Arduino/dp/B071YJG8DR?tag=dronelab-20">HC-05 BLuetooth Module</a></li>
+                </ul>
+            </p>
+            <p>
+                Buy the Bluetooth module only if you want to be able to have an insight into the parameters and tune the quad through an app, 
+                as opposed to taking the laptop with you out on the field when testing.
+            </p><br>
+
+            <h4>Schematics</h4>
+            <img class="quad-image" src="{{ url_for('static', filename = 'img/schematics.jpg') }}"><br>
+            <b><p>How to connect the ESCs:</p></b>
+                <ul>
+                    <li>Signal Pin ESC 1 – D3</li>
+                    <li>Signal Pin ESC 3 – D9</li>
+                    <li>Signal Pin ESC 2 – D10</li>
+                    <li>Signal Pin ESC 4 – D11</li>
+                </ul>
+            <b><p>How to connect the Bluetooth Module:</p></b>            
+                <ul>
+                    <li>Tx – Rx</li>
+                    <li>Rx – Tx</li>
+                </ul>            
+            <b><p>How to connect the MPU-6050:</p></b>
+                <ul>
+                    <li>SDA – A4</li>
+                    <li>SCL – A5</li>
+                </ul>
+            <b><p>How to connect the LED indicator:</p></b>
+                <ul>
+                    <li>LED Anode Leg – D8</li>
+                </ul>
+            <b><p>How to connect the receiver:</p></b>
+                <ul>
+                    <li>Throttle – 2</li>
+                    <li>Elerons – D4</li>
+                    <li>Ailerons – D5</li>
+                    <li>Rudder – D6</li>
+                    <li>AUX 1 – D7</li>
+                </ul>
+            <p>
+                You need the MPU-6050, the Bluetooth module, the receiver, and the ESCs, to be grounded. 
+                And, to do that, you need to connect the all GND pins to the Arduino GND Pin.
+            </p>
 
 
             <br>
-
             <!-- Program Your Quadcopter -->
             <h3 id='code' >Design Your Program</h3>
             <img class="quad-image" src="{{ url_for('static', filename = 'img/code.png') }}"><br>
