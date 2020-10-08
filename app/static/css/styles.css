@@ -60,7 +60,7 @@ h3{
 }
 .actual-content{
     padding: 3;
-    /* position: absolute; */
+    position: relative;
 }
 .side-bar{
     position: fixed;
@@ -74,14 +74,14 @@ h3{
 }
 .translate-info{
     color: #ad7a37;
-    background-color: #ffd484;
+    background-color:#ffe3cc;
     padding: 10px;
     display: none;
 }
 
 /* CARDS */
 .card{
-    border: 1px solid gray;
+    border: 1px solid #d6d4d3;
     border-radius: 7px;
     padding:5px;
     text-align: center;
