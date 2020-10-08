@@ -106,3 +106,9 @@ img{
 .request-password-form{
     padding: 5px;
 }
+.my-form{
+    border: 1px solid #d6d4d3;
+    border-radius: 7px;
+    padding: 25px;
+    margin: 15px;
+}
