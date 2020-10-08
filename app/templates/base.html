@@ -57,23 +57,20 @@
         {% endblock %}
     </div>
 
-    {% block footer %}
+{% block footer %}
     <nav class="my-footer navbar navbar-default">
-        <div class="container">            
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+        <div class="container">                                
                 <ul class="nav navbar-nav">                
                     <li><a href="{{ url_for('blog') }}">Blog</a></li>                 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">                                 
                     <li><a href="#">Become a Patreon</a></li>                       
-                </ul>                       
-            </div>
+                </ul>                                   
         </div>
     </nav>
-    {% endblock %}
-
 {% endblock %}
 
+{% endblock %}
 
 {% block scripts %}
     {{ super() }}
