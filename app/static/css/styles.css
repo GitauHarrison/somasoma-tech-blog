@@ -112,3 +112,9 @@ img{
     padding: 25px;
     margin: 15px;
 }
+
+
+/* MEDIA QUIERIES */
+@media all and (max-width: 500px) {
+    .side-bar { display: none; }
+    }
