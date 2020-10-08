@@ -100,6 +100,12 @@ h3{
     padding: 1px;
     border-radius: 7px;
 }
+.home-image{
+    width: 175px;
+    height: 120px;
+    padding: 0.5px;
+    border-radius: 7px;
+}
 
 /* FORMS */
 .login-form{
