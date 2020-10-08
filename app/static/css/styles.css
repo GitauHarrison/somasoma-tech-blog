@@ -92,7 +92,10 @@ h3{
 }
 
 /* IMAGES */
-
+img{
+    border-radius: 7px;
+    padding: 0.5px;
+}
 /* FORMS */
 .login-form{
     padding: 10px;
