@@ -5,24 +5,99 @@
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>LEAD THE FIELD</h1>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-        </div>                  
-    </div>
-    <table>
-        <tr>
-            <td width="120px">
-                <img src="{{ url_for('static', filename = 'img/instructor.svg') }}" width=100, height=100, quality=95 ><br>
-                <a href="#">John Doe</a>
-            </td>
-            <td>
+            <!-- Define LEAD THE FIELD Program Section -->
+            <div class="lead-the-field">
+                <h1>LEAD THE FIELD</h1>
                 <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    Lead the Field is a program I have created to personally mentor you as you grow in this field. Typically, if you want to scale to heights unimaginable,
+                    it is important that you learn from another person who has already been through what you are trying to get to. Hopefully, the 'mentor' is someone you 
+                    can trust and have an abiding respect for.
                 </p>
-            </td>
-        </tr>
-    </table>
+            </div>   
+        </div>                         
+    </div>
+    <!-- Instructor Profile Section -->
+    <div class="row align-items-center">
+            <div class="lead-instructor-profile">
+                <table>                    
+                    <tr>
+                        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 my-profile">                            
+                            <img class="img-fluid center-block" style = "max-width:100%; height: auto;" src="{{ url_for('static', filename = 'img/instructor.svg') }}">
+                            <a href="#">Gitau Harrison</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10">
+                            <td>
+                                <p>
+                                    Hi, my name is Gitau Harrison. I am a software engineer, but I am also a workout and wellness instructor. When I have time, 
+                                    I do capentry and general plumbing in my city. I expend my energies on speed bikes and motor racing during the weekends. 
+                                    Whenever I can, I fly aircrafts for fun.                                                                                                            
+                                </p>
+                                <p>
+                                    I am from Nairobi, Kenya, but currently, I live in Seoul, South Korea. Topics that I will be blogging about are going to be
+                                    mostly on programming and capentry. 
+
+                                    Thank you for stopping by, and I hope you find something useful or interesting here. Be sure to leave a comment whenever
+                                    you can.
+                                </p>
+                                <p>
+                                    I have a few video conference consultation slots each week for those who want one-on-one time with me. 
+                                    I'm happy to assist you on any of the topics I cover on this blog, in conference talks, or in my books, videos or open source projects. 
+                                    My fee for a one hour consultation is $200 USD, payable via PayPal.
+                                </p>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>   
+    </div>
+    <!-- Select Courses for Purchase -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="width: 25rem;">
+                <img src="{{url_for('static', filename = 'img/arduino_logo.png')}}" class="card-img-top" alt="Arduino">
+                <div class="card-body">
+                  <h5 class="card-title"><b>Arduino</b></h5><hr>
+                  <p class="card-text">
+                      A gentle introduction to the world of prototyping, microcontrollers and IoT
+                  </p>
+                  <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">  
+                        <!-- Empty -->
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                       <p style="font-weight: 800;">Cost: <span style="color: orange;">$25</span></p>
+                      </div>
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">  
+                        <!-- Empty -->
+                      </div>
+                  </div>
+                  <a href="#" class="btn btn-primary">Purchase Arduino</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="width: 25rem;">
+                <img src="{{url_for('static', filename = 'img/web_dev.png')}}" class="card-img-top" alt="Web Development">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Wed Development</b></h5><hr>
+                  <p class="card-text">
+                      The most complete introduction to Web Development using Python and Flask
+                  </p>
+                  <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">  
+                        <!-- Empty -->
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                       <p style="font-weight: 800;">Cost: <span style="color: orange;">$25</span></p>
+                      </div>
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">  
+                        <!-- Empty -->
+                      </div>
+                  </div>
+                  <a href="#" class="btn btn-primary">Purchase Wed Development</a>
+                </div>
+            </div>
+        </div> 
+    </div>
 </div>
 {% endblock %}

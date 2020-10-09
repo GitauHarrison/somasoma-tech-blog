@@ -72,6 +72,14 @@ h3{
 .side-bar{
     position: fixed;
 }
+.lead-instructor-profile{
+    background-color: #f7f7f1;
+    border-radius: 7px;
+    padding: 15px;
+}
+.lead-instructor-profile .my-profile{
+    text-align: center;
+}
 
 /* HOVER EFFECTS */
 .translate-hover:hover + .translate-info{
@@ -103,6 +111,11 @@ img{
     border-radius: 7px;
     padding: 0.5px;
 }
+/* .card-img-top{
+    width: 100%;
+    height: auto;
+} */
+
 /* FORMS */
 .login-form{
     padding: 10px;
@@ -122,9 +135,9 @@ img{
 
 
 /* MEDIA QUIERIES */
-@media all and (max-width: 1000px) {
+@media all and (max-width: 992px) {
     .side-bar { display: none; }
     }
-@media all and (min-width: 1000px) {
+@media all and (min-width: 992px) {
     .side-bar { display: block; }
 }
