@@ -64,7 +64,7 @@ h3{
 .content-list{
     padding: 3px;
 }
-.actual-content{
+.scrollable{
     padding: 3;
     position: relative;
 }
@@ -121,6 +121,9 @@ img{
 
 
 /* MEDIA QUIERIES */
-@media all and (max-width: 500px) {
+@media all and (max-width: 1000px) {
     .side-bar { display: none; }
     }
+@media all and (min-width: 1000px) {
+    .side-bar { display: block; }
+}

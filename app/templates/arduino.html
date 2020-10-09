@@ -4,7 +4,7 @@
 {% block app_content %}
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
     <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-md-2 col-lg-2">
             <div class="side-bar">
                 <ul class="no-bullets">
                     <li><a href="#overview">Overview</a></li><br>
@@ -13,61 +13,63 @@
                 </ul><br><br>
             </div>                         
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-            <h3 id='overview' >Overview</h3>
-            <p>
-                Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs - 
-                light on a sensor, a finger on a button, or a Twitter message - and turn it into an output - activating a motor, turning on an LED, 
-                publishing something online. 
-            </p>
-            <p>
-                You can tell your board what to do by sending a set of instructions to the microcontroller on the board. 
-                To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
-            </p><br>
-            <h4 id="why-arduino">Why Arduino</h4>
-            <ul>
-                <li>
-                    <b>Inexpensive</b> - Arduino boards are relatively inexpensive compared to other microcontroller platforms. 
-                    The least expensive version of the Arduino module can be assembled by hand, and even 
-                    the pre-assembled Arduino modules cost less than $50
-                </li><br>
-                <li>
-                    <b>Cross-platform</b> - The Arduino Software (IDE) runs on Windows, Macintosh OSX, and Linux operating systems. 
-                    Most microcontroller systems are limited to Windows.
-                </li><br>
-                <li>
-                    <b>Simple, clear programming environment</b> - The Arduino Software (IDE) is easy-to-use for beginners, 
-                    yet flexible enough for advanced users to take advantage of as well. For teachers, it's conveniently based on the Processing 
-                    programming environment, so students learning to program in that environment will be familiar with how the Arduino IDE works.
-                </li><br>
-                <li>
-                    <b>Open source and extensible software</b> - The Arduino software is published as open source tools, available for extension 
-                    by experienced programmers. The language can be expanded through C++ libraries, and people wanting to understand the 
-                    technical details can make the leap from Arduino to the AVR C programming language on which it's based. Similarly, 
-                    you can add AVR-C code directly into your Arduino programs if you want to.
-                </li><br>
-                <li>
-                    <b>Open source and extensible hardware</b> - The plans of the Arduino boards are published under a Creative Commons license, 
-                    so experienced circuit designers can make their own version of the module, extending it and improving it. 
-                    Even relatively inexperienced users can build the breadboard version of the module in order to understand how it works and save money.
-                </li>
-            </ul><br>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            <div class="scrollable">
+                <h3 id='overview' >Overview</h3>
+                <p>
+                    Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs - 
+                    light on a sensor, a finger on a button, or a Twitter message - and turn it into an output - activating a motor, turning on an LED, 
+                    publishing something online. 
+                </p>
+                <p>
+                    You can tell your board what to do by sending a set of instructions to the microcontroller on the board. 
+                    To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
+                </p><br>
+                <h4 id="why-arduino">Why Arduino</h4>
+                <ul>
+                    <li>
+                        <b>Inexpensive</b> - Arduino boards are relatively inexpensive compared to other microcontroller platforms. 
+                        The least expensive version of the Arduino module can be assembled by hand, and even 
+                        the pre-assembled Arduino modules cost less than $50
+                    </li><br>
+                    <li>
+                        <b>Cross-platform</b> - The Arduino Software (IDE) runs on Windows, Macintosh OSX, and Linux operating systems. 
+                        Most microcontroller systems are limited to Windows.
+                    </li><br>
+                    <li>
+                        <b>Simple, clear programming environment</b> - The Arduino Software (IDE) is easy-to-use for beginners, 
+                        yet flexible enough for advanced users to take advantage of as well. For teachers, it's conveniently based on the Processing 
+                        programming environment, so students learning to program in that environment will be familiar with how the Arduino IDE works.
+                    </li><br>
+                    <li>
+                        <b>Open source and extensible software</b> - The Arduino software is published as open source tools, available for extension 
+                        by experienced programmers. The language can be expanded through C++ libraries, and people wanting to understand the 
+                        technical details can make the leap from Arduino to the AVR C programming language on which it's based. Similarly, 
+                        you can add AVR-C code directly into your Arduino programs if you want to.
+                    </li><br>
+                    <li>
+                        <b>Open source and extensible hardware</b> - The plans of the Arduino boards are published under a Creative Commons license, 
+                        so experienced circuit designers can make their own version of the module, extending it and improving it. 
+                        Even relatively inexperienced users can build the breadboard version of the module in order to understand how it works and save money.
+                    </li>
+                </ul><br>
 
-            <!-- DIY Projects List -->
-            <h3 id="diy_projects" >DIY Projects</h3>
-            <p>
-                To best utilize Arduino, I will show you a handful of projects that you can build on your own. 
-                I have not arranged the list below in any priority. Feel free to begin from anywhere.                
-            </p>
-            <p>
-                Also, note that the projects in the DIY section do not build on one another. They are independent and you can focus on one before moving onto another one.
-            </p>
-            <ol>
-                <li><a href="{{ url_for('quadcopter', username = current_user.username) }}">Quadcopter</a></li>
-                <li><a class="btn disabled" href="#">RC Car</a></li>
-                <li><a class="btn disabled" href="#">City Traffic Lights</a></li>
-                <li><a class="btn disabled" href="#">Robot Arm</a></li>
-            </ol>
+                <!-- DIY Projects List -->
+                <h3 id="diy_projects" >DIY Projects</h3>
+                <p>
+                    To best utilize Arduino, I will show you a handful of projects that you can build on your own. 
+                    I have not arranged the list below in any priority. Feel free to begin from anywhere.                
+                </p>
+                <p>
+                    Also, note that the projects in the DIY section do not build on one another. They are independent and you can focus on one before moving onto another one.
+                </p>
+                <ol>
+                    <li><a href="{{ url_for('quadcopter', username = current_user.username) }}">Quadcopter</a></li>
+                    <li><a class="btn disabled" href="#">RC Car</a></li>
+                    <li><a class="btn disabled" href="#">City Traffic Lights</a></li>
+                    <li><a class="btn disabled" href="#">Robot Arm</a></li>
+                </ol>
+            </div>
         </div>                
     </div>
 </div>
