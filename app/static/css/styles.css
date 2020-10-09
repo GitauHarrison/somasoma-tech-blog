@@ -67,6 +67,7 @@ h3{
 .scrollable{
     padding: 3;
     position: relative;
+    overflow: auto;
 }
 .side-bar{
     position: fixed;
