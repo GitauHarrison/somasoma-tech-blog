@@ -50,23 +50,6 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
 
-@app.route('/user/<username>', methods = ['GET', 'POST'])
-def user(username):
-    user = User.query.filter_by(username = username).first_or_404()
-    post_form = PostForm()
-    if post_form.validate_on_submit():
-        post = Post(body = post_form.post.data, author = current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is live')
-        return redirect(url_for('user', username = user.username))
-    page = request.args.get('page', 1, type = int)
-
-    all_posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
-    )
-    return render_template('user.html', title = 'Chat', user = user, post_form = post_form, all_posts = all_posts.items)
-
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
