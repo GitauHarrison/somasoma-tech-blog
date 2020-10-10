@@ -140,17 +140,16 @@ def lead_the_field(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('lead_the_field.html', title = 'Lead the Field', user = user)
 
-@app.route('/config')
+@app.route("/config")
 def get_publishable_key():
-    stripe_config = {
-        'public_key': stripe_keys['publishable_key']
-    }
+    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
     return jsonify(stripe_config)
 
-@app.route('/checkout')
+@app.route("/create_checkout_session")
 def create_checkout_session():
-    domain_url = url_for('index')
-    stripe.api_key = stripe_keys['secret_key']
+    domain_url = "http://localhost:5000/"
+    stripe.api_key = stripe_keys["secret_key"]
+
     try:
         # Create new Checkout Session for the order
         # Other optional params include:
@@ -161,22 +160,20 @@ def create_checkout_session():
         # For full details see https://stripe.com/docs/api/checkout/sessions/create
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-
         checkout_session = stripe.checkout.Session.create(
-            success_url = domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url = domain_url + 'cancelled',
-            payment_method_types = ['card'],
-            mode = 'payment',
-            line_items = [
+            success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=domain_url + "cancelled",
+            payment_method_types=["card"],
+            mode="payment",
+            line_items=[
                 {
-                    'name': 'Arduino',
-                    'quantity': 1,
-                    'currency': 'usd',
-                    'amount': '39'
-
+                    "name": "Arduino",
+                    "quantity": 1,
+                    "currency": "usd",
+                    "amount": "2000",
                 }
             ]
         )
-        return jsonify({'sessionId': checkout_session['id']})
+        return jsonify({"sessionId": checkout_session["id"]})
     except Exception as e:
-        return jsonify(error = str(e)), 403
+        return jsonify(error=str(e)), 403
