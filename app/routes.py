@@ -163,14 +163,16 @@ def create_checkout_session():
         return jsonify(error=str(e)), 403
 
 @app.route('/success')
+@login_required
 def success():
     flash('Your payment was successful. Check your email for the receipt of payment')
-    return render_template('lead_the_field.html', title = 'Success')
+    return render_template('success.html', title = 'Success')
 
 @app.route('/cancelled')
+@login_required
 def cancelled():
     flash('Your payment was cancelled')
-    return render_template('lead_the_field.html', title = 'Cancelled')
+    return render_template('cancelled.html', title = 'Cancelled')
 
 @app.route('/webhook', methods = ['POST'])
 def stripe_webhook():
