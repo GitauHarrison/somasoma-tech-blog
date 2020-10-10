@@ -93,11 +93,11 @@ def blog():
     return render_template('blog.html', title = 'Blog')
 
 @app.route('/arduino')
+@login_required
 def arduino():
     return render_template('arduino.html', title = 'Arduino')
 
 @app.route('/quadcopter/<username>', methods = ['GET', 'POST'])
-@login_required
 def quadcopter(username): 
     user =  User.query.filter_by(username = username).first_or_404()
     form = CommentsForm() 
@@ -118,7 +118,6 @@ def quadcopter(username):
     return render_template('quadcopter.html', title = 'Quadcopter',user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
         
 @app.route('/lead_the_field/<username>')
-@login_required
 def lead_the_field(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('lead_the_field.html', title = 'Lead the Field', user = user)
