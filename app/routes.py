@@ -175,7 +175,7 @@ def cancelled():
 @app.route('/webhook', methods = ['POST'])
 def stripe_webhook():
     payload = request.get_data(as_text=True)
-    sig_header = request.headers.het('Stripe-Signature')
+    sig_header = request.headers.get('Stripe-Signature')
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, stripe_keys['endpoint_secret']
@@ -185,9 +185,17 @@ def stripe_webhook():
         return 'Invalid payload', 400
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
-        return 'Invalid signature'
+        return 'Invalid signature', 400
 
     # Handle the checkout.session completed event
     if event['type'] == 'checkout.session.completed':
-        print('Payment successful')
+        session = event['data']['object']
+
+        # Fulfill the purchase...
+        handle_checkout_session(session)
+
+def handle_checkout_session(session):
+    print("Payment was successful.")
+    # TODO: run some custom code here
+
     return 'Success', 200
