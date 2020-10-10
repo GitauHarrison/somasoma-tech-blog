@@ -180,11 +180,13 @@ def create_checkout_session():
 
 @app.route('/success')
 def success():
-    return render_template('success.html', title = 'Success')
+    flash('Your payment was successful')
+    return render_template('lead_the_field.html', title = 'Success')
 
 @app.route('/cancelled')
 def cancelled():
-    return render_template('cancelled.html', title = 'Cancelled')
+    flash('Your payment was cancelled')
+    return render_template('lead_the_field.html', title = 'Cancelled')
 
 @app.route('/webhook', methods = ['POST'])
 def stripe_webhook():
