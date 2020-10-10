@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block head %}
-<link rel="icon" type="image/svg" href="{{url_for('static', filename = 'img/study.png')}}">
+    {{super()}}
+    <link rel="icon" type="image/svg" href="{{url_for('static', filename = 'img/study.png')}}">
 {% endblock %}
 
 {% block styles %}
