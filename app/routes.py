@@ -1,5 +1,5 @@
-from app import app, db
-from flask import render_template, url_for, redirect, flash, request
+from app import app, db, stripe_keys
+from flask import render_template, url_for, redirect, flash, request, jsonify
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequest, ResetPasswordForm, CommentsForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
@@ -138,3 +138,10 @@ def quadcopter(username):
 def lead_the_field(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('lead_the_field.html', title = 'Lead the Field', user = user)
+
+@app.route('/config')
+def get_publishable_key():
+    stripe_config = {
+        'public_key': stripe_keys['publishable_key']
+    }
+    return jsonify(stripe_config)
