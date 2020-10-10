@@ -9,6 +9,7 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from flask_mail import Mail
 from flask_moment import Moment
+import stripe
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -19,6 +20,12 @@ login.login_view = 'login'
 bootstrap = Bootstrap(app)
 mail = Mail(app)
 moment = Moment(app)
+
+stripe_keys = {
+    'secret_key': app.config['STRIPE_SECRET_KEY'],
+    'publishable_key': app.config['STRIPE_PUBLISHABLE_KEY']
+}
+stripe_api_key = stripe_keys['secret_key']
 
 if not app.debug:
     if app.config['MAIL_SERVER']:

@@ -16,3 +16,6 @@ class Config(object):
     ADMINS = ['norulesanymore@gmail.com']
 
     POSTS_PER_PAGE = 10
+
+    STRIPE_PUBLISHABLE_KEY=os.environ.get('STRIPE_PUBLISHABLE_KEY')
+    STRIPE_SECRET_KEY=os.environ.get('STRIPE_SECRET_KEY')
