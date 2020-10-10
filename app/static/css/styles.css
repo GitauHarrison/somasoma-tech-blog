@@ -26,17 +26,14 @@ ul .no-bullets li a{
 }
 
 /* BUTTONS*/
-.lead button a{
-    color: orange;
+.lead-btn{
+    color: white;
+    background-color: orange;    
 }
 .home-btn{
     font-size: 25px;
     padding: 10px;
     background-color: orange;
-}
-.home-btn:hover{
-    background-color: #bd8f4f;
-    border: 1px solid #bd8f4f;
 }
 .btn{
     background-color: #d6d4d3;
