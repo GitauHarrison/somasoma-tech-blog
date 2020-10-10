@@ -122,6 +122,9 @@ def lead_the_field(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('lead_the_field.html', title = 'Lead the Field', user = user)
 
+# Add Stripe Payment Integration
+# https://testdriven.io/blog/flask-stripe-tutorial/
+ # Start Payment Integration
 @app.route("/config")
 def get_publishable_key():
     stripe_config = {"publicKey": stripe_keys["publishable_key"]}
@@ -201,3 +204,4 @@ def handle_checkout_session(session):
     # TODO: run some custom code here
 
     return 'Success', 200
+# End of Stripe Payment Integration
