@@ -170,10 +170,38 @@ def create_checkout_session():
                     "name": "Arduino",
                     "quantity": 1,
                     "currency": "usd",
-                    "amount": "2000",
+                    "amount": "3900",
                 }
             ]
-        )
+        )        
         return jsonify({"sessionId": checkout_session["id"]})
     except Exception as e:
         return jsonify(error=str(e)), 403
+
+@app.route('/success')
+def success():
+    return render_template('success.html', title = 'Success')
+
+@app.route('/cancelled')
+def cancelled():
+    return render_template('cancelled.html', title = 'Cancelled')
+
+@app.route('/webhook', methods = ['POST'])
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.het('Stripe-Signature')
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_keys['endpoint_secret']
+        )
+    except ValueError as e:
+        # Invalid payload
+        return 'Invalid payload', 400
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return 'Invalid signature'
+
+    # Handle the checkout.session completed event
+    if event['type'] == 'checkout.session.completed':
+        print('Payment successful')
+    return 'Success', 200
