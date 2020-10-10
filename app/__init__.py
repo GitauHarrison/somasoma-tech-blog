@@ -25,7 +25,7 @@ stripe_keys = {
     'secret_key': app.config['STRIPE_SECRET_KEY'],
     'publishable_key': app.config['STRIPE_PUBLISHABLE_KEY']
 }
-stripe_api_key = stripe_keys['secret_key']
+stripe.api_key = stripe_keys['secret_key']
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
