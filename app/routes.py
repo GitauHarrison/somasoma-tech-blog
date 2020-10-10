@@ -143,7 +143,8 @@ def create_checkout_session():
 
         # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
         checkout_session = stripe.checkout.Session.create(
-            success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
+            # success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
+            success_url=domain_url + "success",
             cancel_url=domain_url + "cancelled",
             billing_address_collection = 'required',
             payment_method_types=["card"],
@@ -163,7 +164,7 @@ def create_checkout_session():
 
 @app.route('/success')
 def success():
-    flash('Your payment was successful')
+    flash('Your payment was successful. Check your email for the receipt of payment')
     return render_template('lead_the_field.html', title = 'Success')
 
 @app.route('/cancelled')
