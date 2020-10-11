@@ -133,6 +133,17 @@ h3{
     top: 45%;
     transform: translate(-45%, -45%);
 } */
+.discover-msg{
+    padding: 45px;
+    font-size: 45px;
+    line-height: 30px;
+}
+.dare{
+    color: orange;
+    display: inline-block;
+    animation: flipInX;
+    animation-duration: 3s;
+}
 
 /* HOVER EFFECTS */
 .translate-hover:hover + .translate-info{
