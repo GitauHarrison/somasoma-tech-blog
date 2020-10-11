@@ -144,6 +144,10 @@ h3{
     animation: flipInX;
     animation-duration: 3s;
 }
+.purchase-course{
+    padding-top: 25px;
+    text-align: center;
+}
 
 /* HOVER EFFECTS */
 .translate-hover:hover + .translate-info{
