@@ -119,6 +119,12 @@ h3{
 .lead-instructor-profile .my-profile{
     text-align: center;
 }
+.center{
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    transform: translate(-45%, -45%);
+}
 
 /* HOVER EFFECTS */
 .translate-hover:hover + .translate-info{
@@ -156,14 +162,8 @@ img{
 } */
 
 /* FORMS */
-.login-form{
+.form{
     padding: 10px;
-}
-.register-form{
-    padding: 5px;
-}
-.request-password-form{
-    padding: 5px;
 }
 .my-form{
     border: 1px solid #d6d4d3;
