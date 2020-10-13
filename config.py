@@ -8,15 +8,17 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
-    MAIL_USE_TLS = 1
-    MAIL_USERNAME = 'Norules Anymore'
-    MAIL_PASSWORD = 'Gu#DQrZb2Y_4K!6j'
-    ADMINS = ['norulesanymore@gmail.com']
+    MAIL_SERVER='smtp.gmail.com'
+    MAIL_PORT=587
+    MAIL_USE_TLS=1
+    MAIL_USERNAME='norulesanymore@gmail.com'
+    MAIL_PASSWORD='Gu#DQrZb2Y_4K!6j'
+    ADMINS=['norulesanymore@gmail.com']
 
-    POSTS_PER_PAGE = 10
+    POSTS_PER_PAGE=10
 
-    STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-    STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
+    STRIPE_PUBLISHABLE_KEY='pk_test_51HaVXcFjP6O4anVpYtXKDnFyXevd0gQcTVZKKnliCz2PL3C1jU8G7H94uimc3xaEHJK5Cl40xfvF7o1nobSGh5zK00ecRRgijH'
+    STRIPE_SECRET_KEY='sk_test_51HaVXcFjP6O4anVpX06vRtKSueLhkq4vf2vpVZcDqXcHJVkUVB4hy5GpOniQZZ3viDg6Qi4lZb41QmmpRF1PgYSt001nfeOlZJ'
+    STRIPE_ENDPOINT_SECRET='whsec_wnJMeZIAWSHZm5sONh5eBP8pSmiWpcDp'
+
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
