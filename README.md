@@ -6,7 +6,7 @@ This is a simple blog featuring interestng courses a student can choose to learn
 
 #### Features
 
-* Anonymouse user registration
+* Anonymous user registration
 * Current user authentication
 * Stripe payment mechanism
 * Student can post comments on the course they find interesting
