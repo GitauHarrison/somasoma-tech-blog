@@ -22,3 +22,5 @@ class Config(object):
     STRIPE_ENDPOINT_SECRET='whsec_wnJMeZIAWSHZm5sONh5eBP8pSmiWpcDp'
 
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
+
+    DATABASE_URL = 'postgres://bwtllxapoeoivu:e24fd0f855787958be8348aec5f6eb588cea7ce410e5a026c344cf78b1463b5a@ec2-34-234-185-150.compute-1.amazonaws.com:5432/dc1q33b8qs0gmq'
