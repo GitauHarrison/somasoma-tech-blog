@@ -4,8 +4,15 @@
 {% block app_content %}
 
     <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-        <div class="row center-content-on-screen">
-            <br><p class="discover-msg">Dear to <span class="dare">learn</span></p>
+        <div class="row center-content-on-screen discover-msg-wrapper">
+            <br><p class="discover-msg-sentence">
+                <span>Dare to </span>
+                <div class="discover-msg-words discover-msg-words-1">
+                    <span>learn</span>
+                    <span>create</span>
+                    <span>teach</span>
+                </div>
+            </p>
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
                 <div class="card" style="width: 25rem;">
                     <img src="{{url_for('static', filename = 'img/arduino_logo.svg')}}" class="card-img-top" alt="Raspberry Pi">
