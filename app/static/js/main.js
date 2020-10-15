@@ -24,7 +24,7 @@ fetch("/config")
   // Event handler
   document.querySelector("#submitBtn2").addEventListener("click", () => {
     // Get Checkout Session ID
-    fetch("/create_checkout_session")
+    fetch("/create_checkout_session2")
     .then((result) => { return result.json(); })
     .then((data) => {
       console.log(data);
