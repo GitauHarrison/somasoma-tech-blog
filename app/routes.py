@@ -166,7 +166,7 @@ def create_checkout_session():
         return jsonify(error=str(e)), 403
 
 @app.route("/create_checkout_session2")
-def create_checkout_session():
+def create_checkout_session2():
     domain_url = "http://localhost:5000/"
     stripe.api_key = stripe_keys["secret_key"]
 
