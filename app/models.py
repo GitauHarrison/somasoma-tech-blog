@@ -18,6 +18,12 @@ class Admin(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
+    blogs = db.relationship(
+        'Blog',
+        backref='author',
+        lazy='dynamic'
+        )
+
     def __repr__(self):
         return f'Admin: {self.username}'
 
@@ -73,5 +79,27 @@ class AnonymousTemplateInheritanceComment(db.Model):
         return f'Template Inheritance Comment: {self.body}'
 
 # ============================================================
-# ANONYMOUS COURSE CONTENT
+# END OF ANONYMOUS COURSE CONTENT
+# ============================================================
+
+# ============================================================
+# ADMIN MANAGEMENT
+# ============================================================
+
+
+class UpdateBlog(db.Model):
+    __tablename__ = 'update blog'
+    id = db.Column(db.Integer, primary_key=True)
+    blog_image = db.Column(db.String(140))
+    title = db.Column(db.String(64), index=True)
+    body = db.Column(db.String(140))
+    link = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
+
+    def __repr__(self):
+        return f'Update Blog: {self.title}'
+
+# ============================================================
+# ADMIN MANAGEMENT
 # ============================================================
