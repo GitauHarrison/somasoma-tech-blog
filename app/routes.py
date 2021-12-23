@@ -7,7 +7,19 @@ from flask_login import current_user, login_required, logout_user, login_user
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     form = RegisterForm()
+    if form.validate_on_submit():
+        admin = Admin(
+            username=form.username.data,
+            email=form.email.data
+            )
+        admin.set_password(form.password.data)
+        db.session.add(admin)
+        db.session.commit()
+        flash('Congratulations, you are now a registered admin!')
+        return redirect(url_for('login'))
     return render_template(
         'admin/register.html',
         title='Admin Register',
@@ -17,7 +29,17 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     form = LoginForm()
+    if form.validate_on_submit():
+        admin = Admin.query.filter_by(username=form.username.data).first()
+        if admin is None or not admin.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(admin, remember=form.remember_me.data)
+        flash(f'Welcome back, {admin.username}')
+        return redirect(url_for('dashboard'))
     return render_template(
         'admin/login.html',
         title='Admin Login',
