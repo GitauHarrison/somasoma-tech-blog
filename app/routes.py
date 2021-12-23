@@ -1,7 +1,44 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
-from app.forms import AnonymousCommentForm
-from app.models import AnonymousTemplateInheritanceComment, User
+from app.forms import AnonymousCommentForm, LoginForm, RegisterForm
+from app.models import AnonymousTemplateInheritanceComment, User, Admin
+from flask_login import current_user, login_required, logout_user, login_user
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    return render_template(
+        'admin/register.html',
+        title='Admin Register',
+        form=form
+        )
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template(
+        'admin/login.html',
+        title='Admin Login',
+        form=form
+        )
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template(
+        'admin/dashboard.html',
+        title='Admin Dashboard'
+        )
 
 
 @app.route('/')
