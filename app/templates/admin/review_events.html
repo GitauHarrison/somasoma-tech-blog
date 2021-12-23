@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <!-- Flash message -->
+    <div class="row">
+        <div class="col-sm-12">
+            {% include '_flash_message.html' %}
+        </div>
+    </div>
+    <!-- End of flash message -->
+    <div class="row">
+        <div class="col-sm-4">
+            <!-- Empty column -->
+        </div>
+        <div class="col-sm-4 text-center">
+            <p><a href=" {{ url_for('events_update') }} " class="btn btn-primary" >
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                Update Events
+            </a>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <!-- Empty column -->
+        </div>
+    </div>
+{% endblock %}
