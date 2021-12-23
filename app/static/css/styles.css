@@ -224,3 +224,11 @@ p, li, td, .btn, .btn-alt, .schedule-btn{
 .label {
     margin: 3px;
 }
+
+/* ------------------------------------------ */
+/* DASHBOARD TAB */
+/* ------------------------------------------ */
+.tab-heading {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
