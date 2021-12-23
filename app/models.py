@@ -19,7 +19,12 @@ class Admin(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
 
     blogs = db.relationship(
-        'Blog',
+        'UpdateBlog',
+        backref='author',
+        lazy='dynamic'
+        )
+    events = db.relationship(
+        'UpdateEvents',
         backref='author',
         lazy='dynamic'
         )
@@ -99,6 +104,22 @@ class UpdateBlog(db.Model):
 
     def __repr__(self):
         return f'Update Blog: {self.title}'
+
+
+class UpdateEvents(db.Model):
+    __tablename__ = 'update events'
+    id = db.Column(db.Integer, primary_key=True)
+    event_image = db.Column(db.String(140))
+    event_date = db.Column(db.String(140))
+    event_time = db.Column(db.String(140))
+    location = db.Column(db.String(140))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    link = db.Column(db.String(140))
+    admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
+
+    def __repr__(self):
+        return f'Update Events: {self.body}'
 
 # ============================================================
 # ADMIN MANAGEMENT
