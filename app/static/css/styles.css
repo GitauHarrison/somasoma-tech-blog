@@ -212,3 +212,15 @@ p, li, td, .btn, .btn-alt, .schedule-btn{
 .blog p {
     vertical-align: middle;
 }
+
+/* ------------------------------------------ */
+/* FORMS */
+/* ------------------------------------------ */
+.my-form {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin: 15px;
+}
+.label {
+    margin: 3px;
+}
