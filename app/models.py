@@ -114,6 +114,7 @@ class UpdateBlog(db.Model):
 class UpdateEvents(db.Model):
     __tablename__ = 'update events'
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64), index=True)
     event_image = db.Column(db.String(140))
     event_date = db.Column(db.String(140))
     event_time = db.Column(db.String(140))
@@ -124,7 +125,7 @@ class UpdateEvents(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
-        return f'Update Events: {self.body}'
+        return f'Update Events: {self.title}'
 
 
 class UpdateCourses(db.Model):
