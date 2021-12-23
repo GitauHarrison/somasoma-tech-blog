@@ -76,7 +76,7 @@ class RegisterForm(FlaskForm):
 
 
 class UpdateBlogForm(FlaskForm):
-    blog_image = FileField('Update Blog Image')
+    blog_image = FileField('Blog Image')
     title = StringField(
         'Title',
         validators=[DataRequired(), Length(min=2, max=20)]
@@ -93,7 +93,7 @@ class UpdateBlogForm(FlaskForm):
 
 
 class UpdateEventsForm(FlaskForm):
-    event_image = FileField('Update Events Image')
+    event_image = FileField('Events Image')
     title = StringField(
         'Title',
         validators=[DataRequired(), Length(min=2, max=20)]
@@ -124,7 +124,7 @@ class UpdateEventsForm(FlaskForm):
 
 
 class UpdateCoursesForm(FlaskForm):
-    course_image = FileField('Update Courses Image')
+    course_image = FileField('Courses Image')
     title = StringField(
         'Title',
         validators=[DataRequired(), Length(min=2, max=20)]
@@ -149,7 +149,7 @@ class UpdateCoursesForm(FlaskForm):
 
 
 class StudentStoriesForm(FlaskForm):
-    student_image = FileField('Update Student Stories Image')
+    student_image = FileField('Student Image')
     username = StringField(
         'Username',
         validators=[DataRequired(), Length(min=2, max=20)]
