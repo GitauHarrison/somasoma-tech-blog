@@ -10,6 +10,66 @@
     </div>
     <!-- End of flash message -->
     <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>{{ title }} ({{ all_blogs }})</h1>
+        </div>
+    </div>
+    
+    {% for blog in blogs %}
+    <!-- Blog 1 -->
+    <div class="row blog">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <h2>{{ blog.title }}</h2>
+            </div>
+            <div class="col-sm-6 text-right date-posted">
+                <h2>{{ moment(blog.timestamp).format('LL') }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{ url_for('static', filename='blog.blog_image') }}" alt="{{ blog.title }}">
+            </div>
+            <div class="col-sm-8">
+                <p>{{ blog.body }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href=" {{ blog.link }} " class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <!-- End of blog 1 -->
+    <div class="row">
+        <div class="col-sm-12">
+            {% if not blog.allowed_status == 1 %}
+                <a href=" {{ url_for('blog_allow', title=blog.title) }} " class="label label-warning">Allow</a>
+            {% else %}
+                <a href="#" class="label label-success">Allowed</a></a>
+            {% endif %}
+             | <a href=" {{ url_for('blog_delete', title=blog.title) }} " class="label label-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Pagination of comments -->
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&#60;</span> Newer posts
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older posts <span aria-hidden="true">&#62;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of pagination of comments -->
+
+    <div class="row">
         <div class="col-sm-4">
             <!-- Empty column -->
         </div>
