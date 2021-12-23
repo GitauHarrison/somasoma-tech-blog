@@ -30,7 +30,7 @@
             </button>
             <a class="navbar-brand" href="{{ url_for('home') }}">somaSoma</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">         
             <ul class="nav navbar-nav navbar-right">  
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href=" {{ url_for('courses') }} " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +45,11 @@
                     </div>
                 </li>
                 <li><a href=" {{ url_for('events') }} ">Events</a></li> 
-                <li><a href=" {{ url_for('blog') }} ">Blog</a></li>       
+                <li><a href=" {{ url_for('blog') }} ">Blog</a></li>  
+                {% if current_user.is_authenticated %}   
+                    <li><a href=" {{ url_for('dashboard') }} ">Dashboard</a></li>     
+                    <li><a href=" {{ url_for('logout') }} ">Logout</a></li>
+                {% endif %}
             </ul>                       
         </div>
     </div>
