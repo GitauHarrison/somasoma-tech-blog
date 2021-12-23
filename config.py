@@ -15,3 +15,6 @@ class Config(object):
 
     # Form
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+
+    # File upload
+    UPLOAD_PATH = os.environ.get('UPLOAD_PATH') or 'static/img/uploads'
