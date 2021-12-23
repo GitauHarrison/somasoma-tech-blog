@@ -197,6 +197,7 @@ def machine_learning():
 
 
 @app.route('/blog/update')
+@login_required
 def blog_update():
     form = UpdateBlogForm()
     return render_template(
@@ -207,6 +208,7 @@ def blog_update():
 
 
 @app.route('/blog/review')
+@login_required
 def blog_review():
     return render_template(
         'admin/review_blog.html',
@@ -215,6 +217,7 @@ def blog_review():
 
 
 @app.route('/events/update')
+@login_required
 def events_update():
     form = UpdateEventsForm()
     return render_template(
@@ -225,6 +228,7 @@ def events_update():
 
 
 @app.route('/events/review')
+@login_required
 def events_review():
     return render_template(
         'admin/review_events.html',
@@ -233,6 +237,7 @@ def events_review():
 
 
 @app.route('/student-stories/update')
+@login_required
 def student_stories_update():
     form = StudentStoriesForm()
     return render_template(
@@ -243,6 +248,7 @@ def student_stories_update():
 
 
 @app.route('/student-stories/review')
+@login_required
 def student_stories_review():
     return render_template(
         'admin/review_student_stories.html',
@@ -251,6 +257,7 @@ def student_stories_review():
 
 
 @app.route('/courses/update')
+@login_required
 def courses_update():
     form = UpdateCoursesForm()
     return render_template(
@@ -261,6 +268,7 @@ def courses_update():
 
 
 @app.route('/courses/review')
+@login_required
 def courses_review():
     return render_template(
         'admin/review_courses.html',
