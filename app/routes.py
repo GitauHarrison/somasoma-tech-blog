@@ -276,23 +276,21 @@ def blog_review():
 
 @app.route('/blog/<title>/delete')
 def blog_delete(title):
-    blog = UpdateBlog.query.filter_by(title=request.args.get('title')).first()
-    if blog:
-        db.session.delete(blog)
-        db.session.commit()
-        flash(f'{title} has been deleted.')
-        return redirect(url_for('blog_review'))
+    blog = UpdateBlog.query.get_or_404(title)
+    db.session.delete(blog)
+    db.session.commit()
+    flash(f'{title} has been deleted.')
+    return redirect(url_for('blog_review'))
 
 
 @app.route('/blog/<title>/allow')
 def blog_allow(title):
-    blog = UpdateBlog.query.filter_by(title=request.args.get('title')).first()
-    if blog:
-        blog.allowed_status = True
-        db.session.add(blog)
-        db.session.commit()
-        flash(f'{title} has been approved.')
-        return redirect(url_for('blog_review'))
+    blog = UpdateBlog.query.get_or_404(title)
+    blog.allowed_status = True
+    db.session.add(blog)
+    db.session.commit()
+    flash(f'{title} has been approved.')
+    return redirect(url_for('blog_review'))
 
 
 @app.route('/events/update', methods=['GET', 'POST'])
