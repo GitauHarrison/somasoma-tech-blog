@@ -2,134 +2,52 @@
 
 {% block app_content %}
         <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center" id="allowed_blogs">
                 <h1>{{ title }}</h1>
             </div>
         </div>
         <!-- Blog 1 -->
+        {% for blog in allowed_blogs %}
         <div class="row blog">
             <div class="row">
                 <div class="col-sm-6 text-left">
-                    <h2>Template Inheritance in Flask</h2>
+                    <h2>{{ blog.title }}</h2>
                 </div>
                 <div class="col-sm-6 text-right date-posted">
-                    <h2>Dec 23, 2021</h2>
+                    <h2>{{ moment(blog.timestamp).format('LL') }}</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/template_inheritance.svg')}}" alt="Template Inheritance">
+                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ blog.blog_image }}" alt="{{ blog.title }}">
                 </div>
                 <div class="col-sm-8">
-                    <p>
-                        <blockquote>
-                            The most powerful part of Jinja is template inheritance. 
-                            Template inheritance allows you to build a base “skeleton” template 
-                            that contains all the common elements of your site and defines 
-                            blocks that child templates can override.
-                        </blockquote>
-                    </p>
+                    <p>{{ blog.body }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <a href=" {{ url_for('blog_template_inheritance') }} " class="btn btn-primary">Learn More</a>
+                    <a href=" {{ blog.link }} " class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
+        {% endfor %}
         <!-- End of blog 1 -->
 
-        <!-- Blog 2 -->
-        <div class="row blog">
-            <div class="row">
-                <div class="col-sm-6 text-left">
-                    <h2>Configure Flask to Send Mail</h2>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <h2>Dec 23, 2021</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/flask_mail.svg')}}" alt="Flask Mail">
-                </div>
-                <div class="col-sm-8">
-                    <p>
-                        Web-based applications typically require the ability to send mail to the user or client.
-                        Flask provides a simple way to send mail using the <code>Flask-Mail</code> extension. 
-                        This extension provides a simple interface to set up SMTP with your Flask application 
-                        and to send messages from your views and scripts.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href=" # " class="btn btn-primary disabled">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <!-- End of blog 2 -->
-
-        <!-- Blog 3 -->
-        <div class="row blog">
-            <div class="row">
-                <div class="col-sm-6 text-left">
-                    <h2>Beautiful Timestamps in Flask</h2>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <h2>Dec 23, 2021</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/timestamp.svg')}}" alt="Timestamp">
-                </div>
-                <div class="col-sm-8">
-                    <p>
-                        Most social media applications use timestamps to show when a post was created. This feedback
-                        is really helpful to the users of the platform. The ability of an application to remember 
-                        the time a post was made is a very important feature in the sense that the application
-                        can sort the posts by time.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href=" # " class="btn btn-primary disabled">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <!-- End of blog 3 -->
-
-        <!-- Blog 4 -->
-        <div class="row blog">
-            <div class="row">
-                <div class="col-sm-6 text-left">
-                    <h2>Flask Web Forms</h2>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <h2>Dec 23, 2021</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/forms.svg')}}" alt="Web Forms">
-                </div>
-                <div class="col-sm-8">
-                    <p>
-                        It is a very common feature where web applications allow users to interact with
-                        the application. Users can post comments or send messages. All these data are 
-                        normally collected using web forms. Flask provides a simple way to create web forms
-                        using the <code>Flask-WTF</code> extension.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href=" # " class="btn btn-primary disabled">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <!-- End of blog 4 -->
-
+        <!-- Pagination of comments -->
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&#60;</span> Newer posts
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older posts <span aria-hidden="true">&#62;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of pagination of comments -->
 {% endblock %}

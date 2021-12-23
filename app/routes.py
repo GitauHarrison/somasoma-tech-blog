@@ -98,9 +98,30 @@ def events():
 
 @app.route('/blog')
 def blog():
+    page = request.args.get('page', 1, type=int)
+    allowed_blogs = UpdateBlog.query.filter_by(
+        allowed_status=True).order_by(
+        UpdateBlog.timestamp.desc()).paginate(
+        page,
+        app.config['POSTS_PER_PAGE'],
+        False
+        )
+    next_url = url_for(
+        'blog',
+        _anchor="allowed_blogs",
+        page=allowed_blogs.next_num) \
+        if allowed_blogs.has_next else None
+    prev_url = url_for(
+        'blog',
+        _anchor="allowed_blogs",
+        page=allowed_blogs.prev_num) \
+        if allowed_blogs.has_prev else None
     return render_template(
         'blog.html',
-        title='Blog'
+        title='Blog',
+        allowed_blogs=allowed_blogs.items,
+        next_url=next_url,
+        prev_url=prev_url
         )
 
 
