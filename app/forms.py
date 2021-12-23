@@ -12,7 +12,7 @@ from flask_wtf.file import FileField
 class AnonymousCommentForm(FlaskForm):
     name = StringField(
         'Name',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     email = StringField(
         'Email',
@@ -31,11 +31,11 @@ class AnonymousCommentForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField(
         'Username',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     password = StringField(
         'Password',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
@@ -44,7 +44,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     username = StringField(
         'Username',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     email = StringField(
         'Email',
@@ -52,13 +52,13 @@ class RegisterForm(FlaskForm):
         )
     password = PasswordField(
         'Password',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     confirm_password = PasswordField(
         'Confirm Password',
         validators=[
             DataRequired(),
-            Length(min=2, max=20),
+            Length(min=2, max=100),
             EqualTo('password')
             ]
         )
@@ -79,7 +79,7 @@ class UpdateBlogForm(FlaskForm):
     blog_image = FileField('Blog Image')
     title = StringField(
         'Title',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     body = TextAreaField(
         'Body',
@@ -87,7 +87,7 @@ class UpdateBlogForm(FlaskForm):
         )
     link = StringField(
         'Link',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     submit = SubmitField('Update')
 
@@ -96,21 +96,21 @@ class UpdateEventsForm(FlaskForm):
     event_image = FileField('Events Image')
     title = StringField(
         'Title',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     event_date = StringField(
         'Event Date',
-        validators=[DataRequired(), Length(min=2, max=20)],
+        validators=[DataRequired(), Length(min=2, max=100)],
         render_kw={'placeholder': 'Thursday, December 23, 2021'}
         )
     event_time = StringField(
         'Event Time',
-        validators=[DataRequired(), Length(min=2, max=20)],
+        validators=[DataRequired(), Length(min=2, max=100)],
         render_kw={'placeholder': '6.00 PM - 8.00 PM EAT'}
         )
     location = StringField(
         'Location',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     body = TextAreaField(
         'Body',
@@ -118,7 +118,7 @@ class UpdateEventsForm(FlaskForm):
         )
     meet_link = StringField(
         'Meet Link',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     submit = SubmitField('Update')
 
@@ -127,7 +127,7 @@ class UpdateCoursesForm(FlaskForm):
     course_image = FileField('Courses Image')
     title = StringField(
         'Title',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     body = TextAreaField(
         'Body',
@@ -139,11 +139,11 @@ class UpdateCoursesForm(FlaskForm):
     )
     next_class_date = StringField(
         'Next Class Date',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     link = StringField(
         'Link',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     submit = SubmitField('Update')
 
@@ -152,7 +152,7 @@ class StudentStoriesForm(FlaskForm):
     student_image = FileField('Student Image')
     username = StringField(
         'Username',
-        validators=[DataRequired(), Length(min=2, max=20)]
+        validators=[DataRequired(), Length(min=2, max=100)]
         )
     body = TextAreaField(
         'Body',
