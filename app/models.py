@@ -110,6 +110,7 @@ class UpdateBlog(db.Model):
     body = db.Column(db.String(140))
     link = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
@@ -127,6 +128,7 @@ class UpdateEvents(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     link = db.Column(db.String(140))
+    allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
@@ -143,6 +145,7 @@ class UpdateCourses(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     next_class_date = db.Column(db.String(140))
     link = db.Column(db.String(140))
+    allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
@@ -155,6 +158,7 @@ class UpdateStudentStories(db.Model):
     student_image = db.Column(db.String(140))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
