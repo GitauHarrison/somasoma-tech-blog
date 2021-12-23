@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-    <div class="row">
-        <div class="col-md-12">
-            <h1>{{ title }}</h1>
+    <div class="row hero">
+        <div class="col-sm-5 hero-text">
+            <p>
+                Dare to be different.<br><br>
+                Put in the work! Learn something new!
+            </p>
+            <a href=" {{ url_for('courses') }} " class="btn btn-success">Discover</a>
+        </div>
+        <div class="col-sm-7 text-center hero-img">
+            <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/software_engineer.svg')}}" alt="Software Engineer">
         </div>
     </div>
 {% endblock %}
