@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <!-- Overview -->
+    <div class="row courses">
+        <div class="col-sm-5 overview">
+            <p>
+                Our programs are challenging, impactful, and designed to fit your schedule and skill level. 
+                We train students using a computer science and coding curriculum that models the exciting work being 
+                done in the software engineering industry. We'll help you launch the career you crave.
+            </p>
+            <p>
+                Led by passionate and experienced instructors, engineers, and career advisors, our graduates become 
+                software engineers that companies around the world want to hire.
+            </p>
+            <p>
+                Discover our course offerings below.
+            </p>
+        </div>
+        <div class="col-sm-7">
+            <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/coding_bootcamp.jpg')}}" alt="Coding Bootcamp">
+        </div>
+    </div>
+    <!-- End of Overview -->
+
+    <!-- Courses -->
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/flask_class.jpg')}}" alt="Flask Class">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h2 class="card-title">Flask</h2>
+                            <hr>
+                            <p class="card-text">
+                                Flask can be daunting the first time you get into it,
+                                but once you get the hang of it, you'll be able to 
+                                build web applications in minutes.
+                            </p>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flask-call">
+                                Learn More
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="flask-call" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close btn-primary" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h2 class="modal-title text-center" id="flask-call">Flask and Python</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="text-center">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/flask.png')}}" alt="Flask Conference">
+                                        </div>
+                                        <h3>Overview</h3>
+                                        <p>
+                                            Being that much of what we do today revolves around technology and the software that powers it, 
+                                            the future is bright for software developers of all kinds. This course will help you to acquire 
+                                            a healthy balance of hard and soft skills needed to thrive as a software developer. 
+                                            <strong>No prior programming knowledge is needed for this course.</strong>
+                                        </p>
+                                        <h3>Next class: January 15, 2021</h3>
+                                        <a class="btn btn-success" href="{{ url_for('flask') }} ">Explore</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Modal -->
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of courses -->
+{% endblock %}
