@@ -1,6 +1,7 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
-from app.forms import AnonymousCommentForm, LoginForm, RegisterForm
+from app.forms import AnonymousCommentForm, LoginForm, RegisterForm,\
+    UpdateBlogForm, UpdateEventsForm, UpdateCoursesForm, StudentStoriesForm
 from app.models import AnonymousTemplateInheritanceComment, User, Admin
 from flask_login import current_user, login_required, logout_user, login_user
 
@@ -187,4 +188,85 @@ def machine_learning():
 
 # =================================
 # END OF COURSES ROUTES
+# =================================
+
+
+# =================================
+# BLOG MANAGEMENT ROUTES
+# =================================
+
+
+@app.route('/blog/update')
+def blog_update():
+    form = UpdateBlogForm()
+    return render_template(
+        'admin/update_blog.html',
+        title='Blog Update',
+        form=form
+        )
+
+
+@app.route('/blog/review')
+def blog_review():
+    return render_template(
+        'admin/review_blog.html',
+        title='Blog Review'
+        )
+
+
+@app.route('/events/update')
+def events_update():
+    form = UpdateEventsForm()
+    return render_template(
+        'admin/update_events.html',
+        title='Events Update',
+        form=form
+        )
+
+
+@app.route('/events/review')
+def events_review():
+    return render_template(
+        'admin/review_events.html',
+        title='Events Review'
+        )
+
+
+@app.route('/student-stories/update')
+def student_stories_update():
+    form = StudentStoriesForm()
+    return render_template(
+        'admin/update_student_stories.html',
+        title='Student Stories Update',
+        form=form
+        )
+
+
+@app.route('/student-stories/review')
+def student_stories_review():
+    return render_template(
+        'admin/review_student_stories.html',
+        title='Student Stories Review'
+        )
+
+
+@app.route('/courses/update')
+def courses_update():
+    form = UpdateCoursesForm()
+    return render_template(
+        'admin/update_courses.html',
+        title='Courses Update',
+        form=form
+        )
+
+
+@app.route('/courses/review')
+def courses_review():
+    return render_template(
+        'admin/review_courses.html',
+        title='Courses Review'
+        )
+
+# =================================
+# END OF BLOG MANAGEMENT ROUTES
 # =================================
