@@ -274,22 +274,22 @@ def blog_review():
         )
 
 
-@app.route('/blog/<title>/delete')
-def blog_delete(title):
-    blog = UpdateBlog.query.get_or_404(title)
+@app.route('/blog/<int:id>/delete')
+def blog_delete(id):
+    blog = UpdateBlog.query.get_or_404(id)
     db.session.delete(blog)
     db.session.commit()
-    flash(f'{title} has been deleted.')
+    flash(f'Blog {id} has been deleted.')
     return redirect(url_for('blog_review'))
 
 
-@app.route('/blog/<title>/allow')
-def blog_allow(title):
-    blog = UpdateBlog.query.get_or_404(title)
+@app.route('/blog/<id>/allow')
+def blog_allow(id):
+    blog = UpdateBlog.query.get_or_404(id)
     blog.allowed_status = True
     db.session.add(blog)
     db.session.commit()
-    flash(f'{title} has been approved.')
+    flash(f'Blog {id} has been approved.')
     return redirect(url_for('blog_review'))
 
 

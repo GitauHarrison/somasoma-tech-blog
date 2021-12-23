@@ -44,11 +44,11 @@
     <div class="row">
         <div class="col-sm-12">
             {% if not blog.allowed_status == 1 %}
-                <a href=" {{ url_for('blog_allow', title=blog.title) }} " class="label label-warning">Allow</a>
+                <a href=" {{ url_for('blog_allow', id=blog.id) }} " class="label label-warning">Allow</a>
             {% else %}
                 <a href="#" class="label label-success">Allowed</a></a>
             {% endif %}
-             | <a href=" {{ url_for('blog_delete', title=blog.title) }} " class="label label-danger">Delete</a>
+             | <a href=" {{ url_for('blog_delete', id=blog.id) }} " class="label label-danger">Delete</a>
         </div>
     </div>
     {% endfor %}
