@@ -2,8 +2,11 @@ from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import AnonymousCommentForm, LoginForm, RegisterForm,\
     UpdateBlogForm, UpdateEventsForm, UpdateCoursesForm, StudentStoriesForm
-from app.models import AnonymousTemplateInheritanceComment, User, Admin
+from app.models import AnonymousTemplateInheritanceComment, User, Admin,\
+    UpdateBlog, UpdateEvents, UpdateCourses, UpdateStudentStories
 from flask_login import current_user, login_required, logout_user, login_user
+from werkzeug.utils import secure_filename
+import os
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -196,10 +199,42 @@ def machine_learning():
 # =================================
 
 
-@app.route('/blog/update')
+@app.route('/blog/update', methods=['GET', 'POST'])
 @login_required
 def blog_update():
     form = UpdateBlogForm()
+    if form.validate_on_submit():
+        blog = UpdateBlog(
+            title=form.title.data,
+            body=form.body.data,
+            link=form.link.data
+            )
+
+        # Handling file upload
+        uploaded_file = form.blog_image.data
+        filename = secure_filename(uploaded_file.filename)
+        if not os.path.exists(app.config['UPLOAD_PATH']):
+            os.makedirs(app.config['UPLOAD_PATH'])
+        blog_image_path = os.path.join(
+            app.config['UPLOAD_PATH'],
+            filename
+            )
+        print('Img path:', blog_image_path)
+        uploaded_file.save(blog_image_path)
+        blog.blog_image = blog_image_path
+        print('Db path: ', blog.blog_image)
+
+        blog_image_path_list = blog.blog_image.split('/')[2:]
+        print('Img path list: ', blog_image_path_list)
+        new_blog_image_path = '/'.join(blog_image_path_list)
+        print('New img path: ', new_blog_image_path)
+        blog.blog_image = new_blog_image_path
+        print(blog.blog_image)
+
+        db.session.add(blog)
+        db.session.commit()
+        flash('Your blog has been updated. Take action now!')
+        return redirect(url_for('blog_update'))
     return render_template(
         'admin/update_blog.html',
         title='Blog Update',
@@ -210,13 +245,57 @@ def blog_update():
 @app.route('/blog/review')
 @login_required
 def blog_review():
+    page = request.args.get('page', 1, type=int)
+    blogs = UpdateBlog.query.order_by(
+        UpdateBlog.timestamp.desc()
+        ).paginate(
+            page,
+            app.config['POSTS_PER_PAGE'],
+            False
+            )
+    next_url = url_for(
+        'blog_template_inheritance',
+        page=blogs.next_num,
+        _anchor="comments") \
+        if blogs.has_next else None
+    prev_url = url_for(
+        'blog_template_inheritance',
+        page=blogs.prev_num,
+        _anchor="comments") \
+        if blogs.has_prev else None
+    all_blogs = len(UpdateBlog.query.all())
     return render_template(
         'admin/review_blog.html',
-        title='Blog Review'
+        title='Blog Review',
+        blogs=blogs.items,
+        next_url=next_url,
+        prev_url=prev_url,
+        all_blogs=all_blogs
         )
 
 
-@app.route('/events/update')
+@app.route('/blog/<title>/delete')
+def blog_delete(title):
+    blog = UpdateBlog.query.filter_by(title=request.args.get('title')).first()
+    if blog:
+        db.session.delete(blog)
+        db.session.commit()
+        flash(f'{title} has been deleted.')
+        return redirect(url_for('blog_review'))
+
+
+@app.route('/blog/<title>/allow')
+def blog_allow(title):
+    blog = UpdateBlog.query.filter_by(title=request.args.get('title')).first()
+    if blog:
+        blog.allowed_status = True
+        db.session.add(blog)
+        db.session.commit()
+        flash(f'{title} has been approved.')
+        return redirect(url_for('blog_review'))
+
+
+@app.route('/events/update', methods=['GET', 'POST'])
 @login_required
 def events_update():
     form = UpdateEventsForm()
@@ -236,7 +315,7 @@ def events_review():
         )
 
 
-@app.route('/student-stories/update')
+@app.route('/student-stories/update', methods=['GET', 'POST'])
 @login_required
 def student_stories_update():
     form = StudentStoriesForm()
@@ -256,7 +335,7 @@ def student_stories_review():
         )
 
 
-@app.route('/courses/update')
+@app.route('/courses/update', methods=['GET', 'POST'])
 @login_required
 def courses_update():
     form = UpdateCoursesForm()
