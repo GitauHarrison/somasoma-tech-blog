@@ -28,11 +28,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('home') }}">Somasoma</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">somaSoma</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
             <ul class="nav navbar-nav navbar-right">  
-                <li><a href="#">Login</a></li>          
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href=" {{ url_for('courses') }} " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Courses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href=" {{ url_for('flask') }} ">Flask</a><br>
+                        <a class="dropdown-item" href=" {{ url_for('python_dsa') }} ">Python DSA</a><br>
+                        <hr>
+                        <a class="dropdown-item disabled" href="{{ url_for('data_science') }}">Data Science</a><br>
+                        <a class="dropdown-item disabled" href="{{ url_for('machine_learning') }}">Machine Learning</a>
+                    </div>
+                </li>
+                <li><a href=" {{ url_for('events') }} ">Events</a></li> 
+                <li><a href=" {{ url_for('blog') }} ">Blog</a></li>       
             </ul>                       
         </div>
     </div>
@@ -41,13 +54,6 @@
 
 {% block content %}
     <div class="container">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-info" role="alert">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
 
         {% block app_content %}
 
