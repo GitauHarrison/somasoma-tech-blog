@@ -33,6 +33,11 @@ class Admin(UserMixin, db.Model):
         backref='author',
         lazy='dynamic'
         )
+    student_stories = db.relationship(
+        'UpdateStudentStories',
+        backref='author',
+        lazy='dynamic'
+        )
 
     def __repr__(self):
         return f'Admin: {self.username}'
@@ -108,7 +113,7 @@ class UpdateBlog(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
-        return f'Update Blog: {self.title}'
+        return f'Blog: {self.title}'
 
 
 class UpdateEvents(db.Model):
@@ -125,7 +130,7 @@ class UpdateEvents(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
-        return f'Update Events: {self.title}'
+        return f'Event: {self.title}'
 
 
 class UpdateCourses(db.Model):
@@ -141,7 +146,19 @@ class UpdateCourses(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
-        return f'Update Course: {self.title}'
+        return f'Course: {self.title}'
+
+
+class UpdateStudentStories(db.Model):
+    __tablename__ = 'update student stories'
+    id = db.Column(db.Integer, primary_key=True)
+    student_image = db.Column(db.String(140))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
+
+    def __repr__(self):
+        return f'Student Story: {self.body}'
 
 # ============================================================
 # ADMIN MANAGEMENT
