@@ -1,0 +1,214 @@
+/* ------------------------------------------ */
+/* HOME HERO SECTION */
+/* ------------------------------------------ */
+.hero {
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+.hero-text p {
+    font-size: 60px;
+    line-height: 60px;
+}
+.hero-text a {
+    background-color: #ff004c;
+    font-size: 35px;
+}
+  
+
+  @media screen and (max-width: 680px) {
+    /* Place the timelime to the left */
+    .hero {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .hero-text p {
+        font-size: 30px;
+        line-height: 30px;
+      }
+      .hero-text a {
+        background-color: #ff004c;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+}
+@media screen and (max-width: 980px) {
+    /* Place the timelime to the left */
+    .hero {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .hero-text p {
+        font-size: 35px;
+        line-height: 30px;
+      }
+      .hero-text a {
+        background-color: #ff004c;
+        font-size: 30px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+}
+
+/* ------------------------------------------ */
+/* COURSES SECTION */
+/* ------------------------------------------ */
+.courses, .blog  {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.courses .overview {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-size: 20px;
+    line-height: 20px;
+}
+.courses-text a {
+    background-color: #ff004c;
+    font-size: 35px;
+}
+  
+@media screen and (max-width: 600px) {
+    /* Place the timelime to the left */
+    .courses {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .courses .overview {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+.course-details {
+    background-color: #fff4f7;
+    font-size: 30px;
+    font-weight: 600;
+}
+.course-details span {
+    color: #ff004c;
+}
+.course-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.course-title h2 {
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.course-title a {
+    background-color: #ff004c;
+    font-size: 35px;
+}
+.student-alt {
+    background-color: #f5f5f5;
+}
+.student {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* ------------------------------------------ */
+/*NAVBAR */
+/* ------------------------------------------ */
+.navbar-brand {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+/* Dropdown menu */
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.dropdown-item {
+    padding: 10px;
+}
+
+/* ------------------------------------------ */
+/* CARDS */
+/* ------------------------------------------ */
+.card-deck {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin: 15px;
+}
+.card-deck, .blog {
+    box-shadow: 5px 5px 10px 5px #ebeae9;
+}
+.card-deck:hover, .blog:hover {
+    box-shadow: 5px 5px 10px 5px #c4c4c4;
+}
+
+/* ------------------------------------------ */
+/* CODE STYLING */
+/* ------------------------------------------ */
+
+/* This adds a code title */
+
+.code-title{
+    margin-bottom: -4px;
+    background-color: #e6e6e6;
+    padding: 10px;
+}
+.hljs-comment{
+    color: #b3b3b3;
+  }
+blockquote{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #b3b3b3;
+}
+
+/* ------------------------------------------ */
+/* CUSTOM STYLES */
+/* ------------------------------------------ */
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+h1 {
+    padding-bottom: 10px;
+    font-weight: 600;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+h2, h3, h4, h5, h6, p{
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+p, li {
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
+p, li, td, .btn, .btn-alt, .schedule-btn{
+    font-size: 20px;
+}
+
+
+/* ------------------------------------------ */
+/* BLOG SECTION */
+/* ------------------------------------------ */
+.blog {
+    padding: 20px;
+}
+.blog a {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.blog .date-posted {
+    color: #d1d1d1;
+}
+.blog p {
+    vertical-align: middle;
+}
