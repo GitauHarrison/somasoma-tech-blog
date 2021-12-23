@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{ url_for('static', filename='blog.blog_image') }}" alt="{{ blog.title }}">
+                <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ blog.blog_image }}" alt="{{ blog.title }}">
             </div>
             <div class="col-sm-8">
                 <p>{{ blog.body }}</p>

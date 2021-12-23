@@ -224,7 +224,7 @@ def blog_update():
         blog.blog_image = blog_image_path
         print('Db path: ', blog.blog_image)
 
-        blog_image_path_list = blog.blog_image.split('/')[2:]
+        blog_image_path_list = blog.blog_image.split('/')[1:]
         print('Img path list: ', blog_image_path_list)
         new_blog_image_path = '/'.join(blog_image_path_list)
         print('New img path: ', new_blog_image_path)
