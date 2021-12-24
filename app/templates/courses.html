@@ -18,9 +18,6 @@
                 Led by passionate and experienced instructors, engineers, and career advisors, our graduates become 
                 software engineers that companies around the world want to hire.
             </p>
-            <p>
-                Discover our course offerings below.
-            </p>
         </div>
         <div class="col-sm-7">
             <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/coding_bootcamp.jpg')}}" alt="Coding Bootcamp">
@@ -28,25 +25,31 @@
     </div>
     <!-- End of Overview -->
 
+    <div class="row courses">
+        <div class="col-sm-12">
+            <h2>Discover Our Course Offerings Below</h2>
+        </div>
+    </div>
+
+    
     <!-- Courses -->
     <div class="row">
-        <div class="col-sm-3">
+        {% for course in allowed_courses %}
+        <div class="col-sm-4">
             <div class="card-deck">
                 <div class="card">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/flask_class.jpg')}}" alt="Flask Class">
+                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ course.course_image }}" alt="Flask Class">
                     <div class="card-body">
                         <div class="text-center">
-                            <h2 class="card-title">Flask</h2>
+                            <h2 class="card-title">{{ course.title }}</h2>
                             <hr>
                             <p class="card-text">
-                                Flask can be daunting the first time you get into it,
-                                but once you get the hang of it, you'll be able to 
-                                build web applications in minutes.
+                                {{ course.body }}
                             </p>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flask-call">
-                                Learn More
-                            </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flask-call">
+                                    Learn More
+                                </button>
                         </div>
 
                         <!-- Modal -->
@@ -57,21 +60,16 @@
                                         <button type="button" class="close btn-primary" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h2 class="modal-title text-center" id="flask-call">Flask and Python</h2>
+                                        <h2 class="modal-title text-center" id="flask-call">{{ course.title }}</h2>
                                     </div>
                                     <div class="modal-body">
                                         <div class="text-center">
-                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="{{url_for('static', filename = 'img/flask.png')}}" alt="Flask Conference">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{course.course_image}}" alt="{{ course.title }}">
                                         </div>
                                         <h3>Overview</h3>
-                                        <p>
-                                            Being that much of what we do today revolves around technology and the software that powers it, 
-                                            the future is bright for software developers of all kinds. This course will help you to acquire 
-                                            a healthy balance of hard and soft skills needed to thrive as a software developer. 
-                                            <strong>No prior programming knowledge is needed for this course.</strong>
-                                        </p>
-                                        <h3>Next class: January 15, 2021</h3>
-                                        <a class="btn btn-success" href="{{ url_for('flask') }} ">Explore</a>
+                                        <p>{{ course.overview }}</p>
+                                        <h3>Next Class: {{ course.next_class_date }}</h3>
+                                        <a class="btn btn-success" href="{{ course.link }} ">Explore</a>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -84,6 +82,27 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     <!-- End of courses -->
+    <div class="row">
+        <div  class="col-sm-12">
+            <!-- Pagination of comments -->
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url %} disabled{% endif %}">
+                        <a href="{{ prev_url or '#' }}">
+                            <span aria-hidden="true">&#60;</span> Newer posts
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url %} disabled{% endif %}">
+                        <a href="{{ next_url or '#' }}">
+                            Older posts <span aria-hidden="true">&#62;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of pagination of comments -->
+        </div>
+    </div>
 {% endblock %}

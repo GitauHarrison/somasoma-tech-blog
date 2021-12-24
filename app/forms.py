@@ -124,7 +124,10 @@ class UpdateEventsForm(FlaskForm):
 
 
 class UpdateCoursesForm(FlaskForm):
-    course_image = FileField('Courses Image')
+    course_image = FileField(
+        'Courses Image',
+        validators=[DataRequired()]
+        )
     title = StringField(
         'Title',
         validators=[DataRequired(), Length(min=2, max=100)]
@@ -139,7 +142,8 @@ class UpdateCoursesForm(FlaskForm):
     )
     next_class_date = StringField(
         'Next Class Date',
-        validators=[DataRequired(), Length(min=2, max=100)]
+        validators=[DataRequired(), Length(min=2, max=100)],
+        render_kw={'placeholder': 'December 26, 2021'}
         )
     link = StringField(
         'Link',

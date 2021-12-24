@@ -78,9 +78,29 @@ def home():
 
 @app.route('/courses')
 def courses():
+    page = request.args.get('page', 1, type=int)
+    allowed_courses = UpdateCourses.query.filter_by(
+        allowed_status=True).order_by(UpdateCourses.timestamp.desc()).paginate(
+        page,
+        app.config['POSTS_PER_PAGE'],
+        False
+        )
+    next_url = url_for(
+        'courses',
+        _anchor='courses',
+        page=allowed_courses.next_num) \
+        if allowed_courses.has_next else None
+    prev_url = url_for(
+        'courses',
+        _anchor='courses',
+        page=allowed_courses.prev_num) \
+        if allowed_courses.has_prev else None
     return render_template(
         'courses.html',
-        title='Courses'
+        title='Courses',
+        allowed_courses=allowed_courses.items,
+        next_url=next_url,
+        prev_url=prev_url
         )
 
 
@@ -275,14 +295,14 @@ def blog_review():
             False
             )
     next_url = url_for(
-        'blog_template_inheritance',
+        'blog_review',
         page=blogs.next_num,
-        _anchor="comments") \
+        _anchor="blog") \
         if blogs.has_next else None
     prev_url = url_for(
-        'blog_template_inheritance',
+        'blog_review',
         page=blogs.prev_num,
-        _anchor="comments") \
+        _anchor="blog") \
         if blogs.has_prev else None
     all_blogs = len(UpdateBlog.query.all())
     return render_template(
@@ -358,6 +378,40 @@ def student_stories_review():
 @login_required
 def courses_update():
     form = UpdateCoursesForm()
+    if form.validate_on_submit():
+        course = UpdateCourses(
+            title=form.title.data,
+            body=form.body.data,
+            overview=form.overview.data,
+            next_class_date=form.next_class_date.data,
+            link=form.link.data
+            )
+
+        # Handling file upload
+        uploaded_file = form.course_image.data
+        filename = secure_filename(uploaded_file.filename)
+        if not os.path.exists(app.config['UPLOAD_PATH']):
+            os.makedirs(app.config['UPLOAD_PATH'])
+        course_image_path = os.path.join(
+            app.config['UPLOAD_PATH'],
+            filename
+            )
+        print('Img path:', course_image_path)
+        uploaded_file.save(course_image_path)
+        course.course_image = course_image_path
+        print('Db path: ', course.course_image)
+
+        course_image_path_list = course.course_image.split('/')[1:]
+        print('Img path list: ', course_image_path_list)
+        new_course_image_path = '/'.join(course_image_path_list)
+        print('New img path: ', new_course_image_path)
+        course.course_image = new_course_image_path
+        print(course.course_image)
+
+        db.session.add(course)
+        db.session.commit()
+        flash('Your course has been updated. Take action now!')
+        return redirect(url_for('courses_update'))
     return render_template(
         'admin/update_courses.html',
         title='Courses Update',
@@ -368,10 +422,52 @@ def courses_update():
 @app.route('/courses/review')
 @login_required
 def courses_review():
+    page = request.args.get('page', 1, type=int)
+    courses = UpdateCourses.query.order_by(
+        UpdateCourses.timestamp.desc()
+        ).paginate(
+            page,
+            app.config['POSTS_PER_PAGE'],
+            False
+            )
+    next_url = url_for(
+        'courses_review',
+        page=courses.next_num,
+        _anchor="courses") \
+        if courses.has_next else None
+    prev_url = url_for(
+        'courses_review',
+        page=courses.prev_num,
+        _anchor="courses") \
+        if courses.has_prev else None
+    all_courses = len(UpdateCourses.query.all())
     return render_template(
         'admin/review_courses.html',
-        title='Courses Review'
+        title='Courses Review',
+        courses=courses.items,
+        next_url=next_url,
+        prev_url=prev_url,
+        all_courses=all_courses
         )
+
+
+@app.route('/courses/<int:id>/delete')
+def courses_delete(id):
+    course = UpdateCourses.query.get_or_404(id)
+    db.session.delete(course)
+    db.session.commit()
+    flash(f'Course {id} has been deleted.')
+    return redirect(url_for('courses_review'))
+
+
+@app.route('/courses/<id>/allow')
+def courses_allow(id):
+    course = UpdateCourses.query.get_or_404(id)
+    course.allowed_status = True
+    db.session.add(course)
+    db.session.commit()
+    flash(f'Course {id} has been approved.')
+    return redirect(url_for('courses_review'))
 
 # =================================
 # END OF BLOG MANAGEMENT ROUTES
