@@ -2,13 +2,13 @@
 
 {% block app_content %}
         <div class="row">
-            <div class="col-sm-12 text-center" id="allowed_blogs">
+            <div class="col-sm-12 text-center">
                 <h1>{{ title }}</h1>
             </div>
         </div>
         <!-- Blog 1 -->
         {% for blog in allowed_blogs %}
-        <div class="row blog">
+        <div class="row blog" id="blogs">
             <div class="row">
                 <div class="col-sm-6 text-left">
                     <h2>{{ blog.title }}</h2>

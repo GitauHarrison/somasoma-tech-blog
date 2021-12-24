@@ -87,12 +87,12 @@ def courses():
         )
     next_url = url_for(
         'courses',
-        _anchor='courses',
+        _anchor='courses-offerings',
         page=allowed_courses.next_num) \
         if allowed_courses.has_next else None
     prev_url = url_for(
         'courses',
-        _anchor='courses',
+        _anchor='courses-offerings',
         page=allowed_courses.prev_num) \
         if allowed_courses.has_prev else None
     return render_template(
@@ -128,12 +128,12 @@ def blog():
         )
     next_url = url_for(
         'blog',
-        _anchor="allowed_blogs",
+        _anchor="blogs",
         page=allowed_blogs.next_num) \
         if allowed_blogs.has_next else None
     prev_url = url_for(
         'blog',
-        _anchor="allowed_blogs",
+        _anchor="blogs",
         page=allowed_blogs.prev_num) \
         if allowed_blogs.has_prev else None
     return render_template(
