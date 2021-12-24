@@ -1,6 +1,6 @@
 from app import app, db
 from app.models import User, AnonymousTemplateInheritanceComment, Admin,\
-    UpdateBlog, UpdateEvents, UpdateCourses, UpdateStudentStories
+    UpdateBlog, UpdateEvents, UpdateCourses, FlaskStudentStories
 
 
 @app.shell_context_processor
@@ -12,6 +12,6 @@ def make_shell_context():
         UpdateBlog=UpdateBlog,
         UpdateEvents=UpdateEvents,
         UpdateCourses=UpdateCourses,
-        UpdateStudentStories=UpdateStudentStories,
+        FlaskStudentStories=FlaskStudentStories,
         AnonymousTemplateInheritanceComment=AnonymousTemplateInheritanceComment
         )

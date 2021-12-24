@@ -33,8 +33,8 @@ class Admin(UserMixin, db.Model):
         backref='author',
         lazy='dynamic'
         )
-    student_stories = db.relationship(
-        'UpdateStudentStories',
+    flask_student_stories = db.relationship(
+        'FlaskStudentStories',
         backref='author',
         lazy='dynamic'
         )
@@ -152,8 +152,8 @@ class UpdateCourses(db.Model):
         return f'Course: {self.title}'
 
 
-class UpdateStudentStories(db.Model):
-    __tablename__ = 'update student stories'
+class FlaskStudentStories(db.Model):
+    __tablename__ = 'flask student stories'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True)
     student_image = db.Column(db.String(140))
