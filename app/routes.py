@@ -221,9 +221,30 @@ def blog_template_inheritance():
 
 @app.route('/courses/flask')
 def flask():
+    page = request.args.get('page', 1, type=int)
+    allowed_students = UpdateStudentStories.query.filter_by(
+        allowed_status=True).order_by(
+        UpdateStudentStories.timestamp.desc()).paginate(
+        page,
+        app.config['POSTS_PER_PAGE'],
+        False
+        )
+    next_url = url_for(
+        'flask',
+        _anchor='student-stories',
+        page=allowed_students.next_num) \
+        if allowed_students.has_next else None
+    prev_url = url_for(
+        'flask',
+        _anchor='student-stories',
+        page=allowed_students.prev_num) \
+        if allowed_students.has_prev else None
     return render_template(
         'course_flask.html',
-        title='Flask'
+        title='Flask',
+        allowed_students=allowed_students.items,
+        next_url=next_url,
+        prev_url=prev_url
         )
 
 
@@ -455,6 +476,37 @@ def events_allow(id):
 @login_required
 def student_stories_update():
     form = StudentStoriesForm()
+    if form.validate_on_submit():
+        student = UpdateStudentStories(
+            username=form.username.data,
+            body=form.body.data
+            )
+
+        # Handling file upload
+        uploaded_file = form.student_image.data
+        filename = secure_filename(uploaded_file.filename)
+        if not os.path.exists(app.config['UPLOAD_PATH']):
+            os.makedirs(app.config['UPLOAD_PATH'])
+        student_image_path = os.path.join(
+            app.config['UPLOAD_PATH'],
+            filename
+            )
+        print('Img path:', student_image_path)
+        uploaded_file.save(student_image_path)
+        student.student_image = student_image_path
+        print('Db path: ', student.student_image)
+
+        student_image_path_list = student.student_image.split('/')[1:]
+        print('Img path list: ', student_image_path_list)
+        new_student_image_path = '/'.join(student_image_path_list)
+        print('New img path: ', new_student_image_path)
+        student.student_image = new_student_image_path
+        print(student.student_image)
+
+        db.session.add(student)
+        db.session.commit()
+        flash('Your student has been updated. Take action now!')
+        return redirect(url_for('student_stories_update'))
     return render_template(
         'admin/update_student_stories.html',
         title='Student Stories Update',
@@ -465,10 +517,52 @@ def student_stories_update():
 @app.route('/student-stories/review')
 @login_required
 def student_stories_review():
+    page = request.args.get('page', 1, type=int)
+    students = UpdateStudentStories.query.order_by(
+        UpdateStudentStories.timestamp.desc()
+        ).paginate(
+            page,
+            app.config['POSTS_PER_PAGE'],
+            False
+            )
+    next_url = url_for(
+        'student_stories_review',
+        page=students.next_num,
+        _anchor="student-stories") \
+        if students.has_next else None
+    prev_url = url_for(
+        'student_stories_review',
+        page=students.prev_num,
+        _anchor="student-stories") \
+        if students.has_prev else None
+    all_student = len(UpdateStudentStories.query.all())
     return render_template(
         'admin/review_student_stories.html',
-        title='Student Stories Review'
+        title='Student Stories Review',
+        students=students.items,
+        next_url=next_url,
+        prev_url=prev_url,
+        all_student=all_student
         )
+
+
+@app.route('/student-stories/<int:id>/delete')
+def student_stories_delete(id):
+    student = UpdateStudentStories.query.get_or_404(id)
+    db.session.delete(student)
+    db.session.commit()
+    flash(f'Student {id} has been deleted.')
+    return redirect(url_for('student_stories_review'))
+
+
+@app.route('/student-stories/<id>/allow')
+def student_stories_allow(id):
+    student = UpdateStudentStories.query.get_or_404(id)
+    student.allowed_status = True
+    db.session.add(student)
+    db.session.commit()
+    flash(f'Student {id} has been approved.')
+    return redirect(url_for('student_stories_review'))
 
 
 @app.route('/courses/update', methods=['GET', 'POST'])

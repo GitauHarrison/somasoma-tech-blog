@@ -155,6 +155,7 @@ class UpdateCourses(db.Model):
 class UpdateStudentStories(db.Model):
     __tablename__ = 'update student stories'
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True)
     student_image = db.Column(db.String(140))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

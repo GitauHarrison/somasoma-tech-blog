@@ -194,6 +194,12 @@ p, li {
 p, li, td, .btn, .btn-alt, .schedule-btn{
     font-size: 20px;
 }
+.student {
+    box-shadow: 5px 5px 10px 5px #ebeae9;
+}
+.student:hover {
+    box-shadow: 5px 5px 10px 5px #c4c4c4;
+}
 
 
 /* ------------------------------------------ */
