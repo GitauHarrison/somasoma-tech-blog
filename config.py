@@ -20,3 +20,6 @@ class Config(object):
 
     # File upload
     UPLOAD_PATH = os.environ.get('UPLOAD_PATH') or 'static/img/uploads'
+
+    # Local testing
+    START_NGROK = os.environ.get('START_NGROK') is not None

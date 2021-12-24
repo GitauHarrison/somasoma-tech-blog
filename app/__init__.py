@@ -27,9 +27,17 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
 
+    # def start_ngrok():
+    #     from pyngrok import ngrok
+
+    #     url = ngrok.connect(5000)
+    #     print('* Tunnel URL: *', url)
+
+    # if app.config['START_NGROK']:
+    #     start_ngrok()
+
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
-
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
