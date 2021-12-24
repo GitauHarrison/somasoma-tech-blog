@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for, flash
 from app.forms import AnonymousCommentForm, LoginForm, RegisterForm,\
     UpdateBlogForm, UpdateEventsForm, UpdateCoursesForm, StudentStoriesForm
 from app.models import AnonymousTemplateInheritanceComment, User, Admin,\
-    UpdateBlog, UpdateEvents, UpdateCourses, UpdateStudentStories
+    UpdateBlog, UpdateEvents, UpdateCourses, FlaskStudentStories
 from flask_login import current_user, login_required, logout_user, login_user
 from werkzeug.utils import secure_filename
 import os
@@ -222,9 +222,9 @@ def blog_template_inheritance():
 @app.route('/courses/flask')
 def flask():
     page = request.args.get('page', 1, type=int)
-    allowed_students = UpdateStudentStories.query.filter_by(
+    allowed_students = FlaskStudentStories.query.filter_by(
         allowed_status=True).order_by(
-        UpdateStudentStories.timestamp.desc()).paginate(
+        FlaskStudentStories.timestamp.desc()).paginate(
         page,
         app.config['POSTS_PER_PAGE'],
         False
@@ -271,6 +271,46 @@ def machine_learning():
         title='Machine Learning'
         )
 
+
+@app.route('/flask/student-stories/form', methods=['GET', 'POST'])
+def flask_student_stories_form():
+    form = StudentStoriesForm()
+    if form.validate_on_submit():
+        student = FlaskStudentStories(
+            username=form.username.data,
+            body=form.body.data
+            )
+
+        # Handling file upload
+        uploaded_file = form.student_image.data
+        filename = secure_filename(uploaded_file.filename)
+        if not os.path.exists(app.config['UPLOAD_PATH']):
+            os.makedirs(app.config['UPLOAD_PATH'])
+        student_image_path = os.path.join(
+            app.config['UPLOAD_PATH'],
+            filename
+            )
+        print('Img path:', student_image_path)
+        uploaded_file.save(student_image_path)
+        student.student_image = student_image_path
+        print('Db path: ', student.student_image)
+
+        student_image_path_list = student.student_image.split('/')[1:]
+        print('Img path list: ', student_image_path_list)
+        new_student_image_path = '/'.join(student_image_path_list)
+        print('New img path: ', new_student_image_path)
+        student.student_image = new_student_image_path
+        print(student.student_image)
+
+        db.session.add(student)
+        db.session.commit()
+        flash('Your student story has been saved. The admin will review it')
+        return redirect(url_for('flask_student_stories_form'))
+    return render_template(
+        'blogs/student_stories_form.html',
+        title='Student Stories',
+        form=form
+        )
 # =================================
 # END OF COURSES ROUTES
 # =================================
@@ -477,7 +517,7 @@ def events_allow(id):
 def student_stories_update():
     form = StudentStoriesForm()
     if form.validate_on_submit():
-        student = UpdateStudentStories(
+        student = FlaskStudentStories(
             username=form.username.data,
             body=form.body.data
             )
@@ -518,8 +558,8 @@ def student_stories_update():
 @login_required
 def student_stories_review():
     page = request.args.get('page', 1, type=int)
-    students = UpdateStudentStories.query.order_by(
-        UpdateStudentStories.timestamp.desc()
+    students = FlaskStudentStories.query.order_by(
+        FlaskStudentStories.timestamp.desc()
         ).paginate(
             page,
             app.config['POSTS_PER_PAGE'],
@@ -535,7 +575,7 @@ def student_stories_review():
         page=students.prev_num,
         _anchor="student-stories") \
         if students.has_prev else None
-    all_student = len(UpdateStudentStories.query.all())
+    all_student = len(FlaskStudentStories.query.all())
     return render_template(
         'admin/review_student_stories.html',
         title='Student Stories Review',
@@ -548,7 +588,7 @@ def student_stories_review():
 
 @app.route('/student-stories/<int:id>/delete')
 def student_stories_delete(id):
-    student = UpdateStudentStories.query.get_or_404(id)
+    student = FlaskStudentStories.query.get_or_404(id)
     db.session.delete(student)
     db.session.commit()
     flash(f'Student {id} has been deleted.')
@@ -557,7 +597,7 @@ def student_stories_delete(id):
 
 @app.route('/student-stories/<id>/allow')
 def student_stories_allow(id):
-    student = UpdateStudentStories.query.get_or_404(id)
+    student = FlaskStudentStories.query.get_or_404(id)
     student.allowed_status = True
     db.session.add(student)
     db.session.commit()

@@ -208,7 +208,9 @@ p, li, td, .btn, .btn-alt, .schedule-btn{
 .student:hover {
     box-shadow: 5px 5px 10px 5px #c4c4c4;
 }
-
+#student-stories {
+    margin: 10px;
+}
 
 /* ------------------------------------------ */
 /* BLOG SECTION */
