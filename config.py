@@ -23,3 +23,6 @@ class Config(object):
 
     # Local testing
     START_NGROK = os.environ.get('START_NGROK') is not None
+
+    # Heroku logs
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
