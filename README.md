@@ -1,4 +1,4 @@
-# Somasoma Blog
+# somaSoma Tech Blog
 
 ![Somasoma Home Page](/app/static/img/somasoma_blog.png)
 
@@ -38,6 +38,10 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 
 * MIT
 
+## Contributors
+
+* See all [contributors here](https://github.com/GitauHarrison/somasoma-tech-blog/graphs/contributors)
+
 ## Run the Application Locally
 
 1. Clone the project
@@ -49,13 +53,13 @@ $ git clone git@github.com:GitauHarrison/somasoma-tech-blog.git
 2. Move into the cloned directory
 
 ```python
-$ cd somasoma-tech-blog.git
+$ cd somasoma-tech-blog
 ```
 
 3. Create and activate a virtual environment
 
 ```python
-$ mkvirtualenv venv
+$ mkvirtualenv venv # I am using virtualenvwrapper
 ```
 
 4. Install project dependencies
@@ -101,7 +105,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
                               0       0       0.00    0.00    0.00    0.00 
 ```
 
-There are two public URLs being mapped from localhost. These URLs begin with the word _Forwarding_.
+There are two public URLs being mapped to localhost. These URLs begin with the word _Forwarding_.
 
 ```python
 Forwarding                    http://3472-197-237-0-37.ngrok.io -> http://localhost:5000                 
@@ -110,10 +114,10 @@ Forwarding                    https://3472-197-237-0-37.ngrok.io -> http://local
 
 Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such as your phone. You will be required to sign up for an ngrok account (if you haven't already) and install your authtoken.
 
-8. Want to start ngrok when the application fires up for the first time? 
+8. Want to start ngrok when the server fires up? 
 
 ```python
-# Uncomment these lines in app/__init__.py (30 - 37)
+Uncomment these lines in app/__init__.py (30 - 37)
 
 # def start_ngrok():
     #     from pyngrok import ngrok
@@ -121,7 +125,7 @@ Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such 
     #     url = ngrok.connect(5000)
     #     print('* Tunnel URL: *', url)
 
-    # if app.config['START_NGROK']:
+    # if current_app.config['START_NGROK']:
     #     start_ngrok()
 ```
 
@@ -129,9 +133,13 @@ _Note that if you uncomment these lines, you can skip step 7 above, because ngro
 
 ## References
 
-You can add the lacking features to your flask blog. Check out some of these resources to get you started:
+You can add the lacking features to your flask blog. Check out some of these resources to get started:
 
 * [Learn how to add two-factor authentication to your Flask application here](https://github.com/GitauHarrison/notes/blob/master/two_factor_authentication/twilio_verify_2fa.md)
 * [Learn how to integrate comment moderation to your flask blog](https://github.com/GitauHarrison/notes/blob/master/comment_moderation.md)
 * [Add markdown support to your flask forms](https://github.com/GitauHarrison/notes/blob/master/handling_rich_text.md)
 * [Testing your locally running flask application on another device](https://github.com/GitauHarrison/notes/blob/master/localhost_testing.md)
+
+If you are just starting out in Flask, consider this:
+
+* [Running your application in a flask server](https://github.com/GitauHarrison/notes/blob/master/start_flask_server.md)
