@@ -68,19 +68,21 @@ $ mkvirtualenv venv # I am using virtualenvwrapper
 (venv)$ pip3 install -r requirements.txt
 ```
 
-5. Run the application
+5. Update environment variables following the template seen in `.env.template`
+
+6. Run the application
 
 ```python
 (venv)$ flask run # from the top-level directory
 ```
 
-6. See the application
+7. See the application
 
 ```python
 # Paste the following into a browser: http://127.0.0.1:5000/
 ```
 
-7. Intersted in testing the locally running application on another device? Run the command below in your terminal:
+8. Intersted in testing the locally running application on another device? Run the command below in your terminal:
 
 ```python
 (venv)$ ngrok http 5000
@@ -114,7 +116,7 @@ Forwarding                    https://3472-197-237-0-37.ngrok.io -> http://local
 
 Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such as your phone. You will be required to sign up for an ngrok account (if you haven't already) and install your authtoken.
 
-8. Want to start ngrok when the server fires up? 
+9. Want to start ngrok when the server fires up? 
 
 ```python
 Uncomment these lines in app/__init__.py (30 - 37)
@@ -129,7 +131,7 @@ Uncomment these lines in app/__init__.py (30 - 37)
     #     start_ngrok()
 ```
 
-_Note that if you uncomment these lines, you can skip step 7 above, because ngrok will start authomatically when you fire up the flask server_. You will see ngrok public URLs in your terminal.
+_Note that if you uncomment these lines, you can skip step 8 above, because ngrok will start authomatically when you fire up the flask server_. You will see ngrok public URLs in your terminal.
 
 ## References
 
