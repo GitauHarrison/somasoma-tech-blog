@@ -25,7 +25,7 @@
     </div>
     <!-- End of Overview -->
 
-    <div class="row courses">
+    <div class="row" id="courses-offerings">
         <div class="col-sm-12">
             <h2>Discover Our Course Offerings Below</h2>
         </div>
@@ -47,20 +47,20 @@
                                 {{ course.body }}
                             </p>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flask-call">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ course.id }}">
                                     Learn More
                                 </button>
                         </div>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="flask-call" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="{{ course.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close btn-primary" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h2 class="modal-title text-center" id="flask-call">{{ course.title }}</h2>
+                                        <h2 class="modal-title text-center" id="{{ course.id }}">{{ course.title }}</h2>
                                     </div>
                                     <div class="modal-body">
                                         <div class="text-center">
@@ -92,12 +92,12 @@
                 <ul class="pager">
                     <li class="previous{% if not prev_url %} disabled{% endif %}">
                         <a href="{{ prev_url or '#' }}">
-                            <span aria-hidden="true">&#60;</span> Newer posts
+                            <span aria-hidden="true">&#60;</span> Less
                         </a>
                     </li>
                     <li class="next{% if not next_url %} disabled{% endif %}">
                         <a href="{{ next_url or '#' }}">
-                            Older posts <span aria-hidden="true">&#62;</span>
+                            More <span aria-hidden="true">&#62;</span>
                         </a>
                     </li>
                 </ul>
