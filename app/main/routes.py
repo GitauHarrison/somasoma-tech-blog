@@ -182,7 +182,7 @@ def flask():
         page=allowed_students.prev_num) \
         if allowed_students.has_prev else None
     return render_template(
-        'main.course_flask.html',
+        'course_flask.html',
         title='Flask',
         allowed_students=allowed_students.items,
         next_url=next_url,
