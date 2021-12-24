@@ -33,7 +33,7 @@ def create_app(config_class=Config):
     #     url = ngrok.connect(5000)
     #     print('* Tunnel URL: *', url)
 
-    # if app.config['START_NGROK']:
+    # if current_app.config['START_NGROK']:
     #     start_ngrok()
 
     from app.errors import bp as errors_bp
