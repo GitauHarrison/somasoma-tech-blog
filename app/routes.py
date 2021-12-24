@@ -106,9 +106,29 @@ def courses():
 
 @app.route('/events')
 def events():
+    page = request.args.get('page', 1, type=int)
+    allowed_events = UpdateEvents.query.filter_by(
+        allowed_status=True).order_by(UpdateEvents.timestamp.desc()).paginate(
+        page,
+        app.config['POSTS_PER_PAGE'],
+        False
+        )
+    next_url = url_for(
+        'events',
+        _anchor='events',
+        page=allowed_events.next_num) \
+        if allowed_events.has_next else None
+    prev_url = url_for(
+        'events',
+        _anchor='events',
+        page=allowed_events.prev_num) \
+        if allowed_events.has_prev else None
     return render_template(
         'events.html',
-        title='Events'
+        title='Events',
+        allowed_events=allowed_events.items,
+        next_url=next_url,
+        prev_url=prev_url
         )
 
 # =================================
@@ -338,6 +358,41 @@ def blog_allow(id):
 @login_required
 def events_update():
     form = UpdateEventsForm()
+    if form.validate_on_submit():
+        event = UpdateEvents(
+            title=form.title.data,
+            event_date=form.event_date.data,
+            body=form.body.data,
+            event_time=form.event_time.data,
+            location=form.location.data,
+            link=form.meet_link.data
+            )
+
+        # Handling file upload
+        uploaded_file = form.event_image.data
+        filename = secure_filename(uploaded_file.filename)
+        if not os.path.exists(app.config['UPLOAD_PATH']):
+            os.makedirs(app.config['UPLOAD_PATH'])
+        event_image_path = os.path.join(
+            app.config['UPLOAD_PATH'],
+            filename
+            )
+        print('Img path:', event_image_path)
+        uploaded_file.save(event_image_path)
+        event.event_image = event_image_path
+        print('Db path: ', event.event_image)
+
+        event_image_path_list = event.event_image.split('/')[1:]
+        print('Img path list: ', event_image_path_list)
+        new_event_image_path = '/'.join(event_image_path_list)
+        print('New img path: ', new_event_image_path)
+        event.event_image = new_event_image_path
+        print(event.event_image)
+
+        db.session.add(event)
+        db.session.commit()
+        flash('Your events has been updated. Take action now!')
+        return redirect(url_for('events_update'))
     return render_template(
         'admin/update_events.html',
         title='Events Update',
@@ -348,10 +403,52 @@ def events_update():
 @app.route('/events/review')
 @login_required
 def events_review():
+    page = request.args.get('page', 1, type=int)
+    events = UpdateEvents.query.order_by(
+        UpdateEvents.timestamp.desc()
+        ).paginate(
+            page,
+            app.config['POSTS_PER_PAGE'],
+            False
+            )
+    next_url = url_for(
+        'events_review',
+        page=events.next_num,
+        _anchor="events") \
+        if events.has_next else None
+    prev_url = url_for(
+        'events_review',
+        page=events.prev_num,
+        _anchor="events") \
+        if events.has_prev else None
+    all_events = len(UpdateEvents.query.all())
     return render_template(
         'admin/review_events.html',
-        title='Events Review'
+        title='Events Review',
+        events=events.items,
+        next_url=next_url,
+        prev_url=prev_url,
+        all_events=all_events
         )
+
+
+@app.route('/events/<int:id>/delete')
+def events_delete(id):
+    event = UpdateEvents.query.get_or_404(id)
+    db.session.delete(event)
+    db.session.commit()
+    flash(f'Event {id} has been deleted.')
+    return redirect(url_for('events_review'))
+
+
+@app.route('/events/<id>/allow')
+def events_allow(id):
+    event = UpdateEvents.query.get_or_404(id)
+    event.allowed_status = True
+    db.session.add(event)
+    db.session.commit()
+    flash(f'Event {id} has been approved.')
+    return redirect(url_for('events_review'))
 
 
 @app.route('/student-stories/update', methods=['GET', 'POST'])

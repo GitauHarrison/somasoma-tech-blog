@@ -10,6 +10,98 @@
     </div>
     <!-- End of flash message -->
     <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <!-- events -->
+    <div class="row">
+        {% for event in events %}
+        <div class="col-sm-4">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ event.event_image }}" alt="Flask Class">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h2 class="card-title">{{ event.title }}</h2>
+                            <h3 class="card-title">{{ event.date }}</h3>
+                            <hr>
+                            <p class="card-text">
+                                {{ event.body }}
+                            </p>
+                            <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ event.id }}">
+                                    Join Conversation
+                                </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade text-center" id="{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close btn-primary" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h2 class="modal-title text-center" id="{{ event.id }}">{{ event.title }}</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="text-center">
+                                            <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{event.event_image}}" alt="{{ event.title }}">
+                                        </div>
+                                        <p>Date: <strong>{{ event.event_date }}</strong></p>
+                                        <p>Time: <strong>{{ event.event_time }}</strong></p>
+                                        <p>Location: <strong>{{ event.location }}</strong></p>
+                                        <p>
+                                            The meet will be streamed live; you can catch up here:<br>
+                                            <a href="{{ event.link }} ">Google Meet Link</a>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Modal -->
+                    </div>            
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if not event.allowed_status == 1 %}
+                        <a href=" {{ url_for('events_allow', id=event.id) }} " class="label label-warning">Allow</a>
+                    {% else %}
+                        <a href="#" class="label label-success">Allowed</a></a>
+                    {% endif %}
+                     | <a href=" {{ url_for('events_delete', id=event.id) }} " class="label label-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- End of events -->
+    <div class="row">
+        <div  class="col-sm-12">
+            <!-- Pagination of comments -->
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url %} disabled{% endif %}">
+                        <a href="{{ prev_url or '#' }}">
+                            <span aria-hidden="true">&#60;</span> Less
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url %} disabled{% endif %}">
+                        <a href="{{ next_url or '#' }}">
+                            More <span aria-hidden="true">&#62;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of pagination of comments -->
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-4">
             <!-- Empty column -->
         </div>
