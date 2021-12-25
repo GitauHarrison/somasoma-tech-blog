@@ -23,7 +23,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 * Flask Bootstrap for styling and cross-browser responsiveness
 * Moment.js for date formatting
 * Gunicorn and Psycopg2 for live deployment
-* Flask mail for sending emails locally
+* Flask mail for sending emails locally (for live deployment, you will need [Twilio Sendgrid](https://github.com/GitauHarrison/notes/blob/master/twilio_sendgrid.md))
 
 ## Features Lacking
 
