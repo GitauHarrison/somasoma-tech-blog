@@ -62,7 +62,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     email = db.Column(db.String(120), index=True)
-    comment = db.Column(db.String(140))
+    comment = db.Column(db.String(300))
 
     comments = db.relationship(
         'AnonymousTemplateInheritanceComment',
@@ -105,10 +105,10 @@ class AnonymousTemplateInheritanceComment(db.Model):
 class UpdateBlog(db.Model):
     __tablename__ = 'update blog'
     id = db.Column(db.Integer, primary_key=True)
-    blog_image = db.Column(db.String(140))
+    blog_image = db.Column(db.String(300))
     title = db.Column(db.String(64), index=True)
     body = db.Column(db.String(300))
-    link = db.Column(db.String(140))
+    link = db.Column(db.String(300))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
@@ -121,13 +121,13 @@ class UpdateEvents(db.Model):
     __tablename__ = 'update events'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
-    event_image = db.Column(db.String(140))
-    event_date = db.Column(db.String(140))
-    event_time = db.Column(db.String(140))
-    location = db.Column(db.String(140))
+    event_image = db.Column(db.String(300))
+    event_date = db.Column(db.String(300))
+    event_time = db.Column(db.String(300))
+    location = db.Column(db.String(300))
     body = db.Column(db.String(300))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    link = db.Column(db.String(140))
+    link = db.Column(db.String(300))
     allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
@@ -138,13 +138,13 @@ class UpdateEvents(db.Model):
 class UpdateCourses(db.Model):
     __tablename__ = 'update course'
     id = db.Column(db.Integer, primary_key=True)
-    course_image = db.Column(db.String(140))
+    course_image = db.Column(db.String(300))
     title = db.Column(db.String(64), index=True)
     body = db.Column(db.String(300))
     overview = db.Column(db.String(300))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    next_class_date = db.Column(db.String(140))
-    link = db.Column(db.String(140))
+    next_class_date = db.Column(db.String(300))
+    link = db.Column(db.String(300))
     allowed_status = db.Column(db.Boolean, default=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
@@ -156,7 +156,7 @@ class FlaskStudentStories(db.Model):
     __tablename__ = 'flask student stories'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True)
-    student_image = db.Column(db.String(140))
+    student_image = db.Column(db.String(300))
     body = db.Column(db.String(300))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     allowed_status = db.Column(db.Boolean, default=False)
