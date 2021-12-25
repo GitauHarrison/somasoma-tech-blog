@@ -32,7 +32,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 
 ## Deployment
 
-* [Somasoma on Heroku](https://somasoma-blog.herokuapp.com/)
+* [Somasoma on Heroku](https://somasoma-tech-blog.herokuapp.com/)
 
 ## License
 
