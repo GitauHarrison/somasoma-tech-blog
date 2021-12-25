@@ -13,6 +13,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 * Pagination of some contents
 * File Upload
 * Password reset
+* Credit card payment
 
 ## Tools Used
 
@@ -24,6 +25,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 * Moment.js for date formatting
 * Gunicorn and Psycopg2 for live deployment
 * Flask mail for sending emails locally (for live deployment, you will need [Twilio Sendgrid](https://github.com/GitauHarrison/notes/blob/master/twilio_sendgrid.md))
+* Stripe for credit card payment
 
 ## Features Lacking
 
@@ -121,7 +123,7 @@ Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such 
 9. Want to start ngrok when the server fires up? 
 
 ```python
-Uncomment these lines in app/__init__.py (30 - 37)
+Uncomment these lines in app/__init__.py (51 - 58)
 
 # def start_ngrok():
     #     from pyngrok import ngrok
