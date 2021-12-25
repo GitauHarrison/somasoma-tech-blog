@@ -12,6 +12,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 * Database Management
 * Pagination of some contents
 * File Upload
+* Password reset
 
 ## Tools Used
 
@@ -22,6 +23,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 * Flask Bootstrap for styling and cross-browser responsiveness
 * Moment.js for date formatting
 * Gunicorn and Psycopg2 for live deployment
+* Flask mail for sending emails locally
 
 ## Features Lacking
 
@@ -132,6 +134,10 @@ Uncomment these lines in app/__init__.py (30 - 37)
 ```
 
 _Note that if you uncomment these lines, you can skip step 8 above, because ngrok will start authomatically when you fire up the flask server_. You will see ngrok public URLs in your terminal.
+
+## Testing the Application
+
+[See Video]()
 
 ## References
 
