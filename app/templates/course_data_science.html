@@ -2,8 +2,108 @@
 
 {% block app_content %}
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 text-center">
             <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row course-title">
+        <div class="col-sm-12">
+            <h2>Overview</h2>
+            <p>
+                Data science is the discipline of extracting knowledge from different 
+                types of data. Organizations and businesses use these insights to make 
+                decisions.
+            </p>
+            <p>
+                Our Data Science course prepares you for a wide range of careers in tech, 
+                business, health, engineering, and other industries. This course is for 
+                you if you have completed high school, are continuing with college, or 
+                you are a graduate and you enjoy working with numbers and data. 
+            </p>
+        </div>
+    </div>
+    <div class="row course-title" id="student-stories">
+        <h2>Stories From Real Students</h2>
+        <div class="row">
+            {% for student in allowed_students %}
+            <div class="col-sm-4 student">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ student.student_image }}" alt="Flask Class"><br>
+                        <p>{{ student.username }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>"{{ student.body }}"</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div  class="col-sm-12">
+            <!-- Pagination of comments -->
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous{% if not prev_url %} disabled{% endif %}">
+                        <a href="{{ prev_url or '#' }}">
+                            <span aria-hidden="true">&#60;</span> Less
+                        </a>
+                    </li>
+                    <li class="next{% if not next_url %} disabled{% endif %}">
+                        <a href="{{ next_url or '#' }}">
+                            More <span aria-hidden="true">&#62;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of pagination of comments -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                Want to be featured?
+                <a href="{{ url_for('main.data_science_student_stories_form') }}">Click here</a>.
+            </p>
+        </div>
+    </div>
+    <div class="row course-title">
+        <div class="col-sm-12">
+            <h2>What You Will Learn</h2>
+            <ol>
+                <li>Supervised Learning</li>
+                <li>Advanced Regression</li>
+                <li>Decision Trees</li>
+                <li>Neural Networks</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row course-title course-details">
+        <div class="col-sm-4">
+            <p>
+                DURATION:<br>
+                <span>6 months</span>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <p>
+                MODE:<br>
+                <span>Remote Learning</span>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <p>
+                COST:<br>
+                <span>KES 200 000 (USD 2000)</span>
+            </p>
+        </div>
+    </div>
+    <div class="row course-title text-center">
+        <div class="col-sm-12">
+            <a class="btn btn-success" href="#">Register Now</a>
         </div>
     </div>
 {% endblock %}

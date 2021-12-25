@@ -1,6 +1,7 @@
 from app import create_app, db
 from app.models import User, AnonymousTemplateInheritanceComment, Admin,\
-    UpdateBlog, UpdateEvents, UpdateCourses, FlaskStudentStories
+    UpdateBlog, UpdateEvents, UpdateCourses, FlaskStudentStories,\
+    DataScienceStudentStories
 
 app = create_app()
 
@@ -15,5 +16,6 @@ def make_shell_context():
         UpdateEvents=UpdateEvents,
         UpdateCourses=UpdateCourses,
         FlaskStudentStories=FlaskStudentStories,
+        DataScienceStudentStories=DataScienceStudentStories,
         AnonymousTemplateInheritanceComment=AnonymousTemplateInheritanceComment
         )

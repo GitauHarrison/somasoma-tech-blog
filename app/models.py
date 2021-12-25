@@ -38,6 +38,11 @@ class Admin(UserMixin, db.Model):
         backref='author',
         lazy='dynamic'
         )
+    data_science_student_stories = db.relationship(
+        'DataScienceStudentStories',
+        backref='author',
+        lazy='dynamic'
+        )
 
     def __repr__(self):
         return f'Admin: {self.username}'
@@ -163,7 +168,21 @@ class FlaskStudentStories(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
     def __repr__(self):
-        return f'Student Story: {self.body}'
+        return f'Flask Story: {self.body}'
+
+
+class DataScienceStudentStories(db.Model):
+    __tablename__ = 'data science student stories'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True)
+    student_image = db.Column(db.String(300))
+    body = db.Column(db.String(300))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    allowed_status = db.Column(db.Boolean, default=False)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
+
+    def __repr__(self):
+        return f'Data Science Story: {self.body}'
 
 # ============================================================
 # ADMIN MANAGEMENT
