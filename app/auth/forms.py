@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
         'Username',
         validators=[DataRequired(), Length(min=2, max=100)]
         )
-    password = StringField(
+    password = PasswordField(
         'Password',
         validators=[DataRequired(), Length(min=2, max=100)]
         )
