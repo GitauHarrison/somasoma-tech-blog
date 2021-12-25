@@ -193,9 +193,30 @@ def flask():
 
 @bp.route('/courses/data-science')
 def data_science():
+    page = request.args.get('page', 1, type=int)
+    allowed_students = DataScienceStudentStories.query.filter_by(
+        allowed_status=True).order_by(
+        DataScienceStudentStories.timestamp.desc()).paginate(
+        page,
+        current_app.config['POSTS_PER_PAGE'],
+        False
+        )
+    next_url = url_for(
+        'main.data_science',
+        _anchor='student-stories',
+        page=allowed_students.next_num) \
+        if allowed_students.has_next else None
+    prev_url = url_for(
+        'main.data_science',
+        _anchor='student-stories',
+        page=allowed_students.prev_num) \
+        if allowed_students.has_prev else None
     return render_template(
         'course_data_science.html',
-        title='Data Science'
+        title='Data Science',
+        allowed_students=allowed_students.items,
+        next_url=next_url,
+        prev_url=prev_url
         )
 
 
@@ -235,7 +256,7 @@ def flask_student_stories_form():
         return redirect(url_for('main.flask_student_stories_form'))
     return render_template(
         'blogs/student_stories_form.html',
-        title='Student Stories',
+        title='Flask Stories',
         form=form
         )
 
@@ -273,10 +294,10 @@ def data_science_student_stories_form():
         db.session.add(student)
         db.session.commit()
         flash('Your student story has been saved. The admin will review it')
-        return redirect(url_for('main.flask_student_stories_form'))
+        return redirect(url_for('main.data_science_student_stories_form'))
     return render_template(
-        'blogs/student_stories_form.html',
-        title='Student Stories',
+        'blogs/ds_student_stories_form.html',
+        title='Data Science Stories',
         form=form
         )
 

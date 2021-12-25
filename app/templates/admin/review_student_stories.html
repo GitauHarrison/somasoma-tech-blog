@@ -2,78 +2,141 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <!-- Flash message -->
-    <div class="row">
-        <div class="col-sm-12">
-            {% include '_flash_message.html' %}
-        </div>
-    </div>
-    <!-- End of flash message -->
     <div class="row">
         <div class="col-sm-12 text-center">
-            <h1>{{ title }} ({{all_student}})</h1>
+            <h1>{{ title }}</h1>
         </div>
     </div>
-    <div class="row" id="student-stories">
-        {% for student in students %}
-        <div class="col-sm-4 student">
-            <div class="row">
-                <div class="col-sm-12">
-                    <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ student.student_image }}" alt="Flask Class"><br>
-                    <p>{{ student.username }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <p>"{{ student.body }}"</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    {% if not student.allowed_status == 1 %}
-                        <a href=" {{ url_for('admin.student_stories_allow', id=student.id) }} " class="label label-warning">Allow</a>
-                    {% else %}
-                        <a href="#" class="label label-success">Allowed</a></a>
-                    {% endif %}
-                     | <a href=" {{ url_for('admin.student_stories_delete', id=student.id) }} " class="label label-danger">Delete</a>
-                </div>
+
+    <!-- Flask stories -->
+    <div style="padding: 10px;">
+        <div class="row" id="student-stories">
+            <div class="col-sm-12">
+                <h2>Flask Stories ({{all_flask_students}})</h2>
             </div>
         </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        <div  class="col-sm-12">
-            <!-- Pagination of comments -->
-            <nav aria-label="...">
-                <ul class="pager">
-                    <li class="previous{% if not prev_url %} disabled{% endif %}">
-                        <a href="{{ prev_url or '#' }}">
-                            <span aria-hidden="true">&#60;</span> Less
-                        </a>
-                    </li>
-                    <li class="next{% if not next_url %} disabled{% endif %}">
-                        <a href="{{ next_url or '#' }}">
-                            More <span aria-hidden="true">&#62;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End of pagination of comments -->
+        <!-- Flash message -->
+        <div class="row">
+            <div class="col-sm-12">
+                {% include '_flash_message.html' %}
+            </div>
+        </div>
+        <!-- End of flash message -->
+        <div class="row">
+            {% for student in flask_students %}
+            <div class="col-sm-4 student">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ student.student_image }}" alt="Flask Class"><br>
+                        <p>{{ student.username }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>"{{ student.body }}"</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% if not student.allowed_status == 1 %}
+                            <a href=" {{ url_for('admin.flask_stories_allow', id=student.id) }} " class="label label-warning">Allow</a>
+                        {% else %}
+                            <a href="#" class="label label-success">Allowed</a></a>
+                        {% endif %}
+                         | <a href=" {{ url_for('admin.flask_stories_delete', id=student.id) }} " class="label label-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div  class="col-sm-12">
+                <!-- Pagination of comments -->
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous{% if not prev_url %} disabled{% endif %}">
+                            <a href="{{ prev_url or '#' }}">
+                                <span aria-hidden="true">&#60;</span> Less
+                            </a>
+                        </li>
+                        <li class="next{% if not next_url %} disabled{% endif %}">
+                            <a href="{{ next_url or '#' }}">
+                                More <span aria-hidden="true">&#62;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of pagination of comments -->
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <!-- Empty column -->
+    <!-- End of Flask stories -->
+
+    <hr>
+
+    <!-- Data Science Stories -->
+    <div style="background-color: #f2f2f2; padding: 10px;">
+        <div class="row" id="data-science">
+            <div class="col-sm-12">
+                <h2>Data Science Stories ({{all_ds_students}})</h2>
+            </div>
         </div>
-        <div class="col-sm-4 text-center">
-            <p><a href=" {{ url_for('admin.student_stories_update') }} " class="btn btn-primary" >
-                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                Update Student Stories
-            </a>
-            </p>
+        <!-- Flash message -->
+        <div class="row">
+            <div class="col-sm-12">
+                {% include '_flash_message.html' %}
+            </div>
         </div>
-        <div class="col-sm-4">
-            <!-- Empty column -->
+        <!-- End of flash message -->
+        <div class="row">
+            {% for student in ds_students %}
+            <div class="col-sm-4 student">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img class="img-fluid" style="max-width: 100%; height: auto;" src="/{{ student.student_image }}" alt="Flask Class"><br>
+                        <p>{{ student.username }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>"{{ student.body }}"</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% if not student.allowed_status == 1 %}
+                            <a href=" {{ url_for('admin.ds_stories_allow', id=student.id) }} " class="label label-warning">Allow</a>
+                        {% else %}
+                            <a href="#" class="label label-success">Allowed</a></a>
+                        {% endif %}
+                         | <a href=" {{ url_for('admin.ds_stories_delete', id=student.id) }} " class="label label-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div  class="col-sm-12">
+                <!-- Pagination of comments -->
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous{% if not prev_ds_url %} disabled{% endif %}">
+                            <a href="{{ prev_ds_url or '#' }}">
+                                <span aria-hidden="true">&#60;</span> Less
+                            </a>
+                        </li>
+                        <li class="next{% if not next_ds_url %} disabled{% endif %}">
+                            <a href="{{ next_ds_url or '#' }}">
+                                More <span aria-hidden="true">&#62;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of pagination of comments -->
+            </div>
         </div>
     </div>
+    <!-- End of Data Science stories -->
+
+    <hr>
 {% endblock %}

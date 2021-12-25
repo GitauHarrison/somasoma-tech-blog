@@ -3,9 +3,9 @@ from app.admin import bp
 from flask import render_template, request, redirect, url_for, flash,\
     current_app
 from app.admin.forms import UpdateBlogForm, UpdateEventsForm,\
-    UpdateCoursesForm, StudentStoriesForm
+    UpdateCoursesForm
 from app.models import UpdateBlog, UpdateEvents, UpdateCourses,\
-    FlaskStudentStories
+    FlaskStudentStories, DataScienceStudentStories
 from flask_login import login_required
 from werkzeug.utils import secure_filename
 import os
@@ -24,6 +24,7 @@ def dashboard():
 # BLOG MANAGEMENT ROUTES
 # =================================
 
+# Blog
 
 @bp.route('/blog/update', methods=['GET', 'POST'])
 @login_required
@@ -117,6 +118,8 @@ def blog_allow(id):
     db.session.commit()
     flash(f'Blog {id} has been approved.')
     return redirect(url_for('admin.blog_review'))
+
+# Events
 
 
 @bp.route('/events/update', methods=['GET', 'POST'])
@@ -215,98 +218,124 @@ def events_allow(id):
     flash(f'Event {id} has been approved.')
     return redirect(url_for('admin.events_review'))
 
+# STUDENT STORIES
 
-@bp.route('/student-stories/update', methods=['GET', 'POST'])
-@login_required
-def student_stories_update():
-    form = StudentStoriesForm()
-    if form.validate_on_submit():
-        student = FlaskStudentStories(
-            username=form.username.data,
-            body=form.body.data
-            )
-
-        # Handling file upload
-        uploaded_file = form.student_image.data
-        filename = secure_filename(uploaded_file.filename)
-        if not os.path.exists(current_app.config['UPLOAD_PATH']):
-            os.makedirs(current_app.config['UPLOAD_PATH'])
-        student_image_path = os.path.join(
-            current_app.config['UPLOAD_PATH'],
-            filename
-            )
-        print('Img path:', student_image_path)
-        uploaded_file.save(student_image_path)
-        student.student_image = student_image_path
-        print('Db path: ', student.student_image)
-
-        student_image_path_list = student.student_image.split('/')[1:]
-        print('Img path list: ', student_image_path_list)
-        new_student_image_path = '/'.join(student_image_path_list)
-        print('New img path: ', new_student_image_path)
-        student.student_image = new_student_image_path
-        print(student.student_image)
-
-        db.session.add(student)
-        db.session.commit()
-        flash('Your student has been updated. Take action now!')
-        return redirect(url_for('admin.student_stories_update'))
-    return render_template(
-        'admin/update_student_stories.html',
-        title='Student Stories Update',
-        form=form
-        )
+# Flask
 
 
 @bp.route('/student-stories/review')
 @login_required
 def student_stories_review():
-    page = request.args.get('page', 1, type=int)
-    students = FlaskStudentStories.query.order_by(
+    flask_page = request.args.get('page', 1, type=int)
+    ds_page = request.args.get('page', 1, type=int)
+
+    # Flask
+    flask_students = FlaskStudentStories.query.order_by(
         FlaskStudentStories.timestamp.desc()
         ).paginate(
-            page,
+            flask_page,
             current_app.config['POSTS_PER_PAGE'],
             False
             )
     next_url = url_for(
         'admin.student_stories_review',
-        page=students.next_num,
+        flask_page=flask_students.next_num,
         _anchor="student-stories") \
-        if students.has_next else None
+        if flask_students.has_next else None
     prev_url = url_for(
         'admin.student_stories_review',
-        page=students.prev_num,
+        flask_page=flask_students.prev_num,
         _anchor="student-stories") \
-        if students.has_prev else None
-    all_student = len(FlaskStudentStories.query.all())
+        if flask_students.has_prev else None
+    all_flask_students = len(FlaskStudentStories.query.all())
+
+    # Data Science
+    ds_students = DataScienceStudentStories.query.order_by(
+        DataScienceStudentStories.timestamp.desc()
+        ).paginate(
+            ds_page,
+            current_app.config['POSTS_PER_PAGE'],
+            False
+            )
+    next_ds_url = url_for(
+        'admin.data_science_review',
+        ds_page=ds_students.next_num,
+        _anchor="data-science") \
+        if ds_students.has_next else None
+    prev_ds_url = url_for(
+        'admin.data_science_review',
+        ds_page=ds_students.prev_num,
+        _anchor="data-science") \
+        if ds_students.has_prev else None
+    all_ds_students = len(DataScienceStudentStories.query.all())
     return render_template(
         'admin/review_student_stories.html',
         title='Student Stories Review',
-        students=students.items,
+        flask_students=flask_students.items,
+        ds_students=ds_students.items,
         next_url=next_url,
         prev_url=prev_url,
-        all_student=all_student
+        next_ds_url=next_ds_url,
+        prev_ds_url=prev_ds_url,
+        all_flask_students=all_flask_students,
+        all_ds_students=all_ds_students
         )
 
 
-@bp.route('/student-stories/<int:id>/delete')
-def student_stories_delete(id):
+@bp.route('/student-stories/flask/<int:id>/delete')
+def flask_stories_delete(id):
     student = FlaskStudentStories.query.get_or_404(id)
     db.session.delete(student)
     db.session.commit()
-    flash(f'Student {id} has been deleted.')
-    return redirect(url_for('admin.student_stories_review'))
+    flash(f'Flask story {id} has been deleted.')
+    return redirect(url_for(
+        'admin.student_stories_review',
+        _anchor="student-stories"
+        )
+    )
 
 
-@bp.route('/student-stories/<id>/allow')
-def student_stories_allow(id):
+@bp.route('/student-stories/flask/<id>/allow')
+def flask_stories_allow(id):
     student = FlaskStudentStories.query.get_or_404(id)
     student.allowed_status = True
     db.session.add(student)
     db.session.commit()
-    flash(f'Student {id} has been approved.')
-    return redirect(url_for('admin.student_stories_review'))
+    flash(f'Flask story {id} has been approved.')
+    return redirect(url_for(
+        'admin.student_stories_review',
+        _anchor="student-stories"
+        )
+    )
+
+
+@bp.route('/student-stories/data-science/<int:id>/delete')
+def ds_stories_delete(id):
+    student = DataScienceStudentStories.query.get_or_404(id)
+    db.session.delete(student)
+    db.session.commit()
+    flash(f'Data Science story {id} has been deleted.')
+    return redirect(url_for(
+        'admin.student_stories_review',
+        _anchor="student-stories"
+        )
+    )
+
+
+@bp.route('/student-stories/data-science/<id>/allow')
+def ds_stories_allow(id):
+    student = DataScienceStudentStories.query.get_or_404(id)
+    student.allowed_status = True
+    db.session.add(student)
+    db.session.commit()
+    flash(f'Data Science story {id} has been approved.')
+    return redirect(url_for(
+        'admin.student_stories_review',
+        _anchor="student-stories"
+        )
+    )
+
+# Courses
 
 
 @bp.route('/courses/update', methods=['GET', 'POST'])
