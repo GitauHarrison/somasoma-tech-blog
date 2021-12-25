@@ -1,13 +1,14 @@
-from app import db
+from app import db, products
 from app.main import bp
 from flask import render_template, request, redirect, url_for, flash,\
-    current_app
+    current_app, abort
 from app.main.forms import StudentStoriesForm, AnonymousCommentForm
 from app.models import AnonymousTemplateInheritanceComment, User,\
     UpdateBlog, UpdateEvents, UpdateCourses, FlaskStudentStories,\
     DataScienceStudentStories
 from werkzeug.utils import secure_filename
 import os
+import stripe
 
 
 @bp.route('/')
@@ -304,3 +305,89 @@ def data_science_student_stories_form():
 # =================================
 # END OF COURSES ROUTES
 # =================================
+
+
+# =================================
+# PAYMENT
+# =================================
+
+
+@bp.route('/checkout')
+def checkout():
+    return render_template(
+        'orders.html',
+        title='Orders',
+        products=products
+    )
+
+
+@bp.route('/order/<product_id>', methods=['POST'])
+def order(product_id):
+    stripe.api_key = current_app.config['STRIPE_SECRET_KEY']
+    if product_id not in products:
+        abort(404)
+    checkout_session = stripe.checkout.Session.create(
+        line_items=[
+            {
+                'price_data': {
+                    'product_data': {
+                        'name': products[product_id]['name'],
+                    },
+                    'unit_amount': products[product_id]['price'],
+                    'currency': 'usd',
+                },
+                'quantity': 1,
+                'adjustable_quantity': products[product_id].get(
+                    'adjustable_quantity',
+                    {'enabled': False}
+                ),
+            },
+        ],
+        payment_method_types=['card'],
+        mode='payment',
+        success_url=request.host_url + 'order/success',
+        cancel_url=request.host_url + 'order/cancel',
+    )
+    return redirect(checkout_session.url)
+
+
+@bp.route('/order/success')
+def success():
+    flash('Thank you for your order!')
+    return render_template(
+        'payment_status/success.html',
+        title='Order Successful'
+        )
+
+
+@bp.route('/order/cancel')
+def cancel():
+    flash('Your order has been cancelled')
+    return render_template(
+        'payment_status/cancel.html',
+        title='Order Cancelled'
+        )
+
+
+@bp.route('/event', methods=['POST'])
+def new_event():
+    event = None
+    payload = request.data
+    signature = request.headers['STRIPE_SIGNATURE']
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, signature, current_app.config['STRIPE_WEBHOOK_SECRET'])
+    except Exception as e:
+        # the payload could not be verified
+        abort(400)
+
+    if event['type'] == 'checkout.session.completed':
+        session = stripe.checkout.Session.retrieve(
+            event['data']['object'].id, expand=['line_items'])
+        print(f'Sale to {session.customer_details.email}:')
+        for item in session.line_items.data:
+            print(f'  - {item.quantity} {item.description} '
+                  f'${item.amount_total/100:.02f} {item.currency.upper()}')
+
+    return {'success': True}

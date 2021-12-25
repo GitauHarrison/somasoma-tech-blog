@@ -19,6 +19,23 @@ moment = Moment()
 login = LoginManager()
 login.login_view = 'auth.login'
 
+products = {
+        'flask': {
+            'name': 'Web Development with Flask and Python',
+            'price': 3900,
+        },
+        'support': {
+            'name': 'Python DSA support',
+            'price': 5000,
+            'per': 'hour',
+            'adjustable_quantity': {
+                'enabled': True,
+                'minimum': 1,
+                'maximum': 4
+            },
+        },
+    }
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
