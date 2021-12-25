@@ -1,8 +1,8 @@
 # somaSoma Tech Blog
 
-![Somasoma Home Page](/app/static/img/somasoma_blog.png)
-
 This is a simple tech blog. It features an admin who can remotely update the blog. Anonymous users can interact with the blog contents using the user forms in each blog post.
+
+![Somasoma Home Page](/app/static/img/somasoma_blog.gif)
 
 ## Features
 
