@@ -118,7 +118,12 @@ Forwarding                    http://3472-197-237-0-37.ngrok.io -> http://localh
 Forwarding                    https://3472-197-237-0-37.ngrok.io -> http://localhost:5000
 ```
 
-Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such as your phone. You will be required to sign up for an ngrok account (if you haven't already) and install your authtoken.
+Paste, for example, "https://3472-197-237-0-37.ngrok.io" on another device such as your phone. You should be able to see the application running. If not, you will be required to [sign up for an ngrok account](https://dashboard.ngrok.com/signup) (in case you haven't already) and install your `authtoken`. It is actually very simple:
+
+- Download ngrok for your operating system
+- Extract the ngrok binary on linux or Mac OS X (on Windows, you double-click the .exe file)
+- Connect your account
+- Fire it up
 
 9. Want to start ngrok when the server fires up? 
 
