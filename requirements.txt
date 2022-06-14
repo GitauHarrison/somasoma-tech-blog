@@ -24,7 +24,7 @@ Jinja2==3.0.3
 Mako==1.1.6
 MarkupSafe==2.0.1
 psycopg2==2.9.2
-PyJWT==2.3.0
+PyJWT==2.4.0
 pyngrok==5.1.0
 python-dotenv==0.19.2
 PyYAML==6.0
