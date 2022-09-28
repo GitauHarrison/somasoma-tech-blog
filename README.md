@@ -37,6 +37,7 @@ This is a simple tech blog. It features an admin who can remotely update the blo
 ## Deployment
 
 * [Somasoma on Heroku](https://somasoma-tech-blog.herokuapp.com/)
+* [Somasoma tech blog](https://somasoma-tech-blog.onrender.com) - Render
 
 ## License
 
